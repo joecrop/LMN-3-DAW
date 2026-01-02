@@ -77,6 +77,12 @@ juce::String SynthSamplerViewModel::getTitle() {
 
 bool SynthSamplerViewModel::isDir() { return nextFile.isDirectory(); }
 
+void SynthSamplerViewModel::refreshSampleList() {
+    updateFiles();
+    itemListState.listSize = files.size();
+    markAndUpdate(shouldUpdateSample);
+}
+
 void SynthSamplerViewModel::enterDir() {
     if (!isDir()) {
         return;

@@ -87,7 +87,7 @@ sudo apt install libasound2-dev libjack-jackd2-dev \
     libcurl4-openssl-dev  \
     libfreetype6-dev \
     libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev \
-    libwebkit2gtk-4.0-dev \
+    libwebkit2gtk-4.1-dev \
     libglu1-mesa-dev mesa-common-dev \
     build-essential cmake clang llvm lld
 ```
@@ -102,7 +102,7 @@ git clone --recurse-submodules https://github.com/FundamentalFrequency/LMN-3-DAW
 CMake is used to build the project. Execute the following commands to build all project targets:
 ```bash
 cmake -B build -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fuse-ld=lld
-cmake --build build -j8
+cmake --build build -j`nproc`
 ```
 You will find the corresponding artifacts in the build directory that was created using the commands above. 
 `./build/LMN3_artefacts/Release` will contain the main LMN-3 executable. 

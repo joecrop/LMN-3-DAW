@@ -14,6 +14,8 @@ class SynthSamplerViewModel : public app_view_models::SamplerViewModel {
     void enterDir() override;
     bool isDir() override;
 
+    void refreshSampleList() override;
+
     juce::String getTitle() override;
 
     juce::StringArray getItemNames() override;

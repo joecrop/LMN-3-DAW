@@ -98,10 +98,19 @@ class GuiAppApplication : public juce::JUCEApplication {
     void initialiseAudioDevices() {
         auto &deviceManager = engine.getDeviceManager().deviceManager;
         deviceManager.getCurrentDeviceTypeObject()->scanForDevices();
-        auto result = deviceManager.initialiseWithDefaultDevices(0, 2);
+        // Enable mono input (1 channel) and stereo output (2 channels)
+        auto result = deviceManager.initialiseWithDefaultDevices(1, 2);
         if (result != "") {
             juce::Logger::writeToLog(
                 "Attempt to initialise default devices failed!");
+        }
+
+        // Enable wave input devices for audio recording
+        auto &teDeviceManager = engine.getDeviceManager();
+        for (int i = 0; i < teDeviceManager.getNumWaveInDevices(); i++) {
+            if (auto waveInDevice = teDeviceManager.getWaveInDevice(i)) {
+                waveInDevice->setEnabled(true);
+            }
         }
     }
 

@@ -11,7 +11,8 @@
 
 class SamplerView : public juce::Component,
                     public app_view_models::SynthSamplerViewModel::Listener,
-                    public app_services::MidiCommandManager::Listener {
+                    public app_services::MidiCommandManager::Listener,
+                    public app_view_models::SamplerRecordingViewModel::Listener {
   public:
     enum class SamplerType {
 
@@ -20,9 +21,11 @@ class SamplerView : public juce::Component,
     };
 
     SamplerView(tracktion::SamplerPlugin *sampler,
-                app_services::MidiCommandManager &mcm);
+                app_services::MidiCommandManager &mcm,
+                tracktion::Edit &edit);
     SamplerView(internal_plugins::DrumSamplerPlugin *drumSampler,
-                app_services::MidiCommandManager &mcm);
+                app_services::MidiCommandManager &mcm,
+                tracktion::Edit &edit);
     ~SamplerView() override;
 
     void paint(juce::Graphics &g) override;
@@ -50,7 +53,15 @@ class SamplerView : public juce::Component,
     void controlButtonPressed() override;
     void controlButtonReleased() override;
 
+    void recordButtonReleased() override;
+    void stopButtonReleased() override;
+
     void noteOnPressed(int noteNumber) override;
+
+    // SamplerRecordingViewModel::Listener
+    void recordingStateChanged(bool isRecording) override;
+    void recordingTimeChanged(double elapsedSeconds) override;
+    void recordingComplete(const juce::File &recordedFile) override;
 
   private:
     void init();
@@ -59,15 +70,20 @@ class SamplerView : public juce::Component,
     tracktion::SamplerPlugin *samplerPlugin;
     app_services::MidiCommandManager &midiCommandManager;
     std::unique_ptr<app_view_models::SamplerViewModel> viewModel;
+    std::unique_ptr<app_view_models::SamplerRecordingViewModel>
+        recordingViewModel;
     AppLookAndFeel appLookAndFeel;
     ThumbnailComponent fullSampleThumbnail;
     ThumbnailComponent sampleExcerptThumbnail;
+    std::unique_ptr<ThumbnailComponent> recordingThumbnail;
     juce::DrawableRectangle startMarker;
     juce::DrawableRectangle endMarker;
     TitledListView titledList;
     juce::Label sampleLabel;
     juce::Label gainLabel;
     juce::Label emptyLabel;
+    juce::Label recordingTimeLabel;
+    bool currentlyRecording = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SamplerView)
 };

@@ -41,14 +41,16 @@ class ExtendedUIBehaviour : public tracktion::UIBehaviour {
                             samplerPlugin)) {
                     std::unique_ptr<SamplerView> drumSamplerView =
                         std::make_unique<SamplerView>(drumSamplerPlugin,
-                                                      *midiCommandManager);
+                                                      *midiCommandManager,
+                                                      ws->plugin.edit);
 
                     return drumSamplerView;
 
                 } else {
                     std::unique_ptr<SamplerView> synthSamplerView =
                         std::make_unique<SamplerView>(samplerPlugin,
-                                                      *midiCommandManager);
+                                                      *midiCommandManager,
+                                                      ws->plugin.edit);
                     return synthSamplerView;
                 }
             }

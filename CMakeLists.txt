@@ -38,6 +38,7 @@ target_sources(LMN-3  PRIVATE
     Source/Views/Edit/Settings/SettingsListView.cpp
     Source/Views/Edit/Settings/DeviceTypeListView.cpp
     Source/Views/Edit/Settings/OutputListView.cpp
+    Source/Views/Edit/Settings/InputListView.cpp
     Source/Views/Edit/Settings/SampleRateListView.cpp
     Source/Views/Edit/Settings/MidiInputListView.cpp
     Source/Views/Edit/Settings/AudioBufferSizeListView.cpp

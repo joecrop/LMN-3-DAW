@@ -2,10 +2,13 @@
 #include <internal_plugins/internal_plugins.h>
 
 SamplerView::SamplerView(tracktion::SamplerPlugin *sampler,
-                         app_services::MidiCommandManager &mcm)
+                         app_services::MidiCommandManager &mcm,
+                         tracktion::Edit &edit)
     : samplerPlugin(sampler), midiCommandManager(mcm),
       viewModel(std::unique_ptr<app_view_models::SamplerViewModel>(
           std::make_unique<app_view_models::SynthSamplerViewModel>(sampler))),
+      recordingViewModel(
+          std::make_unique<app_view_models::SamplerRecordingViewModel>(edit)),
       fullSampleThumbnail(viewModel->getFullSampleThumbnail(),
                           appLookAndFeel.colour1.withAlpha(.3f)),
       sampleExcerptThumbnail(viewModel->getFullSampleThumbnail(),
@@ -17,11 +20,14 @@ SamplerView::SamplerView(tracktion::SamplerPlugin *sampler,
 }
 
 SamplerView::SamplerView(internal_plugins::DrumSamplerPlugin *drumSampler,
-                         app_services::MidiCommandManager &mcm)
+                         app_services::MidiCommandManager &mcm,
+                         tracktion::Edit &edit)
     : samplerPlugin(drumSampler), midiCommandManager(mcm),
       viewModel(std::unique_ptr<app_view_models::SamplerViewModel>(
           std::make_unique<app_view_models::DrumSamplerViewModel>(
               drumSampler))),
+      recordingViewModel(
+          std::make_unique<app_view_models::SamplerRecordingViewModel>(edit)),
       fullSampleThumbnail(viewModel->getFullSampleThumbnail(),
                           appLookAndFeel.colour1.withAlpha(.3f)),
       sampleExcerptThumbnail(viewModel->getFullSampleThumbnail(),
@@ -52,6 +58,20 @@ void SamplerView::init() {
     gainLabel.setColour(juce::Label::textColourId, appLookAndFeel.colour4);
     addChildComponent(gainLabel);
 
+    // Recording time label
+    recordingTimeLabel.setFont(
+        juce::Font(juce::Font::getDefaultMonospacedFontName(), getHeight() * .1,
+                   juce::Font::plain));
+    recordingTimeLabel.setJustificationType(juce::Justification::centred);
+    recordingTimeLabel.setColour(juce::Label::textColourId,
+                                 appLookAndFeel.colour3);
+    addChildComponent(recordingTimeLabel);
+
+    // Recording thumbnail
+    recordingThumbnail = std::make_unique<ThumbnailComponent>(
+        recordingViewModel->getRecordingThumbnail(), appLookAndFeel.colour3);
+    addChildComponent(*recordingThumbnail);
+
     startMarker.setFill(juce::FillType(appLookAndFeel.colour2));
     endMarker.setFill(juce::FillType(appLookAndFeel.colour3));
     addAndMakeVisible(startMarker);
@@ -74,11 +94,13 @@ void SamplerView::init() {
 
     viewModel->addListener(this);
     midiCommandManager.addListener(this);
+    recordingViewModel->addListener(this);
 }
 
 SamplerView::~SamplerView() {
     viewModel->removeListener(this);
     midiCommandManager.removeListener(this);
+    recordingViewModel->removeListener(this);
 }
 
 void SamplerView::paint(juce::Graphics &g) {}
@@ -138,6 +160,16 @@ void SamplerView::resized() {
 
         endMarker.setRectangle(markerBounds);
     }
+
+    // Recording thumbnail and time label layout
+    recordingThumbnail->setBounds(bounds);
+    recordingThumbnail->setPaintBounds(bounds);
+
+    recordingTimeLabel.setFont(
+        juce::Font(juce::Font::getDefaultMonospacedFontName(),
+                   getHeight() * .1, juce::Font::plain));
+    recordingTimeLabel.setBounds(0, getHeight() * .75, getWidth(),
+                                 getHeight() * .1);
 
     emptyLabel.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(),
                                   getHeight() * .1, juce::Font::plain));
@@ -290,4 +322,71 @@ void SamplerView::noteOnPressed(int noteNumber) {
     if (isShowing())
         if (midiCommandManager.getFocusedComponent() == this)
             viewModel->setSelectedSoundIndex(noteNumber);
+}
+
+void SamplerView::recordButtonReleased() {
+    if (isShowing()) {
+        if (midiCommandManager.getFocusedComponent() == this) {
+            if (!currentlyRecording) {
+                recordingViewModel->startRecording();
+            }
+        }
+    }
+}
+
+void SamplerView::stopButtonReleased() {
+    if (isShowing()) {
+        if (midiCommandManager.getFocusedComponent() == this) {
+            if (currentlyRecording) {
+                recordingViewModel->stopRecording();
+            }
+        }
+    }
+}
+
+void SamplerView::recordingStateChanged(bool isRecording) {
+    currentlyRecording = isRecording;
+
+    if (isRecording) {
+        // Show recording UI, hide normal UI
+        fullSampleThumbnail.setVisible(false);
+        sampleExcerptThumbnail.setVisible(false);
+        startMarker.setVisible(false);
+        endMarker.setVisible(false);
+        sampleLabel.setVisible(false);
+
+        recordingThumbnail->setVisible(true);
+        recordingTimeLabel.setVisible(true);
+        recordingTimeLabel.setText("REC 0.0s / 30.0s",
+                                   juce::dontSendNotification);
+    } else {
+        // Show normal UI, hide recording UI
+        recordingThumbnail->setVisible(false);
+        recordingTimeLabel.setVisible(false);
+
+        fullSampleThumbnail.setVisible(true);
+        sampleExcerptThumbnail.setVisible(true);
+        startMarker.setVisible(true);
+        endMarker.setVisible(true);
+        sampleLabel.setVisible(true);
+    }
+
+    repaint();
+}
+
+void SamplerView::recordingTimeChanged(double elapsedSeconds) {
+    double remaining =
+        recordingViewModel->getMaxRecordingTimeSeconds() - elapsedSeconds;
+    juce::String timeText =
+        juce::String::formatted("REC %.1fs / %.1fs", elapsedSeconds,
+                                recordingViewModel->getMaxRecordingTimeSeconds());
+    recordingTimeLabel.setText(timeText, juce::dontSendNotification);
+    repaint();
+}
+
+void SamplerView::recordingComplete(const juce::File &recordedFile) {
+    // Refresh the sample list to include the new recording
+    viewModel->refreshSampleList();
+    repaint();
+    resized();
 }

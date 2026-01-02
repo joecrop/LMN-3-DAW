@@ -24,6 +24,8 @@ class SamplerViewModel : public juce::ChangeListener,
 
     virtual void setSelectedSoundIndex(int noteNumber) {}
 
+    virtual void refreshSampleList() {}
+
     void increaseSelectedIndex();
     void decreaseSelectedIndex();
 

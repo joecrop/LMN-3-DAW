@@ -35,6 +35,8 @@ target_sources(Tests PRIVATE
         app_view_models/Edit/Modifiers/AvailablePluginParametersListViewModelTest.cpp
         app_view_models/Edit/Tempo/TempoSettingsViewModelTest.cpp
         app_view_models/Edit/Sequencers/StepSequencerViewModelTest.cpp
+        app_view_models/Edit/Settings/InputListViewModelTest.cpp
+        app_view_models/Edit/Plugins/Sampler/SamplerRecordingViewModelTest.cpp
 )
 
 target_compile_definitions(Tests PRIVATE
