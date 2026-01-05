@@ -4,8 +4,8 @@
 #include <internal_plugins/internal_plugins.h>
 #include <memory>
 #include <tracktion_engine/tracktion_engine.h>
-//#include <SynthSampleData.h>
-//#include <DrumSampleData.h>
+// #include <SynthSampleData.h>
+// #include <DrumSampleData.h>
 #include "App.h"
 #include "ExtendedUIBehaviour.h"
 

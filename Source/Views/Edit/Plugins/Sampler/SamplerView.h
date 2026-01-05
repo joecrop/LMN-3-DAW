@@ -9,10 +9,11 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <tracktion_engine/tracktion_engine.h>
 
-class SamplerView : public juce::Component,
-                    public app_view_models::SynthSamplerViewModel::Listener,
-                    public app_services::MidiCommandManager::Listener,
-                    public app_view_models::SamplerRecordingViewModel::Listener {
+class SamplerView
+    : public juce::Component,
+      public app_view_models::SynthSamplerViewModel::Listener,
+      public app_services::MidiCommandManager::Listener,
+      public app_view_models::SamplerRecordingViewModel::Listener {
   public:
     enum class SamplerType {
 
@@ -21,11 +22,9 @@ class SamplerView : public juce::Component,
     };
 
     SamplerView(tracktion::SamplerPlugin *sampler,
-                app_services::MidiCommandManager &mcm,
-                tracktion::Edit &edit);
+                app_services::MidiCommandManager &mcm, tracktion::Edit &edit);
     SamplerView(internal_plugins::DrumSamplerPlugin *drumSampler,
-                app_services::MidiCommandManager &mcm,
-                tracktion::Edit &edit);
+                app_services::MidiCommandManager &mcm, tracktion::Edit &edit);
     ~SamplerView() override;
 
     void paint(juce::Graphics &g) override;

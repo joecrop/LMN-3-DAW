@@ -2,9 +2,8 @@
 
 namespace app_view_models {
 
-class SamplerRecordingViewModel
-    : public juce::AudioIODeviceCallback,
-      public juce::Timer {
+class SamplerRecordingViewModel : public juce::AudioIODeviceCallback,
+                                  public juce::Timer {
   public:
     SamplerRecordingViewModel(tracktion::Edit &edit);
     ~SamplerRecordingViewModel() override;

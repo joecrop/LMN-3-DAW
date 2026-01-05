@@ -51,7 +51,8 @@ TEST_F(SamplerRecordingViewModelTest, startRecordingChangesState) {
     MockSamplerRecordingListener listener;
     // Expected to be called once on start - but may not succeed due to missing
     // hardware, so use AtLeast(0)
-    EXPECT_CALL(listener, recordingStateChanged(_)).Times(::testing::AtLeast(0));
+    EXPECT_CALL(listener, recordingStateChanged(_))
+        .Times(::testing::AtLeast(0));
 
     viewModel.addListener(&listener);
 
@@ -64,7 +65,8 @@ TEST_F(SamplerRecordingViewModelTest, startRecordingChangesState) {
     viewModel.removeListener(&listener);
 }
 
-TEST_F(SamplerRecordingViewModelTest, stopRecordingWhenNotRecordingDoesNotCrash) {
+TEST_F(SamplerRecordingViewModelTest,
+       stopRecordingWhenNotRecordingDoesNotCrash) {
     // Should be safe to call stopRecording even when not recording
     EXPECT_NO_THROW(viewModel.stopRecording());
     EXPECT_FALSE(viewModel.isRecording());

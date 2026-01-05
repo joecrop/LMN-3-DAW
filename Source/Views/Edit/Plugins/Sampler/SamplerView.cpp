@@ -191,8 +191,8 @@ void SamplerView::resized() {
     recordingThumbnail->setPaintBounds(bounds);
 
     recordingTimeLabel.setFont(
-        juce::Font(juce::Font::getDefaultMonospacedFontName(),
-                   getHeight() * .1, juce::Font::plain));
+        juce::Font(juce::Font::getDefaultMonospacedFontName(), getHeight() * .1,
+                   juce::Font::plain));
     recordingTimeLabel.setBounds(0, getHeight() * .75, getWidth(),
                                  getHeight() * .1);
 
@@ -451,9 +451,9 @@ void SamplerView::recordingStateChanged(bool isRecording) {
 void SamplerView::recordingTimeChanged(double elapsedSeconds) {
     double remaining =
         recordingViewModel->getMaxRecordingTimeSeconds() - elapsedSeconds;
-    juce::String timeText =
-        juce::String::formatted("REC %.1fs / %.1fs", elapsedSeconds,
-                                recordingViewModel->getMaxRecordingTimeSeconds());
+    juce::String timeText = juce::String::formatted(
+        "REC %.1fs / %.1fs", elapsedSeconds,
+        recordingViewModel->getMaxRecordingTimeSeconds());
     recordingTimeLabel.setText(timeText, juce::dontSendNotification);
     repaint();
 }

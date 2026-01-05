@@ -2,9 +2,8 @@ namespace app_view_models {
 InputListViewModel::InputListViewModel(tracktion::Edit &e,
                                        juce::AudioDeviceManager &dm)
     : deviceManager(dm),
-      state(
-          e.state.getOrCreateChildWithName(IDs::SETTINGS_VIEW_STATE, nullptr)
-              .getOrCreateChildWithName(IDs::INPUT_LIST_VIEW_STATE, nullptr)),
+      state(e.state.getOrCreateChildWithName(IDs::SETTINGS_VIEW_STATE, nullptr)
+                .getOrCreateChildWithName(IDs::INPUT_LIST_VIEW_STATE, nullptr)),
       itemListState(state, inputs.size()) {
     // Get input device names (true = get input devices)
     for (const auto &deviceName :
@@ -27,7 +26,9 @@ InputListViewModel::InputListViewModel(tracktion::Edit &e,
     itemListState.addListener(this);
 }
 
-InputListViewModel::~InputListViewModel() { itemListState.removeListener(this); }
+InputListViewModel::~InputListViewModel() {
+    itemListState.removeListener(this);
+}
 
 juce::StringArray InputListViewModel::getItemNames() { return inputs; }
 

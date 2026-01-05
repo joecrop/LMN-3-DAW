@@ -159,7 +159,6 @@ juce::AudioThumbnail &SamplerRecordingViewModel::getRecordingThumbnail() {
 void SamplerRecordingViewModel::audioDeviceIOCallback(
     const float **inputChannelData, int numInputChannels,
     float **outputChannelData, int numOutputChannels, int numSamples) {
-
     // Clear output to avoid feedback
     for (int i = 0; i < numOutputChannels; ++i) {
         if (outputChannelData[i] != nullptr) {
@@ -229,9 +228,7 @@ void SamplerRecordingViewModel::timerCallback() {
     }
 }
 
-void SamplerRecordingViewModel::addListener(Listener *l) {
-    listeners.add(l);
-}
+void SamplerRecordingViewModel::addListener(Listener *l) { listeners.add(l); }
 
 void SamplerRecordingViewModel::removeListener(Listener *l) {
     listeners.remove(l);
