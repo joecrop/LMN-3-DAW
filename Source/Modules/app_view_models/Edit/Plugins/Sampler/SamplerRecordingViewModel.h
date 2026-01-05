@@ -10,9 +10,12 @@ class SamplerRecordingViewModel
     ~SamplerRecordingViewModel() override;
 
     // Recording control
-    void startRecording();
+    void prepareNewRecording(); // Creates file and enters ready state
+    void startRecording();      // Actually starts recording
     void stopRecording();
     bool isRecording() const;
+    bool isReadyToRecord() const;
+    void cancelRecording(); // Cancel without saving
 
     // Recording info
     double getElapsedTimeSeconds() const;
@@ -35,6 +38,7 @@ class SamplerRecordingViewModel
     class Listener {
       public:
         virtual ~Listener() = default;
+        virtual void readyToRecordStateChanged(bool isReady) {}
         virtual void recordingStateChanged(bool isRecording) {}
         virtual void recordingTimeChanged(double elapsedSeconds) {}
         virtual void recordingComplete(const juce::File &recordedFile) {}
@@ -50,6 +54,7 @@ class SamplerRecordingViewModel
     tracktion::Engine &engine;
 
     std::atomic<bool> recording{false};
+    std::atomic<bool> readyToRecord{false};
     std::atomic<double> elapsedTimeSeconds{0.0};
     double sampleRate = 44100.0;
     int samplesRecorded = 0;

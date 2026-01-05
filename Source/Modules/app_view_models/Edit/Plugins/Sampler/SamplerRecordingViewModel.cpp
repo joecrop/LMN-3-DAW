@@ -20,8 +20,8 @@ SamplerRecordingViewModel::~SamplerRecordingViewModel() {
     }
 }
 
-void SamplerRecordingViewModel::startRecording() {
-    if (recording.load()) {
+void SamplerRecordingViewModel::prepareNewRecording() {
+    if (recording.load() || readyToRecord.load()) {
         return;
     }
 
@@ -59,6 +59,23 @@ void SamplerRecordingViewModel::startRecording() {
     elapsedTimeSeconds.store(0.0);
     recordingThumbnail.reset(1, sampleRate);
 
+    readyToRecord.store(true);
+    listeners.call(&Listener::readyToRecordStateChanged, true);
+}
+
+void SamplerRecordingViewModel::startRecording() {
+    if (recording.load()) {
+        return;
+    }
+
+    // If not ready, prepare first
+    if (!readyToRecord.load()) {
+        prepareNewRecording();
+        if (!readyToRecord.load()) {
+            return; // Failed to prepare
+        }
+    }
+
     // Register as audio callback to receive input
     engine.getDeviceManager().deviceManager.addAudioCallback(this);
 
@@ -77,6 +94,7 @@ void SamplerRecordingViewModel::stopRecording() {
 
     stopTimer();
     recording.store(false);
+    readyToRecord.store(false);
 
     // Remove audio callback
     engine.getDeviceManager().deviceManager.removeAudioCallback(this);
@@ -88,10 +106,39 @@ void SamplerRecordingViewModel::stopRecording() {
     }
 
     listeners.call(&Listener::recordingStateChanged, false);
+    listeners.call(&Listener::readyToRecordStateChanged, false);
     listeners.call(&Listener::recordingComplete, currentRecordingFile);
 }
 
+void SamplerRecordingViewModel::cancelRecording() {
+    stopTimer();
+
+    if (recording.load()) {
+        engine.getDeviceManager().deviceManager.removeAudioCallback(this);
+    }
+
+    recording.store(false);
+    readyToRecord.store(false);
+
+    // Close and delete the audio file
+    if (audioFileWriter) {
+        audioFileWriter->closeForWriting();
+        audioFileWriter.reset();
+    }
+
+    if (currentRecordingFile.existsAsFile()) {
+        currentRecordingFile.deleteFile();
+    }
+
+    listeners.call(&Listener::recordingStateChanged, false);
+    listeners.call(&Listener::readyToRecordStateChanged, false);
+}
+
 bool SamplerRecordingViewModel::isRecording() const { return recording.load(); }
+
+bool SamplerRecordingViewModel::isReadyToRecord() const {
+    return readyToRecord.load();
+}
 
 double SamplerRecordingViewModel::getElapsedTimeSeconds() const {
     return elapsedTimeSeconds.load();
@@ -192,8 +239,22 @@ void SamplerRecordingViewModel::removeListener(Listener *l) {
 
 juce::File SamplerRecordingViewModel::generateRecordingFilename() {
     auto now = juce::Time::getCurrentTime();
-    auto timestamp = now.formatted("%Y%m%d_%H%M%S");
-    auto filename = "recording_" + timestamp + ".wav";
+    // Format: rec_jan_01_2025_1:30:45PM
+    auto month = now.getMonthName(true).toLowerCase();
+    auto day = juce::String(now.getDayOfMonth());
+    auto year = juce::String(now.getYear());
+    auto hour = now.getHours();
+    auto minute = now.getMinutes();
+    auto second = now.getSeconds();
+    auto ampm = hour >= 12 ? "PM" : "AM";
+    auto hour12 = hour % 12;
+    if (hour12 == 0)
+        hour12 = 12;
+
+    auto timestamp = juce::String::formatted(
+        "%s_%s_%s_%d:%02d:%02d%s", month.toRawUTF8(), day.toRawUTF8(),
+        year.toRawUTF8(), hour12, minute, second, ampm);
+    auto filename = "rec_" + timestamp + ".wav";
 
     return ConfigurationHelpers::getSamplesDirectory().getChildFile(filename);
 }

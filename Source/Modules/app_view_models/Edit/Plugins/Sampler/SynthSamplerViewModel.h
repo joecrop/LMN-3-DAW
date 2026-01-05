@@ -16,6 +16,10 @@ class SynthSamplerViewModel : public app_view_models::SamplerViewModel {
 
     void refreshSampleList() override;
 
+    bool hasSampleLoaded() override;
+
+    void loadSampleFile(const juce::File &file) override;
+
     juce::String getTitle() override;
 
     juce::StringArray getItemNames() override;

@@ -56,9 +56,12 @@ class SamplerView : public juce::Component,
     void recordButtonReleased() override;
     void stopButtonReleased() override;
 
+    void plusButtonReleased() override;
+
     void noteOnPressed(int noteNumber) override;
 
     // SamplerRecordingViewModel::Listener
+    void readyToRecordStateChanged(bool isReady) override;
     void recordingStateChanged(bool isRecording) override;
     void recordingTimeChanged(double elapsedSeconds) override;
     void recordingComplete(const juce::File &recordedFile) override;
@@ -83,7 +86,13 @@ class SamplerView : public juce::Component,
     juce::Label gainLabel;
     juce::Label emptyLabel;
     juce::Label recordingTimeLabel;
+    juce::Label initialPromptLabel;
+    juce::Label sampleLengthLabel;
     bool currentlyRecording = false;
+    bool readyToRecord = false;
+
+    void updateSampleLengthLabel();
+    void updateInitialPromptVisibility();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SamplerView)
 };

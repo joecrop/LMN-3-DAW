@@ -5,29 +5,26 @@ SynthSamplerViewModel::SynthSamplerViewModel(tracktion::SamplerPlugin *sampler)
 
     auto curFile = juce::File(curFilePath);
 
-    if (curFile == juce::String{""}) {
-        // fist time initialization
-        curDir = ConfigurationHelpers::getTempSamplesDirectory(
-            samplerPlugin->edit.engine);
-        curFile = curDir.findChildFiles(
-            juce::File::TypesOfFileToFind::findFiles, false)[0];
-        curFilePath.setValue(curFile.getFullPathName(), nullptr);
-    } else if (curFile.isDirectory()) {
-        // curFile should never be a directory, but just in case
-        curDir = curFile;
-        curFile = curDir.findChildFiles(
-            juce::File::TypesOfFileToFind::findFiles, false)[0];
-        curFilePath.setValue(curFile.getFullPathName(), nullptr);
-    } else {
-        curDir = curFile.getParentDirectory();
-    }
+    // Set curDir to samples directory
+    curDir = ConfigurationHelpers::getTempSamplesDirectory(
+        samplerPlugin->edit.engine);
 
-    updateThumb();
+    if (curFile != juce::String{""} && curFile.existsAsFile()) {
+        // File was previously selected, load it
+        curDir = curFile.getParentDirectory();
+        updateThumb();
+    }
+    // Otherwise, don't auto-load any file - let user choose
 
     updateFiles();
     itemListState.listSize = files.size();
-    int curIndex = files.indexOf(curFile);
-    itemListState.setSelectedItemIndex(curIndex);
+
+    if (curFile.existsAsFile()) {
+        int curIndex = files.indexOf(curFile);
+        if (curIndex >= 0) {
+            itemListState.setSelectedItemIndex(curIndex);
+        }
+    }
 
     markAndUpdate(shouldUpdateSample);
 }
@@ -81,6 +78,25 @@ void SynthSamplerViewModel::refreshSampleList() {
     updateFiles();
     itemListState.listSize = files.size();
     markAndUpdate(shouldUpdateSample);
+}
+
+bool SynthSamplerViewModel::hasSampleLoaded() {
+    auto curFile = juce::File(curFilePath);
+    return curFile.existsAsFile();
+}
+
+void SynthSamplerViewModel::loadSampleFile(const juce::File &file) {
+    if (file.existsAsFile()) {
+        curDir = file.getParentDirectory();
+        curFilePath.setValue(file.getFullPathName(), nullptr);
+        updateFiles();
+        itemListState.listSize = files.size();
+        int fileIndex = files.indexOf(file);
+        if (fileIndex >= 0) {
+            itemListState.setSelectedItemIndex(fileIndex);
+        }
+        markAndUpdate(shouldUpdateSample);
+    }
 }
 
 void SynthSamplerViewModel::enterDir() {

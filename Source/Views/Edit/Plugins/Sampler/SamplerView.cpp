@@ -72,6 +72,28 @@ void SamplerView::init() {
         recordingViewModel->getRecordingThumbnail(), appLookAndFeel.colour3);
     addChildComponent(*recordingThumbnail);
 
+    // Initial prompt label (shown when no sample is loaded)
+    initialPromptLabel.setFont(
+        juce::Font(juce::Font::getDefaultMonospacedFontName(), getHeight() * .1,
+                   juce::Font::plain));
+    initialPromptLabel.setJustificationType(juce::Justification::centred);
+    initialPromptLabel.setColour(juce::Label::textColourId,
+                                 appLookAndFeel.colour1);
+    initialPromptLabel.setText(
+        "Press + to record a new sample!\nPress encoder 1 to select a "
+        "pre-recorded sample!",
+        juce::dontSendNotification);
+    addChildComponent(initialPromptLabel);
+
+    // Sample length label (shown when sample is loaded)
+    sampleLengthLabel.setFont(
+        juce::Font(juce::Font::getDefaultMonospacedFontName(), getHeight() * .1,
+                   juce::Font::plain));
+    sampleLengthLabel.setJustificationType(juce::Justification::centred);
+    sampleLengthLabel.setColour(juce::Label::textColourId,
+                                appLookAndFeel.colour2);
+    addChildComponent(sampleLengthLabel);
+
     startMarker.setFill(juce::FillType(appLookAndFeel.colour2));
     endMarker.setFill(juce::FillType(appLookAndFeel.colour3));
     addAndMakeVisible(startMarker);
@@ -91,6 +113,9 @@ void SamplerView::init() {
             juce::dontSendNotification);
         addAndMakeVisible(emptyLabel);
     }
+
+    // Update initial prompt and sample view visibility
+    updateInitialPromptVisibility();
 
     viewModel->addListener(this);
     midiCommandManager.addListener(this);
@@ -171,6 +196,20 @@ void SamplerView::resized() {
     recordingTimeLabel.setBounds(0, getHeight() * .75, getWidth(),
                                  getHeight() * .1);
 
+    // Initial prompt label layout
+    initialPromptLabel.setFont(
+        juce::Font(juce::Font::getDefaultMonospacedFontName(),
+                   getHeight() * .08, juce::Font::plain));
+    initialPromptLabel.setBounds(0, getHeight() * .3, getWidth(),
+                                 getHeight() * .4);
+
+    // Sample length label layout (at bottom)
+    sampleLengthLabel.setFont(
+        juce::Font(juce::Font::getDefaultMonospacedFontName(),
+                   getHeight() * .075, juce::Font::plain));
+    sampleLengthLabel.setBounds(0, getHeight() * .85, getWidth(),
+                                getHeight() * .1);
+
     emptyLabel.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(),
                                   getHeight() * .1, juce::Font::plain));
     emptyLabel.setBounds(getBounds());
@@ -181,12 +220,18 @@ void SamplerView::sampleChanged() {
         viewModel->itemListState.getSelectedItemIndex());
     sampleLabel.setText(viewModel->getSelectedItemName(),
                         juce::dontSendNotification);
+
+    // Update UI visibility based on whether sample is loaded
+    updateInitialPromptVisibility();
+    updateSampleLengthLabel();
+
     sendLookAndFeelChange();
     repaint();
     resized();
 }
 
 void SamplerView::sampleExcerptTimesChanged() {
+    updateSampleLengthLabel();
     repaint();
     resized();
 }
@@ -327,7 +372,7 @@ void SamplerView::noteOnPressed(int noteNumber) {
 void SamplerView::recordButtonReleased() {
     if (isShowing()) {
         if (midiCommandManager.getFocusedComponent() == this) {
-            if (!currentlyRecording) {
+            if (readyToRecord && !currentlyRecording) {
                 recordingViewModel->startRecording();
             }
         }
@@ -339,36 +384,65 @@ void SamplerView::stopButtonReleased() {
         if (midiCommandManager.getFocusedComponent() == this) {
             if (currentlyRecording) {
                 recordingViewModel->stopRecording();
+            } else if (readyToRecord) {
+                // Cancel the prepared recording
+                recordingViewModel->cancelRecording();
             }
         }
     }
+}
+
+void SamplerView::readyToRecordStateChanged(bool isReady) {
+    readyToRecord = isReady;
+
+    if (isReady && !currentlyRecording) {
+        // Show recording UI in "ready" state
+        fullSampleThumbnail.setVisible(false);
+        sampleExcerptThumbnail.setVisible(false);
+        startMarker.setVisible(false);
+        endMarker.setVisible(false);
+        sampleLabel.setVisible(false);
+        initialPromptLabel.setVisible(false);
+        sampleLengthLabel.setVisible(false);
+
+        recordingThumbnail->setVisible(true);
+        recordingTimeLabel.setVisible(true);
+        recordingTimeLabel.setText("Press RECORD to start, STOP to cancel",
+                                   juce::dontSendNotification);
+    } else if (!isReady && !currentlyRecording) {
+        // Restore appropriate UI
+        recordingThumbnail->setVisible(false);
+        recordingTimeLabel.setVisible(false);
+        updateInitialPromptVisibility();
+    }
+
+    repaint();
 }
 
 void SamplerView::recordingStateChanged(bool isRecording) {
     currentlyRecording = isRecording;
 
     if (isRecording) {
-        // Show recording UI, hide normal UI
+        // Show recording UI, hide everything else
         fullSampleThumbnail.setVisible(false);
         sampleExcerptThumbnail.setVisible(false);
         startMarker.setVisible(false);
         endMarker.setVisible(false);
         sampleLabel.setVisible(false);
+        initialPromptLabel.setVisible(false);
+        sampleLengthLabel.setVisible(false);
 
         recordingThumbnail->setVisible(true);
         recordingTimeLabel.setVisible(true);
         recordingTimeLabel.setText("REC 0.0s / 30.0s",
                                    juce::dontSendNotification);
     } else {
-        // Show normal UI, hide recording UI
+        // Hide recording UI
         recordingThumbnail->setVisible(false);
         recordingTimeLabel.setVisible(false);
 
-        fullSampleThumbnail.setVisible(true);
-        sampleExcerptThumbnail.setVisible(true);
-        startMarker.setVisible(true);
-        endMarker.setVisible(true);
-        sampleLabel.setVisible(true);
+        // Restore appropriate UI based on whether sample is loaded
+        updateInitialPromptVisibility();
     }
 
     repaint();
@@ -385,8 +459,55 @@ void SamplerView::recordingTimeChanged(double elapsedSeconds) {
 }
 
 void SamplerView::recordingComplete(const juce::File &recordedFile) {
-    // Refresh the sample list to include the new recording
+    // Refresh the sample list and load the new recording
     viewModel->refreshSampleList();
+    viewModel->loadSampleFile(recordedFile);
+    updateInitialPromptVisibility();
+    updateSampleLengthLabel();
     repaint();
     resized();
+}
+
+void SamplerView::plusButtonReleased() {
+    if (isShowing()) {
+        if (midiCommandManager.getFocusedComponent() == this) {
+            if (!currentlyRecording && !readyToRecord) {
+                recordingViewModel->prepareNewRecording();
+            }
+        }
+    }
+}
+
+void SamplerView::updateInitialPromptVisibility() {
+    bool hasSample = viewModel->hasSampleLoaded();
+
+    if (hasSample) {
+        // Show sample UI, hide prompt
+        initialPromptLabel.setVisible(false);
+        fullSampleThumbnail.setVisible(true);
+        sampleExcerptThumbnail.setVisible(true);
+        startMarker.setVisible(true);
+        endMarker.setVisible(true);
+        sampleLabel.setVisible(true);
+        sampleLengthLabel.setVisible(true);
+    } else {
+        // Show prompt, hide sample UI
+        initialPromptLabel.setVisible(true);
+        fullSampleThumbnail.setVisible(false);
+        sampleExcerptThumbnail.setVisible(false);
+        startMarker.setVisible(false);
+        endMarker.setVisible(false);
+        sampleLabel.setVisible(false);
+        sampleLengthLabel.setVisible(false);
+    }
+}
+
+void SamplerView::updateSampleLengthLabel() {
+    if (viewModel->hasSampleLoaded()) {
+        double totalLength = viewModel->getTotalSampleLength();
+        double clipLength = viewModel->getSelectedClipLength();
+        juce::String lengthText = juce::String::formatted(
+            "Total: %.2fs | Selected: %.2fs", totalLength, clipLength);
+        sampleLengthLabel.setText(lengthText, juce::dontSendNotification);
+    }
 }

@@ -26,6 +26,13 @@ class SamplerViewModel : public juce::ChangeListener,
 
     virtual void refreshSampleList() {}
 
+    virtual bool hasSampleLoaded() { return false; }
+
+    virtual void loadSampleFile(const juce::File &file) {}
+
+    double getTotalSampleLength();
+    double getSelectedClipLength();
+
     void increaseSelectedIndex();
     void decreaseSelectedIndex();
 

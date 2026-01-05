@@ -45,6 +45,14 @@ double SamplerViewModel::getGain() {
     return samplerPlugin->getSoundGainDb(selectedSoundIndex);
 }
 
+double SamplerViewModel::getTotalSampleLength() {
+    return fullSampleThumbnail.getTotalLength();
+}
+
+double SamplerViewModel::getSelectedClipLength() {
+    return samplerPlugin->getSoundLength(selectedSoundIndex);
+}
+
 void SamplerViewModel::increaseSelectedIndex() {
     itemListState.setSelectedItemIndex(itemListState.getSelectedItemIndex() +
                                        1);
