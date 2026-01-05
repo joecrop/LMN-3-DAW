@@ -16,6 +16,7 @@ SamplerView::SamplerView(tracktion::SamplerPlugin *sampler,
       titledList(viewModel->getItemNames(), viewModel->getTitle(),
                  ListTitle::IconType::FONT_AWESOME,
                  juce::String::charToString(0xf478)) {
+    samplerType = SamplerType::SYNTH;
     init();
 }
 
@@ -35,6 +36,7 @@ SamplerView::SamplerView(internal_plugins::DrumSamplerPlugin *drumSampler,
       titledList(viewModel->getItemNames(), viewModel->getTitle(),
                  ListTitle::IconType::FONT_AWESOME,
                  juce::String::charToString(0xf569)) {
+    samplerType = SamplerType::DRUM;
     init();
 }
 
@@ -370,7 +372,7 @@ void SamplerView::noteOnPressed(int noteNumber) {
 }
 
 void SamplerView::recordButtonReleased() {
-    if (isShowing()) {
+    if (isShowing() && samplerType == SamplerType::SYNTH) {
         if (midiCommandManager.getFocusedComponent() == this) {
             if (readyToRecord && !currentlyRecording) {
                 recordingViewModel->startRecording();
@@ -380,7 +382,7 @@ void SamplerView::recordButtonReleased() {
 }
 
 void SamplerView::stopButtonReleased() {
-    if (isShowing()) {
+    if (isShowing() && samplerType == SamplerType::SYNTH) {
         if (midiCommandManager.getFocusedComponent() == this) {
             if (currentlyRecording) {
                 recordingViewModel->stopRecording();
@@ -393,6 +395,10 @@ void SamplerView::stopButtonReleased() {
 }
 
 void SamplerView::readyToRecordStateChanged(bool isReady) {
+    if (samplerType != SamplerType::SYNTH) {
+        return;  // Recording only for synth sampler
+    }
+    
     readyToRecord = isReady;
 
     if (isReady && !currentlyRecording) {
@@ -469,7 +475,7 @@ void SamplerView::recordingComplete(const juce::File &recordedFile) {
 }
 
 void SamplerView::plusButtonReleased() {
-    if (isShowing()) {
+    if (isShowing() && samplerType == SamplerType::SYNTH) {
         if (midiCommandManager.getFocusedComponent() == this) {
             if (!currentlyRecording && !readyToRecord) {
                 recordingViewModel->prepareNewRecording();
@@ -490,9 +496,18 @@ void SamplerView::updateInitialPromptVisibility() {
         endMarker.setVisible(true);
         sampleLabel.setVisible(true);
         sampleLengthLabel.setVisible(true);
-    } else {
-        // Show prompt, hide sample UI
+    } else if (samplerType == SamplerType::SYNTH) {
+        // Show prompt, hide sample UI (only for synth sampler)
         initialPromptLabel.setVisible(true);
+        fullSampleThumbnail.setVisible(false);
+        sampleExcerptThumbnail.setVisible(false);
+        startMarker.setVisible(false);
+        endMarker.setVisible(false);
+        sampleLabel.setVisible(false);
+        sampleLengthLabel.setVisible(false);
+    } else {
+        // Drum sampler: never show prompt, just hide sample UI
+        initialPromptLabel.setVisible(false);
         fullSampleThumbnail.setVisible(false);
         sampleExcerptThumbnail.setVisible(false);
         startMarker.setVisible(false);

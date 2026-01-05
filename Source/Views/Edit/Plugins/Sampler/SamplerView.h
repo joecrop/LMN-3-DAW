@@ -89,6 +89,7 @@ class SamplerView
     juce::Label sampleLengthLabel;
     bool currentlyRecording = false;
     bool readyToRecord = false;
+    SamplerType samplerType = SamplerType::SYNTH;
 
     void updateSampleLengthLabel();
     void updateInitialPromptVisibility();
