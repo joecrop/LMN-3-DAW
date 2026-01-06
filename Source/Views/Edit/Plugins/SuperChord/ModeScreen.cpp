@@ -115,10 +115,16 @@ void ModeScreen::drawCategoryOrbs(juce::Graphics &g) {
     float orbRadius = 30.0f;
     float spacing = 100.0f;
 
+    // Draw title
+    g.setColour(juce::Colours::white);
+    g.setFont(juce::Font(18.0f).boldened());
+    g.drawText("Settings", bounds.withHeight(40.0f).withY(20.0f), 
+               juce::Justification::centredTop);
+
     // Draw three category orbs horizontally
     for (int i = 0; i < numCategories; ++i) {
         float x = center.x + (i - 1) * spacing;
-        float y = center.y;
+        float y = center.y - 20.0f;
 
         bool isSelected = (i == selectedCategory);
         juce::Colour orbColor = getCategoryColor(i);
@@ -143,7 +149,14 @@ void ModeScreen::drawCategoryOrbs(juce::Graphics &g) {
         g.setColour(juce::Colours::white.withAlpha(0.5f));
         g.fillEllipse(x - centerSize / 2, y - centerSize / 2, centerSize, centerSize);
 
-        // Draw small indicator orbs below (representing items in category)
+        // Draw category name below orb
+        g.setColour(isSelected ? juce::Colours::white : juce::Colours::grey);
+        g.setFont(juce::Font(isSelected ? 14.0f : 12.0f));
+        g.drawText(getCategoryName(i), 
+                   juce::Rectangle<float>(x - 50, y + orbRadius + 10, 100, 20),
+                   juce::Justification::centred);
+
+        // Draw small indicator orbs below text (representing items in category)
         int numItems = 0;
         switch (i) {
             case 0: numItems = numScales; break;
@@ -155,11 +168,18 @@ void ModeScreen::drawCategoryOrbs(juce::Graphics &g) {
         float indicatorStartX = x - (numItems - 1) * indicatorSpacing / 2;
         for (int j = 0; j < numItems; ++j) {
             float ix = indicatorStartX + j * indicatorSpacing;
-            float iy = y + orbRadius + 20.0f;
+            float iy = y + orbRadius + 35.0f;
             g.setColour(orbColor.withAlpha(0.3f));
             g.fillEllipse(ix - 3, iy - 3, 6, 6);
         }
     }
+
+    // Draw hint at bottom
+    g.setColour(juce::Colours::grey);
+    g.setFont(juce::Font(11.0f));
+    g.drawText("Turn encoder to select, press to enter",
+               bounds.withHeight(20.0f).withY(bounds.getHeight() - 30.0f),
+               juce::Justification::centredBottom);
 }
 
 void ModeScreen::drawItemOrbs(juce::Graphics &g) {
@@ -174,46 +194,64 @@ void ModeScreen::drawItemOrbs(juce::Graphics &g) {
     }
 
     juce::Colour baseColor = getCategoryColor(selectedCategory);
-    float orbRadius = 25.0f;
+    float orbRadius = 20.0f;
 
-    // Arrange items in a circle
-    float circleRadius = 80.0f;
+    // Draw category title at top
+    g.setColour(baseColor);
+    g.setFont(juce::Font(18.0f).boldened());
+    g.drawText(getCategoryName(selectedCategory), 
+               bounds.withHeight(40.0f).withY(20.0f),
+               juce::Justification::centredTop);
+
+    // Calculate layout - use vertical list for better text display
+    float itemHeight = 35.0f;
+    float listHeight = numItems * itemHeight;
+    float startY = center.y - listHeight / 2;
+
     for (int i = 0; i < numItems; ++i) {
-        float angle = (static_cast<float>(i) / numItems) * juce::MathConstants<float>::twoPi -
-                      juce::MathConstants<float>::halfPi;
-        float x = center.x + std::cos(angle) * circleRadius;
-        float y = center.y + std::sin(angle) * circleRadius;
-
+        float y = startY + i * itemHeight + itemHeight / 2;
         bool isSelected = (i == selectedItem);
 
         // Pulsing for selected
-        float pulse = isSelected ? (1.0f + std::sin(animTime * 3.0f) * 0.2f + selectionPulse * 0.3f) : 0.7f;
-        float size = orbRadius * pulse;
+        float pulse = isSelected ? (1.0f + std::sin(animTime * 3.0f) * 0.1f + selectionPulse * 0.2f) : 1.0f;
 
         // Slight color variation per item
-        juce::Colour orbColor = baseColor.withRotatedHue(i * 0.05f);
+        juce::Colour orbColor = baseColor.withRotatedHue(i * 0.03f);
 
-        // Draw glow for selected
+        // Draw selection background
         if (isSelected) {
-            float glowSize = size * 2.5f;
-            g.setColour(orbColor.withAlpha(0.3f));
-            g.fillEllipse(x - glowSize / 2, y - glowSize / 2, glowSize, glowSize);
+            g.setColour(orbColor.withAlpha(0.2f));
+            g.fillRoundedRectangle(center.x - 120, y - 14, 240, 28, 5.0f);
         }
 
-        // Draw orb
-        g.setColour(orbColor.withAlpha(isSelected ? 1.0f : 0.4f));
-        g.fillEllipse(x - size / 2, y - size / 2, size, size);
+        // Draw small orb indicator
+        float orbSize = orbRadius * (isSelected ? pulse : 0.6f);
+        float orbX = center.x - 100;
+        
+        if (isSelected) {
+            // Draw glow for selected
+            float glowSize = orbSize * 2.0f;
+            g.setColour(orbColor.withAlpha(0.3f));
+            g.fillEllipse(orbX - glowSize / 2, y - glowSize / 2, glowSize, glowSize);
+        }
 
-        // Draw center
-        float centerSize = size * 0.4f;
-        g.setColour(juce::Colours::white.withAlpha(isSelected ? 0.6f : 0.2f));
-        g.fillEllipse(x - centerSize / 2, y - centerSize / 2, centerSize, centerSize);
+        g.setColour(orbColor.withAlpha(isSelected ? 1.0f : 0.4f));
+        g.fillEllipse(orbX - orbSize / 2, y - orbSize / 2, orbSize, orbSize);
+
+        // Draw item name
+        g.setColour(isSelected ? juce::Colours::white : juce::Colours::grey);
+        g.setFont(juce::Font(isSelected ? 15.0f : 13.0f));
+        g.drawText(getItemName(selectedCategory, i),
+                   juce::Rectangle<float>(center.x - 70, y - 10, 180, 20),
+                   juce::Justification::centredLeft);
     }
 
-    // Draw category indicator in center (smaller, dimmer)
-    float catSize = 15.0f;
-    g.setColour(baseColor.withAlpha(0.4f));
-    g.fillEllipse(center.x - catSize / 2, center.y - catSize / 2, catSize, catSize);
+    // Draw hint at bottom
+    g.setColour(juce::Colours::grey);
+    g.setFont(juce::Font(11.0f));
+    g.drawText("Turn to select, press to confirm, Enc4 to go back",
+               bounds.withHeight(20.0f).withY(bounds.getHeight() - 30.0f),
+               juce::Justification::centredBottom);
 }
 
 juce::Colour ModeScreen::getCategoryColor(int category) {
@@ -223,4 +261,51 @@ juce::Colour ModeScreen::getCategoryColor(int category) {
         case 2: return voicePresetColor; // Voice Preset = Red
         default: return juce::Colours::white;
     }
+}
+
+juce::String ModeScreen::getCategoryName(int category) {
+    switch (category) {
+        case 0: return "Scale";
+        case 1: return "Play Mode";
+        case 2: return "Voice";
+        default: return "Unknown";
+    }
+}
+
+juce::String ModeScreen::getItemName(int category, int item) {
+    if (category == 0) {
+        // Scale types
+        switch (item) {
+            case 0: return "Major";
+            case 1: return "Minor";
+            case 2: return "Dorian";
+            case 3: return "Mixolydian";
+            case 4: return "Lydian";
+            case 5: return "Phrygian";
+            case 6: return "Locrian";
+            default: return "Unknown";
+        }
+    } else if (category == 1) {
+        // Play modes
+        switch (item) {
+            case 0: return "Chord";
+            case 1: return "Strum";
+            case 2: return "Arpeggio";
+            default: return "Unknown";
+        }
+    } else if (category == 2) {
+        // Voice presets
+        switch (item) {
+            case 0: return "Ethereal Pad";
+            case 1: return "Crystal Keys";
+            case 2: return "Warm Strings";
+            case 3: return "Digital Bells";
+            case 4: return "Soft Rhodes";
+            case 5: return "Synth Brass";
+            case 6: return "Glass Choir";
+            case 7: return "Velvet Bass";
+            default: return "Unknown";
+        }
+    }
+    return "Unknown";
 }

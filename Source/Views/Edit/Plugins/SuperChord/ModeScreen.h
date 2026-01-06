@@ -52,6 +52,8 @@ private:
     void drawCategoryOrbs(juce::Graphics &g);
     void drawItemOrbs(juce::Graphics &g);
     juce::Colour getCategoryColor(int category);
+    juce::String getCategoryName(int category);
+    juce::String getItemName(int category, int item);
 
     // Navigation state
     int currentLevel = 0;  // 0 = categories, 1 = items within category
