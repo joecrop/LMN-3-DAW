@@ -49,10 +49,11 @@ TEST_F(AvailablePluginsViewModelTest, setSelectedCategoryIndex) {
 }
 
 TEST_F(AvailablePluginsViewModelTest, setSelectedPluginIndexInstruments) {
-    // For instruments there should only be 3
+    // For instruments there should only be 4
     // 40SC
     // Sampler
     // DrumSampler
+    // SuperChord
     // (VST3 get scanned asynchronously so they wont be present for the test)
     viewModel.setSelectedPluginIndex(-1);
     EXPECT_EQ(viewModel.getSelectedPluginIndex(), 0);
@@ -67,9 +68,11 @@ TEST_F(AvailablePluginsViewModelTest, setSelectedPluginIndexInstruments) {
     viewModel.setSelectedPluginIndex(2);
     EXPECT_EQ(viewModel.getSelectedPluginIndex(), 2);
     viewModel.setSelectedPluginIndex(3);
-    EXPECT_EQ(viewModel.getSelectedPluginIndex(), 2);
+    EXPECT_EQ(viewModel.getSelectedPluginIndex(), 3);
+    viewModel.setSelectedPluginIndex(4);
+    EXPECT_EQ(viewModel.getSelectedPluginIndex(), 3);
     viewModel.setSelectedPluginIndex(100);
-    EXPECT_EQ(viewModel.getSelectedPluginIndex(), 2);
+    EXPECT_EQ(viewModel.getSelectedPluginIndex(), 3);
 }
 
 TEST_F(AvailablePluginsViewModelTest, setSelectedPluginIndexEffects) {
@@ -188,6 +191,10 @@ TEST_F(AvailablePluginsViewModelTest, selectedPluginIndexChanges) {
 
     EXPECT_CALL(listener, selectedPluginIndexChanged(2)).Times(1);
 
+    // Called once for setSelectedPluginIndex(3), and setting 100 clamps to 3 
+    // but no callback since value didn't change
+    EXPECT_CALL(listener, selectedPluginIndexChanged(3)).Times(1);
+
     viewModel.addListener(&listener);
 
     viewModel.setSelectedPluginIndex(-10);
@@ -206,6 +213,9 @@ TEST_F(AvailablePluginsViewModelTest, selectedPluginIndexChanges) {
     viewModel.handleUpdateNowIfNeeded();
 
     viewModel.setSelectedPluginIndex(2);
+    viewModel.handleUpdateNowIfNeeded();
+
+    viewModel.setSelectedPluginIndex(3);
     viewModel.handleUpdateNowIfNeeded();
 
     viewModel.setSelectedPluginIndex(100);

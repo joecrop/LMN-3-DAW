@@ -44,6 +44,8 @@ class GuiAppApplication : public juce::JUCEApplication {
         // we need to add the app internal plugins to the cache:
         engine.getPluginManager()
             .createBuiltInType<internal_plugins::DrumSamplerPlugin>();
+        engine.getPluginManager()
+            .createBuiltInType<internal_plugins::SuperChordPlugin>();
 
         auto userAppDataDirectory = juce::File::getSpecialLocation(
             juce::File::userApplicationDataDirectory);

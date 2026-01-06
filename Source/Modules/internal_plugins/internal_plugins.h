@@ -8,7 +8,7 @@
   description:      Internal plugins for app
   website:          http://github.com/stonepreston
   license:          GPL-3.0
-  dependencies:     juce_data_structures tracktion_engine juce_events juce_core juce_graphics
+  dependencies:     juce_data_structures tracktion_engine juce_events juce_core juce_graphics juce_audio_basics juce_dsp
  END_JUCE_MODULE_DECLARATION
 *******************************************************************************/
 #pragma once
@@ -16,6 +16,7 @@
 namespace internal_plugins {
 
     class DrumSamplerPlugin;
+    class SuperChordPlugin;
 
 }
 
@@ -27,6 +28,7 @@ namespace internal_plugins {
 #include <functional>
 
 #include "DrumSamplerPlugin/DrumSamplerPlugin.h"
+#include "SuperChordPlugin/SuperChordPlugin.h"
 
 
 
