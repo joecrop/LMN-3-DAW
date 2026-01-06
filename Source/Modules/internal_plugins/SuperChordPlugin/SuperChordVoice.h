@@ -77,6 +77,7 @@ class SuperChordVoice : public juce::SynthesiserVoice {
     juce::dsp::StateVariableTPTFilter<float> filter;
     float filterCutoff = 2000.0f;
     float filterResonance = 0.5f;
+    float lastFilteredSample = 0.0f;  // Per-voice filter state
 
     // Current macro values
     float currentWarmth = 0.5f;

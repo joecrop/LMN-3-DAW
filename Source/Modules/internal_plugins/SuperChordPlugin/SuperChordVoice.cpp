@@ -47,8 +47,13 @@ void SuperChordVoice::startNote(int midiNoteNumber, float vel,
     // Process pitch wheel
     pitchWheelMoved(currentPitchWheelPosition);
 
+    // Reset filter state
+    lastFilteredSample = 0.0f;
+
     // Start envelope
-    envelope.setSampleRate(getSampleRate());
+    double sr = getSampleRate();
+    if (sr <= 0.0) sr = 44100.0;
+    envelope.setSampleRate(sr);
     envelope.noteOn();
     isTailingOff = false;
 }
@@ -87,7 +92,8 @@ void SuperChordVoice::renderNextBlock(juce::AudioBuffer<float> &outputBuffer,
     float actualFreq = frequency * pitchMultiplier;
 
     // Calculate phase increment
-    float sampleRate = (float)getSampleRate();
+    float sampleRate = static_cast<float>(getSampleRate());
+    if (sampleRate <= 0.0f) sampleRate = 44100.0f;
     float phaseIncrement = actualFreq / sampleRate;
 
     // Detune amounts based on space parameter
@@ -166,11 +172,11 @@ void SuperChordVoice::renderNextBlock(juce::AudioBuffer<float> &outputBuffer,
                 detunePhases[i] -= 1.0f;
         }
 
-        // Wrap phases
-        if (phase1 >= 1.0f) phase1 -= 1.0f;
-        if (phase2 >= 1.0f) phase2 -= 1.0f;
-        if (phase3 >= 1.0f) phase3 -= 1.0f;
-        if (phase4 >= 1.0f) phase4 -= 1.0f;
+        // Wrap phases properly (handles cases where phase > 2.0)
+        while (phase1 >= 1.0f) phase1 -= 1.0f;
+        while (phase2 >= 1.0f) phase2 -= 1.0f;
+        while (phase3 >= 1.0f) phase3 -= 1.0f;
+        while (phase4 >= 1.0f) phase4 -= 1.0f;
     }
 }
 
@@ -240,11 +246,12 @@ float SuperChordVoice::generateOscillator(float phase, float pulseWidth,
 }
 
 float SuperChordVoice::applyFilter(float sample) {
-    // Simple one-pole lowpass for now
-    static float lastSample = 0.0f;
-    float alpha = filterCutoff / (filterCutoff + (float)getSampleRate());
-    float filtered = lastSample + alpha * (sample - lastSample);
-    lastSample = filtered;
+    // Simple one-pole lowpass - using per-voice state
+    float sr = static_cast<float>(getSampleRate());
+    if (sr <= 0.0f) sr = 44100.0f;
+    float alpha = filterCutoff / (filterCutoff + sr);
+    float filtered = lastFilteredSample + alpha * (sample - lastFilteredSample);
+    lastFilteredSample = filtered;
     return filtered;
 }
 
