@@ -27,6 +27,9 @@ SuperChordView::SuperChordView(internal_plugins::SuperChordPlugin *p,
     // Register as plugin listener
     plugin->addListener(this);
 
+    // Register as mode screen listener to receive setting changes
+    modeScreen->addListener(this);
+
     // Register for MIDI commands
     midiCommandManager.addListener(this);
 
@@ -41,6 +44,7 @@ SuperChordView::SuperChordView(internal_plugins::SuperChordPlugin *p,
 SuperChordView::~SuperChordView() {
     stopTimer();
     midiCommandManager.removeListener(this);
+    modeScreen->removeListener(this);
     plugin->removeListener(this);
     setLookAndFeel(nullptr);
 }
@@ -53,10 +57,10 @@ void SuperChordView::paint(juce::Graphics &g) {
     // Draw chord name in center (the only text element)
     if (currentChordName.isNotEmpty() && chordNameOpacity > 0.01f) {
         g.setColour(textColour.withAlpha(chordNameOpacity));
-        g.setFont(juce::Font(48.0f).boldened());
+        g.setFont(juce::Font(56.0f).boldened());
 
         auto bounds = getLocalBounds();
-        g.drawText(currentChordName, bounds.withHeight(80).withY(bounds.getCentreY() - 40),
+        g.drawText(currentChordName, bounds.withHeight(100).withY(bounds.getCentreY() - 50),
                    juce::Justification::centred);
     }
 }
@@ -112,7 +116,8 @@ void SuperChordView::timerCallback() {
 //==============================================================================
 void SuperChordView::encoder1Increased() {
     if (modeScreenVisible) {
-        modeScreen->navigateNext();
+        // Blue encoder controls Scale
+        modeScreen->nextScale();
     } else {
         // Increase warmth
         float current = plugin->warmthValue.get();
@@ -125,7 +130,8 @@ void SuperChordView::encoder1Increased() {
 
 void SuperChordView::encoder1Decreased() {
     if (modeScreenVisible) {
-        modeScreen->navigatePrevious();
+        // Blue encoder controls Scale
+        modeScreen->previousScale();
     } else {
         // Decrease warmth
         float current = plugin->warmthValue.get();
@@ -138,26 +144,23 @@ void SuperChordView::encoder1Decreased() {
 
 void SuperChordView::encoder1ButtonReleased() {
     if (modeScreenVisible) {
-        // Confirm selection or go back
-        if (modeScreen->isAtTopLevel()) {
-            // Close mode screen
-            modeScreenVisible = false;
-            modeScreen->setVisible(false);
-        } else {
-            // Select current item
-            modeScreen->selectCurrent();
-        }
+        // Close mode screen
+        modeScreenVisible = false;
+        modeScreen->setVisible(false);
     } else {
-        // Open mode screen
+        // Open mode screen and sync with current plugin state
         modeScreenVisible = true;
+        modeScreen->setCurrentScale(plugin->scaleTypeValue.get());
+        modeScreen->setCurrentPlayMode(plugin->playModeValue.get());
+        modeScreen->setCurrentVoicePreset(plugin->voicePresetValue.get());
         modeScreen->setVisible(true);
-        modeScreen->reset();
     }
 }
 
 void SuperChordView::encoder2Increased() {
     if (modeScreenVisible) {
-        modeScreen->navigateNext();
+        // Green encoder controls Play Mode
+        modeScreen->nextPlayMode();
     } else {
         // Increase space
         float current = plugin->spaceValue.get();
@@ -170,7 +173,8 @@ void SuperChordView::encoder2Increased() {
 
 void SuperChordView::encoder2Decreased() {
     if (modeScreenVisible) {
-        modeScreen->navigatePrevious();
+        // Green encoder controls Play Mode
+        modeScreen->previousPlayMode();
     } else {
         // Decrease space
         float current = plugin->spaceValue.get();
@@ -183,7 +187,7 @@ void SuperChordView::encoder2Decreased() {
 
 void SuperChordView::encoder3Increased() {
     if (modeScreenVisible) {
-        modeScreen->navigateNext();
+        // Encoder 3 does nothing in mode screen (not assigned)
     } else {
         // Increase attack
         float current = plugin->attackValue.get();
@@ -196,7 +200,7 @@ void SuperChordView::encoder3Increased() {
 
 void SuperChordView::encoder3Decreased() {
     if (modeScreenVisible) {
-        modeScreen->navigatePrevious();
+        // Encoder 3 does nothing in mode screen (not assigned)
     } else {
         // Decrease attack
         float current = plugin->attackValue.get();
@@ -209,7 +213,8 @@ void SuperChordView::encoder3Decreased() {
 
 void SuperChordView::encoder4Increased() {
     if (modeScreenVisible) {
-        modeScreen->selectCurrent();
+        // Red encoder controls Voice Preset
+        modeScreen->nextVoicePreset();
     } else {
         // Increase bloom
         float current = plugin->bloomValue.get();
@@ -222,8 +227,8 @@ void SuperChordView::encoder4Increased() {
 
 void SuperChordView::encoder4Decreased() {
     if (modeScreenVisible) {
-        // Go back in mode screen
-        modeScreen->goBack();
+        // Red encoder controls Voice Preset
+        modeScreen->previousVoicePreset();
     } else {
         // Decrease bloom
         float current = plugin->bloomValue.get();
@@ -267,4 +272,18 @@ void SuperChordView::updateVisualizationsFromParameters() {
     particleSystem->setSpace(plugin->spaceValue.get());
     particleSystem->setAttack(plugin->attackValue.get());
     particleSystem->setBloom(plugin->bloomValue.get());
+}
+
+//==============================================================================
+// ModeScreen::Listener callbacks - apply settings to plugin
+void SuperChordView::scaleTypeChanged(int newType) {
+    plugin->scaleTypeValue = newType;
+}
+
+void SuperChordView::playModeChanged(int newMode) {
+    plugin->playModeValue = newMode;
+}
+
+void SuperChordView::voicePresetChanged(int newPreset) {
+    plugin->voicePresetValue = newPreset;
 }

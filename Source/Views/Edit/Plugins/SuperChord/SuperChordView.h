@@ -25,6 +25,7 @@
 class SuperChordView : public juce::Component,
                        public app_services::MidiCommandManager::Listener,
                        public internal_plugins::SuperChordPlugin::Listener,
+                       public ModeScreen::Listener,
                        private juce::Timer {
   public:
     SuperChordView(internal_plugins::SuperChordPlugin *plugin,
@@ -54,6 +55,12 @@ class SuperChordView : public juce::Component,
     void chordChanged() override;
     void parameterChanged() override;
     void noteTriggered(float velocity) override;
+
+    //==========================================================================
+    // ModeScreen::Listener
+    void scaleTypeChanged(int newType) override;
+    void playModeChanged(int newMode) override;
+    void voicePresetChanged(int newPreset) override;
 
   private:
     void timerCallback() override;

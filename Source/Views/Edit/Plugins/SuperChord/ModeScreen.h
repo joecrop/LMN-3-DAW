@@ -4,13 +4,13 @@
 #include <vector>
 
 /**
- * ModeScreen - Abstract mode/preset selection overlay
+ * ModeScreen - Mode/preset selection overlay with direct encoder control
  *
  * Displayed when encoder 1 is pressed.
- * Uses abstract visuals (pulsing orbs, no text) to select:
- * - Scale type
- * - Play mode (Chord/Arp/Strum)
- * - Voice preset
+ * Each encoder directly controls its setting:
+ * - Blue (Encoder 1): Scale type
+ * - Green (Encoder 2): Play mode (Chord/Arp/Strum)
+ * - Red (Encoder 4): Voice preset
  */
 class ModeScreen : public juce::Component, private juce::Timer {
 public:
@@ -20,17 +20,28 @@ public:
     void paint(juce::Graphics &g) override;
     void resized() override;
 
-    // Navigation
-    void navigateNext();
-    void navigatePrevious();
-    void selectCurrent();
-    void goBack();
-    void reset();
+    // Direct encoder control - each encoder changes its own setting
+    void nextScale();
+    void previousScale();
+    void nextPlayMode();
+    void previousPlayMode();
+    void nextVoicePreset();
+    void previousVoicePreset();
+    
+    // Trigger visual pulse for encoder activity
+    void triggerScalePulse() { scalePulse = 1.0f; }
+    void triggerPlayModePulse() { playModePulse = 1.0f; }
+    void triggerVoicePulse() { voicePulse = 1.0f; }
 
     // State queries
-    bool isAtTopLevel() const { return currentLevel == 0; }
-    int getSelectedCategory() const { return selectedCategory; }
-    int getSelectedItem() const { return selectedItem; }
+    int getCurrentScale() const { return currentScale; }
+    int getCurrentPlayMode() const { return currentPlayMode; }
+    int getCurrentVoicePreset() const { return currentVoicePreset; }
+    
+    // Set current values (for syncing with plugin state)
+    void setCurrentScale(int scale) { currentScale = scale % numScales; }
+    void setCurrentPlayMode(int mode) { currentPlayMode = mode % numPlayModes; }
+    void setCurrentVoicePreset(int preset) { currentVoicePreset = preset % numVoicePresets; }
 
     // Listener for selection changes
     class Listener {
@@ -49,31 +60,31 @@ public:
 
 private:
     void timerCallback() override;
-    void drawCategoryOrbs(juce::Graphics &g);
-    void drawItemOrbs(juce::Graphics &g);
+    void drawSettingsPanel(juce::Graphics &g);
     juce::Colour getCategoryColor(int category);
     juce::String getCategoryName(int category);
     juce::String getItemName(int category, int item);
 
-    // Navigation state
-    int currentLevel = 0;  // 0 = categories, 1 = items within category
-    int selectedCategory = 0;
-    int selectedItem = 0;
+    // Current values for each setting
+    int currentScale = 0;
+    int currentPlayMode = 0;
+    int currentVoicePreset = 0;
 
-    // Categories: 0=Scale, 1=PlayMode, 2=VoicePreset
-    static constexpr int numCategories = 3;
+    // Settings counts
     static constexpr int numScales = 7;
     static constexpr int numPlayModes = 3;
     static constexpr int numVoicePresets = 8;
 
     // Animation
     float animTime = 0.0f;
-    float selectionPulse = 0.0f;
+    float scalePulse = 0.0f;
+    float playModePulse = 0.0f;
+    float voicePulse = 0.0f;
 
     // Encoder colors for visual mapping
-    juce::Colour scaleColor{0xFF458588};      // Blue
-    juce::Colour playModeColor{0xFF689d6a};   // Green
-    juce::Colour voicePresetColor{0xFFcc241d}; // Red
+    juce::Colour scaleColor{0xFF458588};      // Blue (Encoder 1)
+    juce::Colour playModeColor{0xFF689d6a};   // Green (Encoder 2)
+    juce::Colour voicePresetColor{0xFFcc241d}; // Red (Encoder 4)
 
     std::vector<Listener *> listeners;
 

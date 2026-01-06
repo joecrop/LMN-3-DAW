@@ -11,246 +11,198 @@ ModeScreen::~ModeScreen() {
 void ModeScreen::paint(juce::Graphics &g) {
     // Semi-transparent dark overlay
     g.fillAll(juce::Colour(0xE0282828));
-
-    if (currentLevel == 0) {
-        drawCategoryOrbs(g);
-    } else {
-        drawItemOrbs(g);
-    }
+    
+    drawSettingsPanel(g);
 }
 
 void ModeScreen::resized() {
     // Nothing specific needed
 }
 
-void ModeScreen::navigateNext() {
-    selectionPulse = 1.0f;
-
-    if (currentLevel == 0) {
-        selectedCategory = (selectedCategory + 1) % numCategories;
-    } else {
-        int maxItems = 0;
-        switch (selectedCategory) {
-            case 0: maxItems = numScales; break;
-            case 1: maxItems = numPlayModes; break;
-            case 2: maxItems = numVoicePresets; break;
-        }
-        selectedItem = (selectedItem + 1) % maxItems;
+void ModeScreen::nextScale() {
+    currentScale = (currentScale + 1) % numScales;
+    scalePulse = 1.0f;
+    for (auto *l : listeners) {
+        l->scaleTypeChanged(currentScale);
     }
     repaint();
 }
 
-void ModeScreen::navigatePrevious() {
-    selectionPulse = 1.0f;
-
-    if (currentLevel == 0) {
-        selectedCategory = (selectedCategory + numCategories - 1) % numCategories;
-    } else {
-        int maxItems = 0;
-        switch (selectedCategory) {
-            case 0: maxItems = numScales; break;
-            case 1: maxItems = numPlayModes; break;
-            case 2: maxItems = numVoicePresets; break;
-        }
-        selectedItem = (selectedItem + maxItems - 1) % maxItems;
+void ModeScreen::previousScale() {
+    currentScale = (currentScale + numScales - 1) % numScales;
+    scalePulse = 1.0f;
+    for (auto *l : listeners) {
+        l->scaleTypeChanged(currentScale);
     }
     repaint();
 }
 
-void ModeScreen::selectCurrent() {
-    selectionPulse = 1.0f;
-
-    if (currentLevel == 0) {
-        // Enter category
-        currentLevel = 1;
-        selectedItem = 0;
-    } else {
-        // Confirm selection and notify listeners
-        for (auto *l : listeners) {
-            switch (selectedCategory) {
-                case 0: l->scaleTypeChanged(selectedItem); break;
-                case 1: l->playModeChanged(selectedItem); break;
-                case 2: l->voicePresetChanged(selectedItem); break;
-            }
-        }
-        // Return to top level
-        currentLevel = 0;
+void ModeScreen::nextPlayMode() {
+    currentPlayMode = (currentPlayMode + 1) % numPlayModes;
+    playModePulse = 1.0f;
+    for (auto *l : listeners) {
+        l->playModeChanged(currentPlayMode);
     }
     repaint();
 }
 
-void ModeScreen::goBack() {
-    selectionPulse = 1.0f;
-
-    if (currentLevel > 0) {
-        currentLevel = 0;
+void ModeScreen::previousPlayMode() {
+    currentPlayMode = (currentPlayMode + numPlayModes - 1) % numPlayModes;
+    playModePulse = 1.0f;
+    for (auto *l : listeners) {
+        l->playModeChanged(currentPlayMode);
     }
     repaint();
 }
 
-void ModeScreen::reset() {
-    currentLevel = 0;
-    selectedCategory = 0;
-    selectedItem = 0;
+void ModeScreen::nextVoicePreset() {
+    currentVoicePreset = (currentVoicePreset + 1) % numVoicePresets;
+    voicePulse = 1.0f;
+    for (auto *l : listeners) {
+        l->voicePresetChanged(currentVoicePreset);
+    }
+    repaint();
+}
+
+void ModeScreen::previousVoicePreset() {
+    currentVoicePreset = (currentVoicePreset + numVoicePresets - 1) % numVoicePresets;
+    voicePulse = 1.0f;
+    for (auto *l : listeners) {
+        l->voicePresetChanged(currentVoicePreset);
+    }
     repaint();
 }
 
 void ModeScreen::timerCallback() {
     animTime += 0.016f;
 
-    // Decay selection pulse
-    if (selectionPulse > 0) {
-        selectionPulse -= 0.05f;
-        if (selectionPulse < 0)
-            selectionPulse = 0;
+    // Decay pulses
+    if (scalePulse > 0) {
+        scalePulse -= 0.05f;
+        if (scalePulse < 0) scalePulse = 0;
+    }
+    if (playModePulse > 0) {
+        playModePulse -= 0.05f;
+        if (playModePulse < 0) playModePulse = 0;
+    }
+    if (voicePulse > 0) {
+        voicePulse -= 0.05f;
+        if (voicePulse < 0) voicePulse = 0;
     }
 
     repaint();
 }
 
-void ModeScreen::drawCategoryOrbs(juce::Graphics &g) {
+void ModeScreen::drawSettingsPanel(juce::Graphics &g) {
     auto bounds = getLocalBounds().toFloat();
     auto center = bounds.getCentre();
 
-    float orbRadius = 30.0f;
-    float spacing = 100.0f;
-
-    // Draw title
+    // Title
     g.setColour(juce::Colours::white);
-    g.setFont(juce::Font(18.0f).boldened());
-    g.drawText("Settings", bounds.withHeight(40.0f).withY(20.0f), 
+    g.setFont(juce::Font(28.0f).boldened());
+    g.drawText("SETTINGS", bounds.withHeight(50.0f).withY(15.0f), 
                juce::Justification::centredTop);
 
-    // Draw three category orbs horizontally
-    for (int i = 0; i < numCategories; ++i) {
-        float x = center.x + (i - 1) * spacing;
-        float y = center.y - 20.0f;
+    // Layout: three rows, each showing label + value with colored orb
+    float rowHeight = 70.0f;
+    float startY = center.y - rowHeight * 1.5f;
+    float orbRadius = 18.0f;
+    float orbX = bounds.getWidth() * 0.15f;
+    float labelX = bounds.getWidth() * 0.22f;
+    float valueX = bounds.getWidth() * 0.5f;
 
-        bool isSelected = (i == selectedCategory);
-        juce::Colour orbColor = getCategoryColor(i);
-
-        // Pulsing effect for selected orb
-        float pulse = isSelected ? (1.0f + std::sin(animTime * 3.0f) * 0.2f + selectionPulse * 0.3f) : 0.8f;
-        float size = orbRadius * pulse;
-
-        // Draw glow for selected
-        if (isSelected) {
-            float glowSize = size * 2.5f;
-            g.setColour(orbColor.withAlpha(0.3f));
-            g.fillEllipse(x - glowSize / 2, y - glowSize / 2, glowSize, glowSize);
-        }
-
-        // Draw orb
-        g.setColour(orbColor.withAlpha(isSelected ? 1.0f : 0.5f));
-        g.fillEllipse(x - size / 2, y - size / 2, size, size);
-
-        // Draw bright center
-        float centerSize = size * 0.4f;
-        g.setColour(juce::Colours::white.withAlpha(0.5f));
-        g.fillEllipse(x - centerSize / 2, y - centerSize / 2, centerSize, centerSize);
-
-        // Draw category name below orb
-        g.setColour(isSelected ? juce::Colours::white : juce::Colours::grey);
-        g.setFont(juce::Font(isSelected ? 14.0f : 12.0f));
-        g.drawText(getCategoryName(i), 
-                   juce::Rectangle<float>(x - 50, y + orbRadius + 10, 100, 20),
-                   juce::Justification::centred);
-
-        // Draw small indicator orbs below text (representing items in category)
-        int numItems = 0;
-        switch (i) {
-            case 0: numItems = numScales; break;
-            case 1: numItems = numPlayModes; break;
-            case 2: numItems = numVoicePresets; break;
-        }
-
-        float indicatorSpacing = 10.0f;
-        float indicatorStartX = x - (numItems - 1) * indicatorSpacing / 2;
-        for (int j = 0; j < numItems; ++j) {
-            float ix = indicatorStartX + j * indicatorSpacing;
-            float iy = y + orbRadius + 35.0f;
-            g.setColour(orbColor.withAlpha(0.3f));
-            g.fillEllipse(ix - 3, iy - 3, 6, 6);
-        }
-    }
-
-    // Draw hint at bottom
-    g.setColour(juce::Colours::grey);
-    g.setFont(juce::Font(11.0f));
-    g.drawText("Turn encoder to select, press to enter",
-               bounds.withHeight(20.0f).withY(bounds.getHeight() - 30.0f),
-               juce::Justification::centredBottom);
-}
-
-void ModeScreen::drawItemOrbs(juce::Graphics &g) {
-    auto bounds = getLocalBounds().toFloat();
-    auto center = bounds.getCentre();
-
-    int numItems = 0;
-    switch (selectedCategory) {
-        case 0: numItems = numScales; break;
-        case 1: numItems = numPlayModes; break;
-        case 2: numItems = numVoicePresets; break;
-    }
-
-    juce::Colour baseColor = getCategoryColor(selectedCategory);
-    float orbRadius = 20.0f;
-
-    // Draw category title at top
-    g.setColour(baseColor);
-    g.setFont(juce::Font(18.0f).boldened());
-    g.drawText(getCategoryName(selectedCategory), 
-               bounds.withHeight(40.0f).withY(20.0f),
-               juce::Justification::centredTop);
-
-    // Calculate layout - use vertical list for better text display
-    float itemHeight = 35.0f;
-    float listHeight = numItems * itemHeight;
-    float startY = center.y - listHeight / 2;
-
-    for (int i = 0; i < numItems; ++i) {
-        float y = startY + i * itemHeight + itemHeight / 2;
-        bool isSelected = (i == selectedItem);
-
-        // Pulsing for selected
-        float pulse = isSelected ? (1.0f + std::sin(animTime * 3.0f) * 0.1f + selectionPulse * 0.2f) : 1.0f;
-
-        // Slight color variation per item
-        juce::Colour orbColor = baseColor.withRotatedHue(i * 0.03f);
-
-        // Draw selection background
-        if (isSelected) {
-            g.setColour(orbColor.withAlpha(0.2f));
-            g.fillRoundedRectangle(center.x - 120, y - 14, 240, 28, 5.0f);
-        }
-
-        // Draw small orb indicator
-        float orbSize = orbRadius * (isSelected ? pulse : 0.6f);
-        float orbX = center.x - 100;
+    // Helper lambda to draw a setting row
+    auto drawSettingRow = [&](int rowIndex, const juce::String& label, 
+                               const juce::String& value, juce::Colour color, float pulse) {
+        float y = startY + rowIndex * rowHeight + rowHeight / 2;
         
-        if (isSelected) {
-            // Draw glow for selected
-            float glowSize = orbSize * 2.0f;
-            g.setColour(orbColor.withAlpha(0.3f));
-            g.fillEllipse(orbX - glowSize / 2, y - glowSize / 2, glowSize, glowSize);
-        }
-
-        g.setColour(orbColor.withAlpha(isSelected ? 1.0f : 0.4f));
+        // Calculate pulse effect
+        float pulseScale = 1.0f + pulse * 0.3f;
+        float glowAlpha = 0.3f + pulse * 0.4f;
+        
+        // Draw orb with glow
+        float orbSize = orbRadius * pulseScale;
+        
+        // Glow
+        float glowSize = orbSize * 2.5f;
+        g.setColour(color.withAlpha(glowAlpha));
+        g.fillEllipse(orbX - glowSize / 2, y - glowSize / 2, glowSize, glowSize);
+        
+        // Orb
+        g.setColour(color);
         g.fillEllipse(orbX - orbSize / 2, y - orbSize / 2, orbSize, orbSize);
-
-        // Draw item name
-        g.setColour(isSelected ? juce::Colours::white : juce::Colours::grey);
-        g.setFont(juce::Font(isSelected ? 15.0f : 13.0f));
-        g.drawText(getItemName(selectedCategory, i),
-                   juce::Rectangle<float>(center.x - 70, y - 10, 180, 20),
+        
+        // Bright center
+        float centerSize = orbSize * 0.4f;
+        g.setColour(juce::Colours::white.withAlpha(0.6f));
+        g.fillEllipse(orbX - centerSize / 2, y - centerSize / 2, centerSize, centerSize);
+        
+        // Label (setting name)
+        g.setColour(color.brighter(0.3f));
+        g.setFont(juce::Font(22.0f).boldened());
+        g.drawText(label, 
+                   juce::Rectangle<float>(labelX, y - 15, 120, 30),
                    juce::Justification::centredLeft);
-    }
+        
+        // Value with highlight on pulse
+        g.setColour(juce::Colours::white.withAlpha(0.85f + pulse * 0.15f));
+        g.setFont(juce::Font(24.0f).boldened());
+        g.drawText(value,
+                   juce::Rectangle<float>(valueX, y - 15, bounds.getWidth() - valueX - 20, 30),
+                   juce::Justification::centredLeft);
+        
+        // Separator line
+        if (rowIndex < 2) {
+            g.setColour(juce::Colours::grey.withAlpha(0.3f));
+            g.drawLine(orbX, y + rowHeight / 2 - 5, 
+                       bounds.getWidth() - 20, y + rowHeight / 2 - 5, 1.0f);
+        }
+    };
 
-    // Draw hint at bottom
+    // Draw the three settings
+    drawSettingRow(0, "SCALE", getItemName(0, currentScale), scaleColor, scalePulse);
+    drawSettingRow(1, "MODE", getItemName(1, currentPlayMode), playModeColor, playModePulse);
+    drawSettingRow(2, "VOICE", getItemName(2, currentVoicePreset), voicePresetColor, voicePulse);
+
+    // Encoder hints at bottom
+    g.setFont(juce::Font(16.0f));
+    float hintY = bounds.getHeight() - 50.0f;
+    float hintWidth = bounds.getWidth() / 3.0f;
+    
+    g.setColour(scaleColor);
+    g.drawText("< Enc1 >", 
+               juce::Rectangle<float>(0, hintY, hintWidth, 25),
+               juce::Justification::centred);
+    g.setFont(juce::Font(14.0f));
+    g.drawText("Scale", 
+               juce::Rectangle<float>(0, hintY + 22, hintWidth, 20),
+               juce::Justification::centred);
+    
+    g.setFont(juce::Font(16.0f));
+    g.setColour(playModeColor);
+    g.drawText("< Enc2 >", 
+               juce::Rectangle<float>(hintWidth, hintY, hintWidth, 25),
+               juce::Justification::centred);
+    g.setFont(juce::Font(14.0f));
+    g.drawText("Mode", 
+               juce::Rectangle<float>(hintWidth, hintY + 22, hintWidth, 20),
+               juce::Justification::centred);
+    
+    g.setFont(juce::Font(16.0f));
+    g.setColour(voicePresetColor);
+    g.drawText("< Enc4 >", 
+               juce::Rectangle<float>(hintWidth * 2, hintY, hintWidth, 25),
+               juce::Justification::centred);
+    g.setFont(juce::Font(14.0f));
+    g.drawText("Voice", 
+               juce::Rectangle<float>(hintWidth * 2, hintY + 22, hintWidth, 20),
+               juce::Justification::centred);
+    
+    // Close hint
     g.setColour(juce::Colours::grey);
-    g.setFont(juce::Font(11.0f));
-    g.drawText("Turn to select, press to confirm, Enc4 to go back",
-               bounds.withHeight(20.0f).withY(bounds.getHeight() - 30.0f),
+    g.setFont(juce::Font(14.0f));
+    g.drawText("Press Enc1 to close",
+               bounds.withHeight(25.0f).withY(bounds.getHeight() - 20.0f),
                juce::Justification::centredBottom);
 }
 
@@ -265,9 +217,9 @@ juce::Colour ModeScreen::getCategoryColor(int category) {
 
 juce::String ModeScreen::getCategoryName(int category) {
     switch (category) {
-        case 0: return "Scale";
-        case 1: return "Play Mode";
-        case 2: return "Voice";
+        case 0: return "SCALE";
+        case 1: return "MODE";
+        case 2: return "VOICE";
         default: return "Unknown";
     }
 }
