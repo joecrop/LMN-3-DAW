@@ -16,7 +16,8 @@ namespace internal_plugins {
  * parameters: Warmth, Space, Attack, and Bloom.
  */
 class SuperChordPlugin : public tracktion::Plugin,
-                         private juce::AsyncUpdater {
+                         private juce::AsyncUpdater,
+                         private juce::Timer {
   public:
     explicit SuperChordPlugin(tracktion::PluginCreationInfo info);
     ~SuperChordPlugin() override;
@@ -107,10 +108,13 @@ class SuperChordPlugin : public tracktion::Plugin,
 
   private:
     void handleAsyncUpdate() override;
+    void timerCallback() override;
     void processNoteOn(int noteNumber, float velocity);
     void processNoteOff(int noteNumber);
     void processPitchWheel(int wheelValue);
     void updateSynthParameters();
+    void triggerNextStrumNote();
+    void triggerNextArpNote();
 
     juce::Synthesiser synthesiser;
     ChordEngine chordEngine;
@@ -123,6 +127,20 @@ class SuperChordPlugin : public tracktion::Plugin,
 
     // Track which notes are generating chords
     std::map<int, std::vector<int>> activeChordNotes;
+
+    // Strum/Arpeggio state
+    struct PendingNote {
+        int noteNumber;
+        float velocity;
+        int triggerNote; // Original trigger note
+    };
+    std::vector<PendingNote> pendingStrumNotes;
+    int currentArpIndex = 0;
+    int arpDirection = 1; // 1 = up, -1 = down
+    bool arpHolding = false;
+    std::vector<int> arpNotes;
+    int arpTriggerNote = -1;
+    float arpVelocity = 0.0f;
 
     juce::ListenerList<Listener> listeners;
 

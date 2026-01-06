@@ -52,6 +52,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
 }
 
 SuperChordPlugin::~SuperChordPlugin() {
+    stopTimer();
     notifyListenersOfDeletion();
 
     warmthParam->detachFromCurrentValue();
@@ -67,7 +68,13 @@ void SuperChordPlugin::initialise(const tracktion::PluginInitialisationInfo &inf
     synthesiser.setCurrentPlaybackSampleRate(sampleRate);
 }
 
-void SuperChordPlugin::deinitialise() { synthesiser.allNotesOff(0, false); }
+void SuperChordPlugin::deinitialise() {
+    stopTimer();
+    pendingStrumNotes.clear();
+    arpNotes.clear();
+    arpHolding = false;
+    synthesiser.allNotesOff(0, false);
+}
 
 void SuperChordPlugin::reset() { synthesiser.allNotesOff(0, true); }
 
@@ -120,25 +127,44 @@ void SuperChordPlugin::processNoteOn(int noteNumber, float velocity) {
     // Store active notes for this trigger
     activeChordNotes[noteNumber] = chordNotes;
 
-    // Calculate strum delay if in strum mode
-    int strumDelayMs = 0;
-    bool isStrumMode = playModeValue.get() == 1; // Strum mode
-    int strumDirection = playSubModeValue.get(); // 0=up, 1=down, 2=alternate
-
-    // Trigger each note in the chord
-    for (size_t i = 0; i < chordNotes.size(); ++i) {
-        int chordNote = chordNotes[i];
-
-        if (isStrumMode) {
-            // Calculate delay based on position and direction
-            int noteIndex = (strumDirection == 1)
-                                ? (int)(chordNotes.size() - 1 - i)
-                                : (int)i;
-            strumDelayMs = noteIndex * 20; // 20ms between notes
+    int mode = playModeValue.get();
+    
+    if (mode == 0) {
+        // Chord mode: trigger all notes immediately
+        for (int chordNote : chordNotes) {
+            synthesiser.noteOn(1, chordNote, velocity);
         }
-
-        // For now, trigger immediately (strum delay would need timer)
-        synthesiser.noteOn(1, chordNote, velocity);
+    } else if (mode == 1) {
+        // Strum mode: trigger notes with delays
+        pendingStrumNotes.clear();
+        for (size_t i = 0; i < chordNotes.size(); ++i) {
+            PendingNote pn;
+            pn.noteNumber = chordNotes[i];
+            pn.velocity = velocity;
+            pn.triggerNote = noteNumber;
+            pendingStrumNotes.push_back(pn);
+        }
+        // Trigger first note immediately
+        if (!pendingStrumNotes.empty()) {
+            synthesiser.noteOn(1, pendingStrumNotes[0].noteNumber, velocity);
+            pendingStrumNotes.erase(pendingStrumNotes.begin());
+            if (!pendingStrumNotes.empty()) {
+                startTimer(30); // 30ms between strum notes
+            }
+        }
+    } else if (mode == 2) {
+        // Arpeggio mode: cycle through notes while held
+        arpNotes = chordNotes;
+        arpTriggerNote = noteNumber;
+        arpVelocity = velocity;
+        arpHolding = true;
+        currentArpIndex = 0;
+        arpDirection = 1;
+        // Trigger first note
+        if (!arpNotes.empty()) {
+            synthesiser.noteOn(1, arpNotes[0], velocity);
+            startTimer(150); // 150ms arp rate
+        }
     }
 
     notesPlaying++;
@@ -147,16 +173,97 @@ void SuperChordPlugin::processNoteOn(int noteNumber, float velocity) {
 }
 
 void SuperChordPlugin::processNoteOff(int noteNumber) {
+    int mode = playModeValue.get();
+    
     // Find and release all notes in this chord
     auto it = activeChordNotes.find(noteNumber);
     if (it != activeChordNotes.end()) {
-        for (int chordNote : it->second) {
-            synthesiser.noteOff(1, chordNote, 0.0f, true);
+        if (mode == 2 && noteNumber == arpTriggerNote) {
+            // Stop arpeggio
+            arpHolding = false;
+            stopTimer();
+            // Release current arp note
+            if (currentArpIndex >= 0 && currentArpIndex < (int)arpNotes.size()) {
+                synthesiser.noteOff(1, arpNotes[currentArpIndex], 0.0f, true);
+            }
+            arpNotes.clear();
+        } else {
+            // Release all notes in chord
+            for (int chordNote : it->second) {
+                synthesiser.noteOff(1, chordNote, 0.0f, true);
+            }
         }
+        
+        // Clear pending strum notes for this trigger
+        pendingStrumNotes.erase(
+            std::remove_if(pendingStrumNotes.begin(), pendingStrumNotes.end(),
+                           [noteNumber](const PendingNote& pn) {
+                               return pn.triggerNote == noteNumber;
+                           }),
+            pendingStrumNotes.end());
+        
         activeChordNotes.erase(it);
         notesPlaying = juce::jmax(0, notesPlaying - 1);
     }
     triggerAsyncUpdate();
+}
+
+void SuperChordPlugin::timerCallback() {
+    int mode = playModeValue.get();
+    
+    if (mode == 1) {
+        // Strum mode
+        triggerNextStrumNote();
+    } else if (mode == 2) {
+        // Arpeggio mode
+        triggerNextArpNote();
+    }
+}
+
+void SuperChordPlugin::triggerNextStrumNote() {
+    if (pendingStrumNotes.empty()) {
+        stopTimer();
+        return;
+    }
+    
+    auto& pn = pendingStrumNotes.front();
+    synthesiser.noteOn(1, pn.noteNumber, pn.velocity);
+    pendingStrumNotes.erase(pendingStrumNotes.begin());
+    
+    if (pendingStrumNotes.empty()) {
+        stopTimer();
+    }
+}
+
+void SuperChordPlugin::triggerNextArpNote() {
+    if (!arpHolding || arpNotes.empty()) {
+        stopTimer();
+        return;
+    }
+    
+    // Release previous note
+    if (currentArpIndex >= 0 && currentArpIndex < (int)arpNotes.size()) {
+        synthesiser.noteOff(1, arpNotes[currentArpIndex], 0.0f, false);
+    }
+    
+    // Move to next note (up-down pattern)
+    currentArpIndex += arpDirection;
+    
+    // Bounce at ends
+    if (currentArpIndex >= (int)arpNotes.size()) {
+        currentArpIndex = (int)arpNotes.size() - 2;
+        arpDirection = -1;
+        if (currentArpIndex < 0) currentArpIndex = 0;
+    } else if (currentArpIndex < 0) {
+        currentArpIndex = 1;
+        arpDirection = 1;
+        if (currentArpIndex >= (int)arpNotes.size()) currentArpIndex = 0;
+    }
+    
+    // Trigger next note
+    if (currentArpIndex >= 0 && currentArpIndex < (int)arpNotes.size()) {
+        synthesiser.noteOn(1, arpNotes[currentArpIndex], arpVelocity);
+    }
 }
 
 void SuperChordPlugin::processPitchWheel(int wheelValue) {
