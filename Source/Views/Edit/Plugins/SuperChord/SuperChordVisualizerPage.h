@@ -19,6 +19,10 @@ class SuperChordVisualizerPage
 
     void timerCallback() override;
 
+    // Encoder handlers for progression control
+    void encoder1Increased() override;
+    void encoder1Decreased() override;
+
   private:
     internal_plugins::SuperChordPlugin *plugin;
     app_services::MidiCommandManager &midiCommandManager;
@@ -28,6 +32,7 @@ class SuperChordVisualizerPage
     juce::Label presetNameLabel;
     juce::Label chordNameLabel;
     juce::Label keySignatureLabel;
+    juce::Label progressionLabel;
 
     void drawChordConstellation(juce::Graphics &g, float centerX, float centerY,
                                 float radius);

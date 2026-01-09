@@ -13,6 +13,35 @@ class ChordEngine;
 struct VoicePreset;
 
 /**
+ * Progression types for chord generation
+ */
+enum class ProgressionType {
+    DiatonicMajor = 0,      // I, ii, iii, IV, V, vi, vii° (7 degrees)
+    Dorian,                  // i, ii, III, IV, v, vi°, VII (7 degrees)
+    Mixolydian,              // I, ii, iii°, IV, v, vi, ♭VII (7 degrees)
+    Phrygian,                // i, ♭II, III, iv, v°, ♭VI, ♭VII (7 degrees)
+    Lydian,                  // I, II, iii, ♯iv°, V, vi, vii (7 degrees)
+    MinorSubdominant,        // I, iv, ♭VI, ♭VII (4 degrees)
+    Blues,                   // I7, IV7, V7 (3 degrees)
+    Andalusian,              // i, ♭VII, ♭VI, V (4 degrees)
+    CircleOfFifths,          // vi, ii, V, I, IV, vii° (6 degrees)
+    SecondaryDominants,      // I, V/ii, V/iii, V/IV, V, V/vi, vii° (7 degrees)
+    TritoneSub,              // I, ♭III7, iii, ♭V7, V, ♭VII7, vii° (7 degrees)
+    ChromaticMediants,       // I, ♭III, III, ♭VI, VI, i (6 degrees)
+    AlteredDominants,        // I, ii, iii, IV, V7alt, vi, vii° (7 degrees)
+    ColtraneChanges,         // Imaj7, ♭VImaj7, IIImaj7 (3 degrees)
+    Omnibus,                 // I, ♯I°7, ii, ♯ii°7 (4 degrees)
+    Quartal,                 // Stacked 4ths (7 degrees)
+    Quintal,                 // Stacked 5ths (7 degrees)
+    ChopinChromatic,         // i, ♯i°, ii, ♯ii°, III (5 degrees)
+    DiminishedDescent,       // i, vii°, ♭vii°, vi° (4 degrees)
+    MajorIIISurprise,        // i, III, iv, V (4 degrees)
+    ChromaticBass,           // I, I/7, I/♭7, I/6, I/♭6, I/5 (6 degrees)
+    Gospel736,               // vii°, iii, vi, ii (4 degrees)
+    NumProgressions          // Total count = 22
+};
+
+/**
  * SuperChord Plugin - A chord synthesizer plugin inspired by the Hichord pocket
  * chord synthesizer. Implements diatonic chord generation (I-VII Nashville
  * Number System), 16 voice presets with macro controls, and a 4-page tabbed UI.
@@ -61,6 +90,7 @@ class SuperChordPlugin : public tracktion::Plugin {
     int getArpDirectionValue() const;
     int getArpStepsValue() const;
     int getArpRateValue() const;
+    int getProgressionValue() const;
 
     // State accessors for visualizer
     int getCurrentChordDegree() const { return currentChordDegree; }
@@ -89,6 +119,7 @@ class SuperChordPlugin : public tracktion::Plugin {
     tracktion::AutomatableParameter::Ptr arpDirectionParam;
     tracktion::AutomatableParameter::Ptr arpStepsParam;
     tracktion::AutomatableParameter::Ptr arpRateParam;
+    tracktion::AutomatableParameter::Ptr progressionParam;
 
   private:
     // Cached values for state persistence
@@ -104,6 +135,7 @@ class SuperChordPlugin : public tracktion::Plugin {
     juce::CachedValue<float> arpDirectionValue;
     juce::CachedValue<float> arpStepsValue;
     juce::CachedValue<float> arpRateValue;
+    juce::CachedValue<float> progressionValue;
 
     // Synthesizer for polyphony
     juce::Synthesiser synthesiser;

@@ -28,6 +28,14 @@ SuperChordVisualizerPage::SuperChordVisualizerPage(
                                 appLookAndFeel.yellowColour);
     addAndMakeVisible(keySignatureLabel);
 
+    // Progression label - shows current progression type
+    progressionLabel.setFont(juce::Font(
+        juce::Font::getDefaultMonospacedFontName(), 20, juce::Font::bold));
+    progressionLabel.setJustificationType(juce::Justification::right);
+    progressionLabel.setColour(juce::Label::textColourId,
+                               appLookAndFeel.colour1);
+    addAndMakeVisible(progressionLabel);
+
     midiCommandManager.addListener(this);
 
     // Start timer for animations (30 FPS)
@@ -54,6 +62,11 @@ void SuperChordVisualizerPage::timerCallback() {
     keySignatureLabel.setText("Key: " + plugin->getKeySignature(),
                               juce::dontSendNotification);
 
+    // Update progression label
+    auto progression = static_cast<internal_plugins::ProgressionType>(plugin->getProgressionValue());
+    progressionLabel.setText(internal_plugins::ChordEngine::getProgressionName(progression),
+                             juce::dontSendNotification);
+
     repaint();
 }
 
@@ -74,6 +87,7 @@ void SuperChordVisualizerPage::resized() {
     float titleFontSize = juce::jmax(getHeight() * 0.1f, 20.0f);
     float chordFontSize = juce::jmax(getHeight() * 0.1f, 20.0f);  // Smaller, matches title
     float keyFontSize = juce::jmax(getHeight() * 0.1f, 20.0f);
+    float progFontSize = juce::jmax(getHeight() * 0.08f, 16.0f);
 
     // Preset name label at top center
     presetNameLabel.setFont(juce::Font(
@@ -89,6 +103,11 @@ void SuperChordVisualizerPage::resized() {
     keySignatureLabel.setFont(juce::Font(
         juce::Font::getDefaultMonospacedFontName(), keyFontSize, juce::Font::bold));
     keySignatureLabel.setBounds(10, getHeight() - getHeight() * 0.15f, getWidth() / 2, getHeight() * 0.12f);
+
+    // Progression label at bottom right
+    progressionLabel.setFont(juce::Font(
+        juce::Font::getDefaultMonospacedFontName(), progFontSize, juce::Font::bold));
+    progressionLabel.setBounds(getWidth() / 2, getHeight() - getHeight() * 0.15f, getWidth() / 2 - 10, getHeight() * 0.12f);
 }
 
 void SuperChordVisualizerPage::drawChordConstellation(juce::Graphics &g,
@@ -96,19 +115,22 @@ void SuperChordVisualizerPage::drawChordConstellation(juce::Graphics &g,
                                                       float centerY,
                                                       float radius) {
     int currentChord = plugin->getCurrentChordDegree();
-    static const char *romanNumerals[] = {"I",   "ii",  "iii", "IV",
-                                          "V",   "vi",  "vii°"};
+    
+    // Get progression-specific information
+    auto progression = static_cast<internal_plugins::ProgressionType>(plugin->getProgressionValue());
+    int numDegrees = internal_plugins::ChordEngine::getNumDegrees(progression);
 
     // Much larger dots - scale with window size
     float activeDotSize = juce::jmax(radius * 0.35f, 24.0f);
     float inactiveDotSize = juce::jmax(radius * 0.25f, 16.0f);
     float glowSize = activeDotSize * 1.5f;
-    float labelFontSize = juce::jmax(getHeight() * 0.08f, 16.0f);
+    float labelFontSize = juce::jmax(getHeight() * 0.06f, 14.0f);
 
-    // Draw 7 chord degree points
-    for (int i = 0; i < 7; i++) {
+    // Draw chord degree points (variable count based on progression)
+    for (int i = 0; i < numDegrees; i++) {
+        // Space dots evenly around the circle
         float angle =
-            (i / 7.0f) * juce::MathConstants<float>::twoPi - 
+            (static_cast<float>(i) / static_cast<float>(numDegrees)) * juce::MathConstants<float>::twoPi - 
             juce::MathConstants<float>::halfPi;
         float x = centerX + std::cos(angle) * radius;
         float y = centerY + std::sin(angle) * radius;
@@ -125,7 +147,10 @@ void SuperChordVisualizerPage::drawChordConstellation(juce::Graphics &g,
             g.fillEllipse(x - inactiveDotSize / 2, y - inactiveDotSize / 2, inactiveDotSize, inactiveDotSize);
         }
 
-        // Draw Roman numeral with larger font
+        // Get progression-specific label for this degree
+        juce::String degreeLabel = internal_plugins::ChordEngine::getDegreeLabel(progression, i);
+
+        // Draw degree label with larger font
         g.setColour(i == currentChord ? appLookAndFeel.whiteColour
                                       : juce::Colours::lightgrey);
         g.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(), labelFontSize,
@@ -134,9 +159,30 @@ void SuperChordVisualizerPage::drawChordConstellation(juce::Graphics &g,
         float labelOffset = activeDotSize * 0.8f + 10.0f;
         float labelX = centerX + std::cos(angle) * (radius + labelOffset);
         float labelY = centerY + std::sin(angle) * (radius + labelOffset);
-        g.drawText(romanNumerals[i], 
-                   static_cast<int>(labelX - 25),
-                   static_cast<int>(labelY - 12), 50, 24,
+        g.drawText(degreeLabel, 
+                   static_cast<int>(labelX - 30),
+                   static_cast<int>(labelY - 12), 60, 24,
                    juce::Justification::centred);
+    }
+}
+
+void SuperChordVisualizerPage::encoder1Increased() {
+    if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
+        int currentValue = plugin->getProgressionValue();
+        int maxValue = static_cast<int>(internal_plugins::ProgressionType::NumProgressions) - 1;
+        if (currentValue < maxValue) {
+            plugin->progressionParam->setParameter(
+                static_cast<float>(currentValue + 1), juce::sendNotification);
+        }
+    }
+}
+
+void SuperChordVisualizerPage::encoder1Decreased() {
+    if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
+        int currentValue = plugin->getProgressionValue();
+        if (currentValue > 0) {
+            plugin->progressionParam->setParameter(
+                static_cast<float>(currentValue - 1), juce::sendNotification);
+        }
     }
 }

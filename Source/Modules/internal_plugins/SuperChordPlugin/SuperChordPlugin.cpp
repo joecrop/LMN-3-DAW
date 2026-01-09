@@ -25,6 +25,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     arpDirectionValue.referTo(state, juce::Identifier("arpDirection"), um, 0.0f);
     arpStepsValue.referTo(state, juce::Identifier("arpSteps"), um, 8.0f);
     arpRateValue.referTo(state, juce::Identifier("arpRate"), um, 2.0f);
+    progressionValue.referTo(state, juce::Identifier("progression"), um, 0.0f);
 
     // Helper lambda to create automatable parameters
     auto createParam = [this](const juce::String& paramID, const juce::String& name,
@@ -70,6 +71,9 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
 
     arpRateParam = createParam("arpRate", TRANS("Arp Rate"), {0.0f, 6.0f});
     arpRateParam->attachToCurrentValue(arpRateValue);
+
+    progressionParam = createParam("progression", TRANS("Progression"), {0.0f, 21.0f});
+    progressionParam->attachToCurrentValue(progressionValue);
 
     // Initialize chord engine
     chordEngine = std::make_unique<ChordEngine>();
@@ -158,6 +162,10 @@ int SuperChordPlugin::getArpRateValue() const {
     return static_cast<int>(arpRateValue.get());
 }
 
+int SuperChordPlugin::getProgressionValue() const {
+    return static_cast<int>(progressionValue.get());
+}
+
 juce::String SuperChordPlugin::getCurrentPresetName() const {
     return VoicePresets::getPresetName(getCurrentVoicePresetIndex());
 }
@@ -176,15 +184,20 @@ double SuperChordPlugin::calculateArpInterval(double bpm) const {
 void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
                                      double currentPPQ, double bpm,
                                      int samplePosition) {
-    // Map MIDI notes to chord degrees I-VII across 3 octaves around middle C
+    // Get current progression type to determine available degrees
+    auto progression = static_cast<ProgressionType>(getProgressionValue());
+    int numDegrees = ChordEngine::getNumDegrees(progression);
+    
+    // Map MIDI notes to chord degrees across 3 octaves around middle C
     // C3 (48) to B5 (83) - notes outside this range are ignored
     // Lower octave (C3-B3): chord transposed down 1 octave
     // Middle octave (C4-B4): chord at normal pitch
     // Upper octave (C5-B5): chord transposed up 1 octave
     
-    // C=I, D=II, E=III, F=IV, G=V, A=VI, B=VII
-    // Black keys are mapped to the lower white key's degree
-    static const int noteToChordDegree[] = {
+    // For 7-degree progressions: C=0, D=1, E=2, F=3, G=4, A=5, B=6
+    // For reduced progressions: C=0, D=1, E=2, F=3 (if 4+), etc. Other keys silent.
+    // Black keys map to the lower white key's degree
+    static const int noteToWhiteKey[] = {
         0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6  // C, C#, D, D#, E, F, F#, G, G#, A, A#, B
     };
     
@@ -193,7 +206,18 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
         return;
     
     int noteInOctave = midiNote % 12;
-    int degree = noteToChordDegree[noteInOctave];
+    int whiteKeyIndex = noteToWhiteKey[noteInOctave];
+    
+    // For reduced degree progressions, map white keys to degrees and ignore extras
+    // C=0, D=1, E=2, F=3, G=4, A=5, B=6
+    // But for 3-degree: only C, D, E (white keys 0, 1, 2)
+    // For 4-degree: only C, D, E, F (white keys 0, 1, 2, 3)
+    int degree = whiteKeyIndex;
+    
+    // If degree is beyond available degrees, ignore this note
+    if (degree >= numDegrees)
+        return;
+    
     currentChordDegree = degree;
     
     // Calculate octave offset based on which octave the note is in
@@ -209,10 +233,10 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
     int totalOctaveOffset = octaveParam + keyboardOctave;
     int presetIndex = getCurrentVoicePresetIndex();
 
-    // Generate chord
+    // Generate chord with progression type
     activeChordNotes =
-        chordEngine->generateChord(degree, key, voicing, extension, totalOctaveOffset);
-    currentChordName = chordEngine->getChordName(degree, key, extension);
+        chordEngine->generateChord(degree, key, voicing, extension, totalOctaveOffset, progression);
+    currentChordName = chordEngine->getChordName(degree, key, extension, progression);
 
     // Update all voices with current preset and macro values
     for (int i = 0; i < synthesiser.getNumVoices(); i++) {

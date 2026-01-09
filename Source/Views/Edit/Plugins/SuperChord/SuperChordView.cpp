@@ -75,3 +75,9 @@ void SuperChordView::minusButtonReleased() {
                           juce::dontSendNotification);
     }
 }
+
+void SuperChordView::visibilityChanged() {
+    if (isVisible()) {
+        midiCommandManager.setFocusedComponent(getCurrentContentComponent());
+    }
+}
