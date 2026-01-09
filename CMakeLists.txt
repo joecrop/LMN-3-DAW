@@ -70,6 +70,11 @@ target_sources(LMN-3  PRIVATE
     Source/Views/Edit/Plugins/FourOsc/ADSRPlot.cpp
     Source/Views/Edit/Plugins/FourOsc/FilterADSRView.cpp
     Source/Views/Edit/Plugins/FourOsc/FilterView.cpp
+    Source/Views/Edit/Plugins/SuperChord/SuperChordView.cpp
+    Source/Views/Edit/Plugins/SuperChord/SuperChordVisualizerPage.cpp
+    Source/Views/Edit/Plugins/SuperChord/SuperChordSoundPage.cpp
+    Source/Views/Edit/Plugins/SuperChord/SuperChordModePage.cpp
+    Source/Views/Edit/Plugins/SuperChord/SuperChordArpeggiatorPage.cpp
     Source/Views/Edit/Modifiers/TrackModifiersListView.cpp
     Source/Views/Edit/Modifiers/AvailableModifiersListView.cpp
     Source/Views/Edit/Modifiers/ModifierPluginDestinationsListView.cpp
@@ -112,6 +117,7 @@ target_include_directories(LMN-3  PUBLIC
     Source/Views/Edit/Plugins
     Source/Views/Edit/Plugins/Sampler
     Source/Views/Edit/Plugins/FourOsc
+    Source/Views/Edit/Plugins/SuperChord
     Source/Views/Edit/Plugins/InternalPlugin
     Source/Views/Edit/Modifiers
     Source/Views/Edit/Tracks

@@ -4,6 +4,7 @@
 #include "InternalPluginView.h"
 #include "LowPassPluginView.h"
 #include "SamplerView.h"
+#include "SuperChordView.h"
 #include <app_services/app_services.h>
 #include <internal_plugins/internal_plugins.h>
 #include <tracktion_engine/tracktion_engine.h>
@@ -118,6 +119,15 @@ class ExtendedUIBehaviour : public tracktion::UIBehaviour {
                     std::make_unique<FourOscView>(fourOscPlugin,
                                                   *midiCommandManager);
                 return fourOscView;
+            }
+
+            if (auto superChordPlugin =
+                    dynamic_cast<internal_plugins::SuperChordPlugin *>(
+                        &(ws->plugin))) {
+                std::unique_ptr<SuperChordView> superChordView =
+                    std::make_unique<SuperChordView>(superChordPlugin,
+                                                     *midiCommandManager);
+                return superChordView;
             }
 
             std::unique_ptr<InternalPluginView> internalPluginView =

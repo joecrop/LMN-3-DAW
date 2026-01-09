@@ -2,3 +2,7 @@
 #include "internal_plugins.h"
 
 #include "DrumSamplerPlugin/DrumSamplerPlugin.cpp"
+#include "SuperChordPlugin/VoicePresets.cpp"
+#include "SuperChordPlugin/ChordEngine.cpp"
+#include "SuperChordPlugin/SuperChordVoice.cpp"
+#include "SuperChordPlugin/SuperChordPlugin.cpp"
