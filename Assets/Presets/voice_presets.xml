@@ -1,0 +1,3103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    SuperChord Voice Presets
+    128 GM-aligned professional instrument presets
+    
+    Waveform: 0=Sine, 1=Saw, 2=Square, 3=Triangle, 4=Noise
+    FilterType: 0=LowPass, 1=HighPass, 2=BandPass
+    MacroCurve: 0=Linear, 1=Exponential, 2=Logarithmic
+    MacroParamType: 0=FilterCutoff, 1=FilterResonance, 2=OscDetune, 3=OscLevel,
+                    4=EnvAttack, 5=EnvRelease, 6=LFORate, 7=LFODepth
+-->
+<PresetBank version="1.0">
+
+    <!-- ==================== PIANO (1-8) ==================== -->
+    <Category name="Piano">
+        
+        <!-- 1: Acoustic Grand Piano -->
+        <VoicePreset index="0" name="Acoustic Grand">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.005" decay="1.5" sustain="0.3" release="0.8"/>
+            <FilterEnvelope attack="0.001" decay="0.8" sustain="0.2" release="0.5"/>
+            <Filter type="0" cutoff="4000.0" resonance="0.8" envAmount="0.4"/>
+            <LFO waveform="0" rate="5.0" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Brightness">
+                    <Target paramType="0" minValue="2000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.3" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 2: Bright Acoustic Piano -->
+        <VoicePreset index="1" name="Bright Acoustic">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="4.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.003" decay="1.2" sustain="0.25" release="0.6"/>
+            <FilterEnvelope attack="0.001" decay="0.5" sustain="0.3" release="0.4"/>
+            <Filter type="0" cutoff="6000.0" resonance="1.0" envAmount="0.5"/>
+            <LFO waveform="0" rate="5.5" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Brilliance">
+                    <Target paramType="0" minValue="4000.0" maxValue="12000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.2" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 3: Electric Grand Piano -->
+        <VoicePreset index="2" name="Electric Grand">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="4.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.002" decay="2.0" sustain="0.35" release="1.0"/>
+            <FilterEnvelope attack="0.001" decay="1.0" sustain="0.25" release="0.6"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.2" envAmount="0.35"/>
+            <LFO waveform="0" rate="4.5" depth="0.03" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Body">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Tremolo">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 4: Honky-tonk Piano -->
+        <VoicePreset index="3" name="Honky-tonk">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="2" detune="0.08"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.4" phase="0.0" numVoices="2" detune="0.06"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.004" decay="1.0" sustain="0.2" release="0.5"/>
+            <FilterEnvelope attack="0.001" decay="0.6" sustain="0.15" release="0.3"/>
+            <Filter type="0" cutoff="4500.0" resonance="1.5" envAmount="0.45"/>
+            <LFO waveform="0" rate="0.2" depth="0.01" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Detune">
+                    <Target paramType="2" minValue="0.02" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Brightness">
+                    <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Decay">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 5: Electric Piano 1 (Rhodes) -->
+        <VoicePreset index="4" name="Electric Piano 1">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="7.0" level="0.15" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.8" sustain="0.4" release="0.7"/>
+            <FilterEnvelope attack="0.001" decay="0.8" sustain="0.3" release="0.5"/>
+            <Filter type="0" cutoff="2800.0" resonance="0.9" envAmount="0.5"/>
+            <LFO waveform="0" rate="5.0" depth="0.04" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Bark">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Tremolo">
+                    <Target paramType="7" minValue="0.0" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Bell">
+                    <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 6: Electric Piano 2 (DX) -->
+        <VoicePreset index="5" name="Electric Piano 2">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.5" phase="0.25" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.5" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="7.0" level="0.1" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="2.5" sustain="0.3" release="0.9"/>
+            <FilterEnvelope attack="0.001" decay="1.2" sustain="0.2" release="0.6"/>
+            <Filter type="0" cutoff="3200.0" resonance="0.7" envAmount="0.55"/>
+            <LFO waveform="0" rate="4.8" depth="0.03" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Brightness">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Shimmer">
+                    <Target paramType="6" minValue="3.0" maxValue="8.0" curve="0"/>
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 7: Harpsichord -->
+        <VoicePreset index="6" name="Harpsichord">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.8" sustain="0.15" release="0.3"/>
+            <FilterEnvelope attack="0.001" decay="0.3" sustain="0.1" release="0.2"/>
+            <Filter type="0" cutoff="5000.0" resonance="1.8" envAmount="0.6"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Pluck">
+                    <Target paramType="0" minValue="3000.0" maxValue="10000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Resonance">
+                    <Target paramType="1" minValue="1.0" maxValue="4.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Decay">
+                    <Target paramType="5" minValue="0.1" maxValue="0.8" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 8: Clavinet -->
+        <VoicePreset index="7" name="Clavinet">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.6" sustain="0.5" release="0.15"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.3" release="0.1"/>
+            <Filter type="2" cutoff="2500.0" resonance="2.5" envAmount="0.7"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Wah">
+                    <Target paramType="0" minValue="800.0" maxValue="4000.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Pick">
+                    <Target paramType="1" minValue="1.5" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.4" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== CHROMATIC PERCUSSION (9-16) ==================== -->
+    <Category name="Chromatic Percussion">
+        
+        <!-- 9: Celesta -->
+        <VoicePreset index="8" name="Celesta">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="3.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="5.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.5" sustain="0.1" release="1.2"/>
+            <FilterEnvelope attack="0.001" decay="0.8" sustain="0.1" release="0.6"/>
+            <Filter type="1" cutoff="2000.0" resonance="0.8" envAmount="0.3"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Sparkle">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Harmonics">
+                    <Target paramType="3" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 10: Glockenspiel -->
+        <VoicePreset index="9" name="Glockenspiel">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.76" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="2.0" sustain="0.05" release="1.5"/>
+            <FilterEnvelope attack="0.001" decay="1.0" sustain="0.1" release="0.8"/>
+            <Filter type="1" cutoff="3000.0" resonance="0.6" envAmount="0.2"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Brightness">
+                    <Target paramType="0" minValue="2000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Ring">
+                    <Target paramType="5" minValue="1.0" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Metal">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 11: Music Box -->
+        <VoicePreset index="10" name="Music Box">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="3.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="2.5" sustain="0.0" release="2.0"/>
+            <FilterEnvelope attack="0.001" decay="1.5" sustain="0.0" release="1.0"/>
+            <Filter type="0" cutoff="4000.0" resonance="0.5" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Delicacy">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="1.0" maxValue="5.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Tinkle">
+                    <Target paramType="3" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 12: Vibraphone -->
+        <VoicePreset index="11" name="Vibraphone">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="4.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="3.0" sustain="0.2" release="2.0"/>
+            <FilterEnvelope attack="0.001" decay="1.5" sustain="0.2" release="1.0"/>
+            <Filter type="0" cutoff="3000.0" resonance="0.7" envAmount="0.3"/>
+            <LFO waveform="0" rate="5.5" depth="0.15" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Motor">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="1.0" maxValue="5.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Mellow">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 13: Marimba -->
+        <VoicePreset index="12" name="Marimba">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="4.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.2" sustain="0.1" release="0.8"/>
+            <FilterEnvelope attack="0.001" decay="0.5" sustain="0.1" release="0.4"/>
+            <Filter type="0" cutoff="2000.0" resonance="0.8" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Warmth">
+                    <Target paramType="0" minValue="1000.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.4" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 14: Xylophone -->
+        <VoicePreset index="13" name="Xylophone">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="3.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.8" sustain="0.05" release="0.5"/>
+            <FilterEnvelope attack="0.001" decay="0.3" sustain="0.05" release="0.2"/>
+            <Filter type="0" cutoff="5000.0" resonance="1.2" envAmount="0.6"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Brightness">
+                    <Target paramType="0" minValue="3000.0" maxValue="10000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Woody">
+                    <Target paramType="1" minValue="0.8" maxValue="3.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 15: Tubular Bells -->
+        <VoicePreset index="14" name="Tubular Bells">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.76" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="4.0" sustain="0.15" release="3.0"/>
+            <FilterEnvelope attack="0.001" decay="2.0" sustain="0.1" release="1.5"/>
+            <Filter type="0" cutoff="2500.0" resonance="1.0" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Ring">
+                    <Target paramType="5" minValue="2.0" maxValue="8.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Brightness">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Inharmonics">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 16: Dulcimer -->
+        <VoicePreset index="15" name="Dulcimer">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.5" sustain="0.2" release="1.0"/>
+            <FilterEnvelope attack="0.001" decay="0.6" sustain="0.15" release="0.4"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.2" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="2" minValue="0.005" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.5" maxValue="2.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Pluck">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== ORGAN (17-24) ==================== -->
+    <Category name="Organ">
+        
+        <!-- 17: Drawbar Organ -->
+        <VoicePreset index="16" name="Drawbar Organ">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="0.5" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="4.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.005" decay="0.1" sustain="0.95" release="0.08"/>
+            <FilterEnvelope attack="0.005" decay="0.1" sustain="0.9" release="0.1"/>
+            <Filter type="0" cutoff="5000.0" resonance="0.5" envAmount="0.1"/>
+            <LFO waveform="0" rate="6.0" depth="0.04" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Drawbars">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Leslie">
+                    <Target paramType="6" minValue="1.0" maxValue="7.0" curve="0"/>
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Percussion">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 18: Percussive Organ -->
+        <VoicePreset index="17" name="Percussive Organ">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="4.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.3" sustain="0.7" release="0.1"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.5" release="0.1"/>
+            <Filter type="0" cutoff="4500.0" resonance="0.8" envAmount="0.4"/>
+            <LFO waveform="0" rate="5.5" depth="0.03" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Click">
+                    <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Decay">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 19: Rock Organ -->
+        <VoicePreset index="18" name="Rock Organ">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="0.5" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="3.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.002" decay="0.1" sustain="0.95" release="0.08"/>
+            <FilterEnvelope attack="0.002" decay="0.1" sustain="0.9" release="0.1"/>
+            <Filter type="0" cutoff="6000.0" resonance="1.2" envAmount="0.15"/>
+            <LFO waveform="0" rate="6.5" depth="0.05" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Drive">
+                    <Target paramType="1" minValue="0.8" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Leslie">
+                    <Target paramType="6" minValue="1.5" maxValue="7.5" curve="0"/>
+                    <Target paramType="7" minValue="0.02" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="3000.0" maxValue="10000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 20: Church Organ -->
+        <VoicePreset index="19" name="Church Organ">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="0.5" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="4.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.15" decay="0.2" sustain="0.9" release="0.5"/>
+            <FilterEnvelope attack="0.1" decay="0.3" sustain="0.8" release="0.4"/>
+            <Filter type="0" cutoff="3000.0" resonance="0.5" envAmount="0.1"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Swell">
+                    <Target paramType="3" minValue="0.3" maxValue="0.9" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Air">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Attack">
+                    <Target paramType="4" minValue="0.05" maxValue="0.4" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 21: Reed Organ -->
+        <VoicePreset index="20" name="Reed Organ">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="1.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.08" decay="0.15" sustain="0.85" release="0.2"/>
+            <FilterEnvelope attack="0.05" decay="0.2" sustain="0.7" release="0.15"/>
+            <Filter type="0" cutoff="2500.0" resonance="1.0" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.0" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Reed">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Breath">
+                    <Target paramType="4" minValue="0.03" maxValue="0.2" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 22: Accordion -->
+        <VoicePreset index="21" name="Accordion">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="2" detune="0.02"/>
+                <Oscillator index="2" waveform="2" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.05" decay="0.1" sustain="0.9" release="0.15"/>
+            <FilterEnvelope attack="0.03" decay="0.15" sustain="0.8" release="0.1"/>
+            <Filter type="0" cutoff="3000.0" resonance="1.2" envAmount="0.15"/>
+            <LFO waveform="0" rate="5.5" depth="0.03" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Bellows">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Reeds">
+                    <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 23: Harmonica -->
+        <VoicePreset index="22" name="Harmonica">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.005"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.02" decay="0.1" sustain="0.85" release="0.1"/>
+            <FilterEnvelope attack="0.015" decay="0.15" sustain="0.7" release="0.08"/>
+            <Filter type="0" cutoff="2200.0" resonance="1.5" envAmount="0.3"/>
+            <LFO waveform="0" rate="5.5" depth="0.04" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Wah">
+                    <Target paramType="0" minValue="1000.0" maxValue="4000.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Breath">
+                    <Target paramType="4" minValue="0.01" maxValue="0.1" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 24: Tango Accordion -->
+        <VoicePreset index="23" name="Tango Accordion">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="2" detune="0.02"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.45" phase="0.0" numVoices="2" detune="0.025"/>
+                <Oscillator index="2" waveform="2" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.04" decay="0.12" sustain="0.88" release="0.18"/>
+            <FilterEnvelope attack="0.03" decay="0.18" sustain="0.75" release="0.12"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.4" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.8" depth="0.04" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Expression">
+                    <Target paramType="3" minValue="0.35" maxValue="0.85" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Character">
+                    <Target paramType="2" minValue="0.015" maxValue="0.05" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== GUITAR (25-32) ==================== -->
+    <Category name="Guitar">
+        
+        <!-- 25: Acoustic Guitar (nylon) -->
+        <VoicePreset index="24" name="Nylon Guitar">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.002" decay="1.2" sustain="0.25" release="0.6"/>
+            <FilterEnvelope attack="0.001" decay="0.4" sustain="0.2" release="0.3"/>
+            <Filter type="0" cutoff="2500.0" resonance="1.0" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Body">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Mellow">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 26: Acoustic Guitar (steel) -->
+        <VoicePreset index="25" name="Steel Guitar">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="2" detune="0.005"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.0" sustain="0.3" release="0.5"/>
+            <FilterEnvelope attack="0.001" decay="0.3" sustain="0.25" release="0.25"/>
+            <Filter type="0" cutoff="4000.0" resonance="1.3" envAmount="0.55"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Brightness">
+                    <Target paramType="0" minValue="2500.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Pick">
+                    <Target paramType="1" minValue="1.0" maxValue="3.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.3" maxValue="1.2" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 27: Electric Guitar (jazz) -->
+        <VoicePreset index="26" name="Jazz Guitar">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.003" decay="1.5" sustain="0.4" release="0.6"/>
+            <FilterEnvelope attack="0.002" decay="0.5" sustain="0.3" release="0.4"/>
+            <Filter type="0" cutoff="1800.0" resonance="0.8" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Warmth">
+                    <Target paramType="0" minValue="1000.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.4" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="1" minValue="0.5" maxValue="1.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 28: Electric Guitar (clean) -->
+        <VoicePreset index="27" name="Clean Electric">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.2" sustain="0.45" release="0.4"/>
+            <FilterEnvelope attack="0.001" decay="0.4" sustain="0.35" release="0.3"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.2" envAmount="0.45"/>
+            <LFO waveform="0" rate="5.0" depth="0.02" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Tone">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Tremolo">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.2" maxValue="1.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 29: Electric Guitar (muted) -->
+        <VoicePreset index="28" name="Muted Guitar">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.15" sustain="0.1" release="0.08"/>
+            <FilterEnvelope attack="0.001" decay="0.08" sustain="0.1" release="0.05"/>
+            <Filter type="0" cutoff="2000.0" resonance="1.5" envAmount="0.6"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Palm">
+                    <Target paramType="0" minValue="800.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Tightness">
+                    <Target paramType="5" minValue="0.03" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Attack">
+                    <Target paramType="1" minValue="1.0" maxValue="3.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 30: Overdriven Guitar -->
+        <VoicePreset index="29" name="Overdriven">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.002" decay="0.8" sustain="0.7" release="0.3"/>
+            <FilterEnvelope attack="0.001" decay="0.3" sustain="0.5" release="0.2"/>
+            <Filter type="0" cutoff="3000.0" resonance="2.0" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Drive">
+                    <Target paramType="1" minValue="1.5" maxValue="4.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Tone">
+                    <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.2" maxValue="0.8" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 31: Distortion Guitar -->
+        <VoicePreset index="30" name="Distortion">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="2" detune="0.02"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.5" sustain="0.85" release="0.25"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.6" release="0.15"/>
+            <Filter type="0" cutoff="4000.0" resonance="2.5" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Gain">
+                    <Target paramType="1" minValue="2.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Presence">
+                    <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Thickness">
+                    <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 32: Guitar Harmonics -->
+        <VoicePreset index="31" name="Harmonics">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="2.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="3.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="2.0" sustain="0.15" release="1.5"/>
+            <FilterEnvelope attack="0.001" decay="1.0" sustain="0.1" release="0.8"/>
+            <Filter type="1" cutoff="2500.0" resonance="0.8" envAmount="0.3"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Ring">
+                    <Target paramType="5" minValue="1.0" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Bell">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== BASS (33-40) ==================== -->
+    <Category name="Bass">
+        
+        <!-- 33: Acoustic Bass -->
+        <VoicePreset index="32" name="Acoustic Bass">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.005" decay="0.8" sustain="0.5" release="0.4"/>
+            <FilterEnvelope attack="0.003" decay="0.4" sustain="0.3" release="0.25"/>
+            <Filter type="0" cutoff="1200.0" resonance="0.8" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Body">
+                    <Target paramType="0" minValue="600.0" maxValue="2000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Pluck">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.2" maxValue="0.8" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 34: Electric Bass (finger) -->
+        <VoicePreset index="33" name="Finger Bass">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.003" decay="0.6" sustain="0.6" release="0.3"/>
+            <FilterEnvelope attack="0.002" decay="0.3" sustain="0.4" release="0.2"/>
+            <Filter type="0" cutoff="1500.0" resonance="1.0" envAmount="0.45"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Tone">
+                    <Target paramType="0" minValue="800.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Punch">
+                    <Target paramType="1" minValue="0.8" maxValue="2.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.15" maxValue="0.6" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 35: Electric Bass (pick) -->
+        <VoicePreset index="34" name="Pick Bass">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.5" sustain="0.55" release="0.25"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.35" release="0.15"/>
+            <Filter type="0" cutoff="2000.0" resonance="1.5" envAmount="0.55"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Attack">
+                    <Target paramType="0" minValue="1200.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Pick">
+                    <Target paramType="1" minValue="1.2" maxValue="3.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 36: Fretless Bass -->
+        <VoicePreset index="35" name="Fretless Bass">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.45" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.015" decay="0.7" sustain="0.65" release="0.35"/>
+            <FilterEnvelope attack="0.01" decay="0.4" sustain="0.5" release="0.25"/>
+            <Filter type="0" cutoff="1800.0" resonance="1.2" envAmount="0.4"/>
+            <LFO waveform="0" rate="5.5" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Mwah">
+                    <Target paramType="0" minValue="1000.0" maxValue="3000.0" curve="1"/>
+                    <Target paramType="1" minValue="1.0" maxValue="2.5" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sustain">
+                    <Target paramType="5" minValue="0.2" maxValue="0.7" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 37: Slap Bass 1 -->
+        <VoicePreset index="36" name="Slap Bass 1">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.25" sustain="0.4" release="0.15"/>
+            <FilterEnvelope attack="0.001" decay="0.1" sustain="0.25" release="0.08"/>
+            <Filter type="0" cutoff="2500.0" resonance="2.5" envAmount="0.7"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Slap">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Pop">
+                    <Target paramType="1" minValue="2.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Tightness">
+                    <Target paramType="5" minValue="0.05" maxValue="0.3" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 38: Slap Bass 2 -->
+        <VoicePreset index="37" name="Slap Bass 2">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.45" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.3" sustain="0.35" release="0.12"/>
+            <FilterEnvelope attack="0.001" decay="0.12" sustain="0.2" release="0.06"/>
+            <Filter type="0" cutoff="3000.0" resonance="2.8" envAmount="0.75"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Funk">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Thump">
+                    <Target paramType="1" minValue="2.2" maxValue="5.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Snap">
+                    <Target paramType="5" minValue="0.04" maxValue="0.25" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 39: Synth Bass 1 -->
+        <VoicePreset index="38" name="Synth Bass 1">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.4" sustain="0.7" release="0.15"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.4" release="0.1"/>
+            <Filter type="0" cutoff="1200.0" resonance="2.0" envAmount="0.6"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Filter">
+                    <Target paramType="0" minValue="500.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Resonance">
+                    <Target paramType="1" minValue="1.5" maxValue="4.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Decay">
+                    <Target paramType="5" minValue="0.08" maxValue="0.4" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 40: Synth Bass 2 -->
+        <VoicePreset index="39" name="Synth Bass 2">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="0.5" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.5" sustain="0.65" release="0.18"/>
+            <FilterEnvelope attack="0.001" decay="0.25" sustain="0.35" release="0.12"/>
+            <Filter type="0" cutoff="1500.0" resonance="2.2" envAmount="0.55"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Squelch">
+                    <Target paramType="0" minValue="600.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Fatness">
+                    <Target paramType="2" minValue="0.005" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Sub">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== STRINGS (41-48) ==================== -->
+    <Category name="Strings">
+        
+        <!-- 41: Violin -->
+        <VoicePreset index="40" name="Violin">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.12" decay="0.2" sustain="0.85" release="0.3"/>
+            <FilterEnvelope attack="0.08" decay="0.25" sustain="0.7" release="0.2"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.0" envAmount="0.25"/>
+            <LFO waveform="0" rate="5.5" depth="0.03" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Bow">
+                    <Target paramType="4" minValue="0.05" maxValue="0.3" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 42: Viola -->
+        <VoicePreset index="41" name="Viola">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.15" decay="0.22" sustain="0.82" release="0.35"/>
+            <FilterEnvelope attack="0.1" decay="0.28" sustain="0.65" release="0.22"/>
+            <Filter type="0" cutoff="2800.0" resonance="0.9" envAmount="0.22"/>
+            <LFO waveform="0" rate="5.2" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.18" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Expression">
+                    <Target paramType="3" minValue="0.4" maxValue="0.9" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 43: Cello -->
+        <VoicePreset index="42" name="Cello">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.18" decay="0.25" sustain="0.8" release="0.4"/>
+            <FilterEnvelope attack="0.12" decay="0.3" sustain="0.6" release="0.25"/>
+            <Filter type="0" cutoff="1800.0" resonance="0.85" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.0" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Bow Pressure">
+                    <Target paramType="4" minValue="0.08" maxValue="0.35" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="0" minValue="800.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 44: Contrabass -->
+        <VoicePreset index="43" name="Contrabass">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.45" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.2" decay="0.3" sustain="0.75" release="0.45"/>
+            <FilterEnvelope attack="0.15" decay="0.35" sustain="0.55" release="0.3"/>
+            <Filter type="0" cutoff="1200.0" resonance="0.8" envAmount="0.18"/>
+            <LFO waveform="0" rate="4.5" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.1" maxValue="0.4" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Depth">
+                    <Target paramType="0" minValue="500.0" maxValue="1800.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 45: Tremolo Strings -->
+        <VoicePreset index="44" name="Tremolo Strings">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="3" detune="0.015"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="2" waveform="3" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.1" decay="0.15" sustain="0.85" release="0.35"/>
+            <FilterEnvelope attack="0.08" decay="0.2" sustain="0.7" release="0.25"/>
+            <Filter type="0" cutoff="2500.0" resonance="0.9" envAmount="0.2"/>
+            <LFO waveform="0" rate="8.0" depth="0.25" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Tremolo Speed">
+                    <Target paramType="6" minValue="5.0" maxValue="12.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Intensity">
+                    <Target paramType="7" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 46: Pizzicato Strings -->
+        <VoicePreset index="45" name="Pizzicato">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.4" sustain="0.1" release="0.3"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.1" release="0.15"/>
+            <Filter type="0" cutoff="3000.0" resonance="1.2" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Pluck">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.15" maxValue="0.6" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="1" minValue="0.8" maxValue="2.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 47: Orchestral Harp -->
+        <VoicePreset index="46" name="Orchestral Harp">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.002" decay="2.0" sustain="0.2" release="1.5"/>
+            <FilterEnvelope attack="0.001" decay="0.8" sustain="0.15" release="0.6"/>
+            <Filter type="0" cutoff="3500.0" resonance="0.8" envAmount="0.45"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="0" minValue="2500.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.8" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="1" minValue="0.5" maxValue="1.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 48: Timpani -->
+        <VoicePreset index="47" name="Timpani">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.5" sustain="0.15" release="1.0"/>
+            <FilterEnvelope attack="0.001" decay="0.5" sustain="0.1" release="0.4"/>
+            <Filter type="0" cutoff="800.0" resonance="1.5" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Head">
+                    <Target paramType="0" minValue="400.0" maxValue="1200.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Ring">
+                    <Target paramType="5" minValue="0.5" maxValue="2.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Mallet">
+                    <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== ENSEMBLE (49-56) ==================== -->
+    <Category name="Ensemble">
+        
+        <!-- 49: String Ensemble 1 -->
+        <VoicePreset index="48" name="String Ensemble 1">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="4" detune="0.02"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.25" phase="0.0" numVoices="3" detune="0.015"/>
+                <Oscillator index="2" waveform="3" freqMultiplier="1.0" level="0.3" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="1.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.25" decay="0.3" sustain="0.85" release="0.5"/>
+            <FilterEnvelope attack="0.2" decay="0.4" sustain="0.7" release="0.35"/>
+            <Filter type="0" cutoff="2500.0" resonance="0.7" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.0" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Ensemble">
+                    <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Swell">
+                    <Target paramType="4" minValue="0.1" maxValue="0.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 50: String Ensemble 2 -->
+        <VoicePreset index="49" name="String Ensemble 2">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="5" detune="0.025"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="0.5" level="0.4" phase="0.0" numVoices="3" detune="0.018"/>
+                <Oscillator index="2" waveform="3" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.012"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.35" decay="0.4" sustain="0.8" release="0.6"/>
+            <FilterEnvelope attack="0.25" decay="0.5" sustain="0.65" release="0.4"/>
+            <Filter type="0" cutoff="2000.0" resonance="0.6" envAmount="0.18"/>
+            <LFO waveform="0" rate="4.5" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Width">
+                    <Target paramType="2" minValue="0.015" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.15" maxValue="0.7" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="1000.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 51: Synth Strings 1 -->
+        <VoicePreset index="50" name="Synth Strings 1">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="6" detune="0.03"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.25" numVoices="4" detune="0.02"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="0.5" level="0.3" phase="0.0" numVoices="3" detune="0.015"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.4" decay="0.3" sustain="0.9" release="0.7"/>
+            <FilterEnvelope attack="0.3" decay="0.5" sustain="0.6" release="0.4"/>
+            <Filter type="0" cutoff="3000.0" resonance="0.8" envAmount="0.25"/>
+            <LFO waveform="0" rate="0.3" depth="0.1" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Lushness">
+                    <Target paramType="2" minValue="0.02" maxValue="0.06" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Swell">
+                    <Target paramType="4" minValue="0.2" maxValue="0.8" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 52: Synth Strings 2 -->
+        <VoicePreset index="51" name="Synth Strings 2">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="4" detune="0.025"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="3" detune="0.018"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="2" detune="0.01"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.5" decay="0.35" sustain="0.85" release="0.8"/>
+            <FilterEnvelope attack="0.4" decay="0.6" sustain="0.55" release="0.45"/>
+            <Filter type="0" cutoff="2200.0" resonance="0.75" envAmount="0.22"/>
+            <LFO waveform="0" rate="0.25" depth="0.15" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Detune">
+                    <Target paramType="2" minValue="0.015" maxValue="0.045" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Movement">
+                    <Target paramType="7" minValue="0.05" maxValue="0.3" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="0" minValue="1200.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 53: Choir Aahs -->
+        <VoicePreset index="52" name="Choir Aahs">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="5" detune="0.02"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="3" detune="0.015"/>
+                <Oscillator index="2" waveform="3" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.01"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.3" decay="0.25" sustain="0.85" release="0.5"/>
+            <FilterEnvelope attack="0.2" decay="0.4" sustain="0.7" release="0.35"/>
+            <Filter type="0" cutoff="1800.0" resonance="1.2" envAmount="0.3"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Expression">
+                    <Target paramType="4" minValue="0.1" maxValue="0.6" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Formant">
+                    <Target paramType="0" minValue="1200.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 54: Voice Oohs -->
+        <VoicePreset index="53" name="Voice Oohs">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="4" detune="0.018"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="3" detune="0.012"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.008"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.35" decay="0.3" sustain="0.8" release="0.55"/>
+            <FilterEnvelope attack="0.25" decay="0.45" sustain="0.6" release="0.4"/>
+            <Filter type="0" cutoff="1400.0" resonance="1.3" envAmount="0.28"/>
+            <LFO waveform="0" rate="5.2" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Breathe">
+                    <Target paramType="4" minValue="0.15" maxValue="0.65" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Formant">
+                    <Target paramType="0" minValue="900.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 55: Synth Voice -->
+        <VoicePreset index="54" name="Synth Voice">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="4" detune="0.025"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.25" phase="0.5" numVoices="2" detune="0.015"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.15" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.4" decay="0.35" sustain="0.75" release="0.6"/>
+            <FilterEnvelope attack="0.3" decay="0.5" sustain="0.55" release="0.4"/>
+            <Filter type="0" cutoff="2000.0" resonance="1.8" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.2" depth="0.2" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Sweep">
+                    <Target paramType="6" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Movement">
+                    <Target paramType="7" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="1000.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 56: Orchestra Hit -->
+        <VoicePreset index="55" name="Orchestra Hit">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="4" detune="0.03"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.5" phase="0.25" numVoices="3" detune="0.025"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="2" detune="0.018"/>
+                <Oscillator index="3" waveform="4" freqMultiplier="1.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.8" sustain="0.3" release="0.6"/>
+            <FilterEnvelope attack="0.001" decay="0.3" sustain="0.2" release="0.25"/>
+            <Filter type="0" cutoff="4000.0" resonance="0.9" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Impact">
+                    <Target paramType="0" minValue="2500.0" maxValue="6500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.3" maxValue="1.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Noise">
+                    <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== BRASS (57-64) ==================== -->
+    <Category name="Brass">
+        
+        <!-- 57: Trumpet -->
+        <VoicePreset index="56" name="Trumpet">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.3" phase="0.5" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.04" decay="0.15" sustain="0.85" release="0.2"/>
+            <FilterEnvelope attack="0.02" decay="0.2" sustain="0.7" release="0.15"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.2" envAmount="0.4"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Mute">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="2000.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 58: Trombone -->
+        <VoicePreset index="57" name="Trombone">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.25" phase="0.5" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.06" decay="0.18" sustain="0.82" release="0.25"/>
+            <FilterEnvelope attack="0.04" decay="0.25" sustain="0.65" release="0.18"/>
+            <Filter type="0" cutoff="1800.0" resonance="1.1" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.0" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Slide">
+                    <Target paramType="4" minValue="0.03" maxValue="0.15" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1200.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 59: Tuba -->
+        <VoicePreset index="58" name="Tuba">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.08" decay="0.2" sustain="0.78" release="0.3"/>
+            <FilterEnvelope attack="0.06" decay="0.3" sustain="0.6" release="0.2"/>
+            <Filter type="0" cutoff="900.0" resonance="1.0" envAmount="0.3"/>
+            <LFO waveform="0" rate="4.5" depth="0.01" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.04" maxValue="0.18" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="0" minValue="600.0" maxValue="1500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 60: Muted Trumpet -->
+        <VoicePreset index="59" name="Muted Trumpet">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.5" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.03" decay="0.12" sustain="0.82" release="0.18"/>
+            <FilterEnvelope attack="0.02" decay="0.15" sustain="0.6" release="0.12"/>
+            <Filter type="2" cutoff="2000.0" resonance="2.0" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.5" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.18" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Mute">
+                    <Target paramType="0" minValue="1200.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Nasal">
+                    <Target paramType="1" minValue="1.5" maxValue="3.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 61: French Horn -->
+        <VoicePreset index="60" name="French Horn">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="2" detune="0.008"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.1" decay="0.2" sustain="0.85" release="0.35"/>
+            <FilterEnvelope attack="0.08" decay="0.3" sustain="0.65" release="0.25"/>
+            <Filter type="0" cutoff="1600.0" resonance="0.9" envAmount="0.25"/>
+            <LFO waveform="0" rate="5.0" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Swell">
+                    <Target paramType="4" minValue="0.05" maxValue="0.25" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="1000.0" maxValue="2800.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 62: Brass Section -->
+        <VoicePreset index="61" name="Brass Section">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="3" detune="0.015"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.25" numVoices="2" detune="0.012"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.06" decay="0.18" sustain="0.85" release="0.28"/>
+            <FilterEnvelope attack="0.04" decay="0.25" sustain="0.7" release="0.2"/>
+            <Filter type="0" cutoff="2200.0" resonance="1.0" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.2" depth="0.012" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Ensemble">
+                    <Target paramType="2" minValue="0.01" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.03" maxValue="0.15" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 63: Synth Brass 1 -->
+        <VoicePreset index="62" name="Synth Brass 1">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="4" detune="0.02"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.4" phase="0.5" numVoices="3" detune="0.015"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="0.5" level="0.3" phase="0.0" numVoices="2" detune="0.01"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.02" decay="0.15" sustain="0.88" release="0.25"/>
+            <FilterEnvelope attack="0.01" decay="0.2" sustain="0.6" release="0.15"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.5" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Punch">
+                    <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Width">
+                    <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Resonance">
+                    <Target paramType="1" minValue="1.0" maxValue="3.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 64: Synth Brass 2 -->
+        <VoicePreset index="63" name="Synth Brass 2">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="5" detune="0.025"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="3" detune="0.018"/>
+                <Oscillator index="2" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.25" numVoices="2" detune="0.012"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.03" decay="0.18" sustain="0.85" release="0.3"/>
+            <FilterEnvelope attack="0.015" decay="0.25" sustain="0.55" release="0.18"/>
+            <Filter type="0" cutoff="2400.0" resonance="1.8" envAmount="0.55"/>
+            <LFO waveform="0" rate="0.15" depth="0.1" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Sweep">
+                    <Target paramType="7" minValue="0.05" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Fat">
+                    <Target paramType="2" minValue="0.015" maxValue="0.045" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="1800.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== REED (65-72) ==================== -->
+    <Category name="Reed">
+        
+        <!-- 65: Soprano Sax -->
+        <VoicePreset index="64" name="Soprano Sax">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.25" phase="0.3" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.03" decay="0.12" sustain="0.88" release="0.18"/>
+            <FilterEnvelope attack="0.02" decay="0.18" sustain="0.7" release="0.12"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.3" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.8" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Breath">
+                    <Target paramType="4" minValue="0.02" maxValue="0.1" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 66: Alto Sax -->
+        <VoicePreset index="65" name="Alto Sax">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.72" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.28" phase="0.3" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.035" decay="0.14" sustain="0.86" release="0.2"/>
+            <FilterEnvelope attack="0.025" decay="0.2" sustain="0.68" release="0.14"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.25" envAmount="0.32"/>
+            <LFO waveform="0" rate="5.5" depth="0.022" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.18" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Expression">
+                    <Target paramType="3" minValue="0.5" maxValue="0.9" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 67: Tenor Sax -->
+        <VoicePreset index="66" name="Tenor Sax">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.3" phase="0.3" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.04" decay="0.16" sustain="0.84" release="0.22"/>
+            <FilterEnvelope attack="0.03" decay="0.22" sustain="0.65" release="0.16"/>
+            <Filter type="0" cutoff="2200.0" resonance="1.2" envAmount="0.3"/>
+            <LFO waveform="0" rate="5.2" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.16" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Growl">
+                    <Target paramType="1" minValue="1.0" maxValue="2.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 68: Baritone Sax -->
+        <VoicePreset index="67" name="Baritone Sax">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.78" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.32" phase="0.3" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.05" decay="0.18" sustain="0.82" release="0.25"/>
+            <FilterEnvelope attack="0.04" decay="0.25" sustain="0.6" release="0.18"/>
+            <Filter type="0" cutoff="1400.0" resonance="1.15" envAmount="0.28"/>
+            <LFO waveform="0" rate="4.8" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.14" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Honk">
+                    <Target paramType="1" minValue="0.8" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="0" minValue="900.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 69: Oboe -->
+        <VoicePreset index="68" name="Oboe">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.05" decay="0.15" sustain="0.85" release="0.2"/>
+            <FilterEnvelope attack="0.04" decay="0.2" sustain="0.7" release="0.15"/>
+            <Filter type="0" cutoff="2500.0" resonance="1.8" envAmount="0.3"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Reed">
+                    <Target paramType="1" minValue="1.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Nasal">
+                    <Target paramType="0" minValue="1800.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 70: English Horn -->
+        <VoicePreset index="69" name="English Horn">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.68" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.32" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.06" decay="0.18" sustain="0.82" release="0.25"/>
+            <FilterEnvelope attack="0.05" decay="0.22" sustain="0.65" release="0.18"/>
+            <Filter type="0" cutoff="2000.0" resonance="1.6" envAmount="0.28"/>
+            <LFO waveform="0" rate="5.2" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.14" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Expression">
+                    <Target paramType="3" minValue="0.45" maxValue="0.85" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="1400.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 71: Bassoon -->
+        <VoicePreset index="70" name="Bassoon">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.72" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.08" decay="0.2" sustain="0.8" release="0.28"/>
+            <FilterEnvelope attack="0.06" decay="0.25" sustain="0.6" release="0.2"/>
+            <Filter type="0" cutoff="1200.0" resonance="1.4" envAmount="0.25"/>
+            <LFO waveform="0" rate="4.8" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.04" maxValue="0.18" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="0" minValue="800.0" maxValue="2200.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 72: Clarinet -->
+        <VoicePreset index="71" name="Clarinet">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="3.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.04" decay="0.14" sustain="0.88" release="0.2"/>
+            <FilterEnvelope attack="0.03" decay="0.18" sustain="0.72" release="0.14"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.3" envAmount="0.32"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.16" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Register">
+                    <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Hollow">
+                    <Target paramType="1" minValue="1.0" maxValue="2.2" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== PIPE (73-80) ==================== -->
+    <Category name="Pipe">
+        
+        <!-- 73: Piccolo -->
+        <VoicePreset index="72" name="Piccolo">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.02" decay="0.1" sustain="0.9" release="0.15"/>
+            <FilterEnvelope attack="0.015" decay="0.12" sustain="0.8" release="0.1"/>
+            <Filter type="0" cutoff="5000.0" resonance="1.0" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.8" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Breath">
+                    <Target paramType="4" minValue="0.01" maxValue="0.06" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="3500.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 74: Flute -->
+        <VoicePreset index="73" name="Flute">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.04" decay="0.12" sustain="0.88" release="0.18"/>
+            <FilterEnvelope attack="0.03" decay="0.15" sustain="0.75" release="0.12"/>
+            <Filter type="0" cutoff="3800.0" resonance="0.9" envAmount="0.22"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.18" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Breath">
+                    <Target paramType="4" minValue="0.02" maxValue="0.1" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Air">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 75: Recorder -->
+        <VoicePreset index="74" name="Recorder">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.68" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="3.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.025" decay="0.1" sustain="0.9" release="0.15"/>
+            <FilterEnvelope attack="0.02" decay="0.12" sustain="0.8" release="0.1"/>
+            <Filter type="0" cutoff="4200.0" resonance="0.85" envAmount="0.18"/>
+            <LFO waveform="0" rate="5.2" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.015" maxValue="0.08" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="0" minValue="3000.0" maxValue="6500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 76: Pan Flute -->
+        <VoicePreset index="75" name="Pan Flute">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.72" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.15" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.05" decay="0.15" sustain="0.85" release="0.2"/>
+            <FilterEnvelope attack="0.04" decay="0.18" sustain="0.7" release="0.15"/>
+            <Filter type="0" cutoff="3200.0" resonance="0.8" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.0" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Breath">
+                    <Target paramType="3" minValue="0.08" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 77: Blown Bottle -->
+        <VoicePreset index="76" name="Blown Bottle">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.08" decay="0.2" sustain="0.75" release="0.25"/>
+            <FilterEnvelope attack="0.06" decay="0.25" sustain="0.6" release="0.18"/>
+            <Filter type="0" cutoff="1800.0" resonance="1.5" envAmount="0.25"/>
+            <LFO waveform="0" rate="4.5" depth="0.012" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Air">
+                    <Target paramType="3" minValue="0.2" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Resonance">
+                    <Target paramType="1" minValue="1.0" maxValue="2.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 78: Shakuhachi -->
+        <VoicePreset index="77" name="Shakuhachi">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.28" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.06" decay="0.18" sustain="0.8" release="0.3"/>
+            <FilterEnvelope attack="0.05" decay="0.2" sustain="0.65" release="0.2"/>
+            <Filter type="0" cutoff="2500.0" resonance="1.2" envAmount="0.3"/>
+            <LFO waveform="0" rate="5.5" depth="0.03" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Breath">
+                    <Target paramType="3" minValue="0.15" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Expression">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 79: Whistle -->
+        <VoicePreset index="78" name="Whistle">
+            <Oscillators count="1">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.02" decay="0.08" sustain="0.92" release="0.12"/>
+            <FilterEnvelope attack="0.015" decay="0.1" sustain="0.85" release="0.08"/>
+            <Filter type="0" cutoff="6000.0" resonance="0.7" envAmount="0.15"/>
+            <LFO waveform="0" rate="6.0" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Pitch Mod">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="4000.0" maxValue="10000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 80: Ocarina -->
+        <VoicePreset index="79" name="Ocarina">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.035" decay="0.12" sustain="0.88" release="0.18"/>
+            <FilterEnvelope attack="0.025" decay="0.15" sustain="0.75" release="0.12"/>
+            <Filter type="0" cutoff="3500.0" resonance="0.9" envAmount="0.2"/>
+            <LFO waveform="0" rate="5.2" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.02" maxValue="0.1" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="0" minValue="2500.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== SYNTH LEAD (81-88) ==================== -->
+    <Category name="Synth Lead">
+        
+        <!-- 81: Lead 1 (Square) -->
+        <VoicePreset index="80" name="Square Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="2.0" level="0.25" phase="0.5" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.005" decay="0.1" sustain="0.9" release="0.15"/>
+            <FilterEnvelope attack="0.003" decay="0.15" sustain="0.7" release="0.1"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.5" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Pulse Width">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Resonance">
+                    <Target paramType="1" minValue="1.0" maxValue="3.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 82: Lead 2 (Sawtooth) -->
+        <VoicePreset index="81" name="Saw Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.003" decay="0.08" sustain="0.92" release="0.12"/>
+            <FilterEnvelope attack="0.002" decay="0.12" sustain="0.75" release="0.08"/>
+            <Filter type="0" cutoff="4000.0" resonance="1.3" envAmount="0.4"/>
+            <LFO waveform="0" rate="5.8" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Fat">
+                    <Target paramType="2" minValue="0.005" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="2500.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 83: Lead 3 (Calliope) -->
+        <VoicePreset index="82" name="Calliope Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.72" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.28" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.01" decay="0.1" sustain="0.88" release="0.18"/>
+            <FilterEnvelope attack="0.008" decay="0.12" sustain="0.8" release="0.12"/>
+            <Filter type="0" cutoff="4500.0" resonance="0.9" envAmount="0.25"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.18" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Brightness">
+                    <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Harmonic">
+                    <Target paramType="3" minValue="0.15" maxValue="0.4" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 84: Lead 4 (Chiff) -->
+        <VoicePreset index="83" name="Chiff Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.002" decay="0.15" sustain="0.8" release="0.12"/>
+            <FilterEnvelope attack="0.001" decay="0.08" sustain="0.5" release="0.06"/>
+            <Filter type="0" cutoff="5000.0" resonance="1.2" envAmount="0.55"/>
+            <LFO waveform="0" rate="5.2" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Chiff">
+                    <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 85: Lead 5 (Charang) -->
+        <VoicePreset index="84" name="Charang Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.25" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.1" sustain="0.85" release="0.15"/>
+            <FilterEnvelope attack="0.001" decay="0.15" sustain="0.6" release="0.1"/>
+            <Filter type="0" cutoff="3000.0" resonance="1.8" envAmount="0.5"/>
+            <LFO waveform="0" rate="5.5" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Distort">
+                    <Target paramType="1" minValue="1.5" maxValue="3.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Bite">
+                    <Target paramType="0" minValue="2000.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 86: Lead 6 (Voice) -->
+        <VoicePreset index="85" name="Voice Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.08" decay="0.15" sustain="0.85" release="0.25"/>
+            <FilterEnvelope attack="0.06" decay="0.2" sustain="0.65" release="0.18"/>
+            <Filter type="0" cutoff="2000.0" resonance="1.8" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.0" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Formant">
+                    <Target paramType="0" minValue="1200.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Expression">
+                    <Target paramType="4" minValue="0.04" maxValue="0.2" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 87: Lead 7 (Fifths) -->
+        <VoicePreset index="86" name="Fifths Lead">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="2" detune="0.01"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.5" level="0.55" phase="0.0" numVoices="2" detune="0.01"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.01" decay="0.12" sustain="0.88" release="0.18"/>
+            <FilterEnvelope attack="0.008" decay="0.15" sustain="0.7" release="0.12"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.2" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.5" depth="0.018" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Fifth Level">
+                    <Target paramType="3" minValue="0.3" maxValue="0.7" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 88: Lead 8 (Bass + Lead) -->
+        <VoicePreset index="87" name="Bass + Lead">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="2" detune="0.012"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="0.5" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="2" freqMultiplier="1.0" level="0.25" phase="0.25" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.005" decay="0.15" sustain="0.85" release="0.2"/>
+            <FilterEnvelope attack="0.003" decay="0.2" sustain="0.6" release="0.15"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.4" envAmount="0.4"/>
+            <LFO waveform="0" rate="5.2" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Bass">
+                    <Target paramType="3" minValue="0.3" maxValue="0.7" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="1800.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== SYNTH PAD (89-96) ==================== -->
+    <Category name="Synth Pad">
+        
+        <!-- 89: Pad 1 (New Age) -->
+        <VoicePreset index="88" name="New Age Pad">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="4" detune="0.02"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.15" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.8" decay="0.4" sustain="0.85" release="1.2"/>
+            <FilterEnvelope attack="0.6" decay="0.8" sustain="0.6" release="0.8"/>
+            <Filter type="0" cutoff="2500.0" resonance="0.8" envAmount="0.25"/>
+            <LFO waveform="0" rate="0.15" depth="0.1" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Swell">
+                    <Target paramType="4" minValue="0.4" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 90: Pad 2 (Warm) -->
+        <VoicePreset index="89" name="Warm Pad">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="5" detune="0.025"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="0.5" level="0.4" phase="0.0" numVoices="3" detune="0.02"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="1.0" level="0.3" phase="0.0" numVoices="2" detune="0.015"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.6" decay="0.35" sustain="0.9" release="1.0"/>
+            <FilterEnvelope attack="0.5" decay="0.6" sustain="0.5" release="0.7"/>
+            <Filter type="0" cutoff="1800.0" resonance="0.7" envAmount="0.2"/>
+            <LFO waveform="0" rate="0.12" depth="0.08" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Width">
+                    <Target paramType="2" minValue="0.015" maxValue="0.045" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Attack">
+                    <Target paramType="4" minValue="0.3" maxValue="1.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Warmth">
+                    <Target paramType="0" minValue="1000.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 91: Pad 3 (Polysynth) -->
+        <VoicePreset index="90" name="Polysynth Pad">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="4" detune="0.02"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.25" numVoices="3" detune="0.018"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.15" decay="0.25" sustain="0.88" release="0.6"/>
+            <FilterEnvelope attack="0.1" decay="0.3" sustain="0.7" release="0.4"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.0" envAmount="0.3"/>
+            <LFO waveform="0" rate="0.2" depth="0.12" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Ensemble">
+                    <Target paramType="2" minValue="0.01" maxValue="0.035" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Movement">
+                    <Target paramType="7" minValue="0.05" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Filter">
+                    <Target paramType="0" minValue="1800.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 92: Pad 4 (Choir) -->
+        <VoicePreset index="91" name="Choir Pad">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="5" detune="0.022"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="3" detune="0.018"/>
+                <Oscillator index="2" waveform="3" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.012"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.5" decay="0.3" sustain="0.85" release="0.9"/>
+            <FilterEnvelope attack="0.4" decay="0.5" sustain="0.6" release="0.6"/>
+            <Filter type="0" cutoff="1600.0" resonance="1.3" envAmount="0.28"/>
+            <LFO waveform="0" rate="5.0" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Swell">
+                    <Target paramType="4" minValue="0.25" maxValue="1.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Formant">
+                    <Target paramType="0" minValue="1000.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 93: Pad 5 (Bowed) -->
+        <VoicePreset index="92" name="Bowed Pad">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="4" detune="0.018"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="3" detune="0.015"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.01"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.7" decay="0.4" sustain="0.82" release="1.0"/>
+            <FilterEnvelope attack="0.5" decay="0.6" sustain="0.55" release="0.7"/>
+            <Filter type="0" cutoff="2200.0" resonance="0.9" envAmount="0.25"/>
+            <LFO waveform="0" rate="4.5" depth="0.012" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Bow">
+                    <Target paramType="4" minValue="0.35" maxValue="1.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1400.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 94: Pad 6 (Metallic) -->
+        <VoicePreset index="93" name="Metallic Pad">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="3" detune="0.02"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.414" level="0.35" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.25" phase="0.0" numVoices="2" detune="0.01"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.4" decay="0.5" sustain="0.75" release="1.2"/>
+            <FilterEnvelope attack="0.3" decay="0.7" sustain="0.5" release="0.8"/>
+            <Filter type="0" cutoff="3000.0" resonance="1.5" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.18" depth="0.15" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Ring">
+                    <Target paramType="1" minValue="1.0" maxValue="2.5" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Sweep">
+                    <Target paramType="7" minValue="0.08" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Shimmer">
+                    <Target paramType="0" minValue="2000.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 95: Pad 7 (Halo) -->
+        <VoicePreset index="94" name="Halo Pad">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="5" detune="0.025"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="3" detune="0.02"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.2" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="4.0" level="0.1" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="1.0" decay="0.5" sustain="0.8" release="1.5"/>
+            <FilterEnvelope attack="0.8" decay="1.0" sustain="0.55" release="1.0"/>
+            <Filter type="0" cutoff="3500.0" resonance="0.7" envAmount="0.3"/>
+            <LFO waveform="0" rate="0.1" depth="0.12" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Angelic">
+                    <Target paramType="2" minValue="0.015" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Evolve">
+                    <Target paramType="4" minValue="0.5" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Heaven">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 96: Pad 8 (Sweep) -->
+        <VoicePreset index="95" name="Sweep Pad">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="5" detune="0.025"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="3" detune="0.02"/>
+                <Oscillator index="2" waveform="2" freqMultiplier="1.0" level="0.25" phase="0.25" numVoices="2" detune="0.015"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.5" decay="0.35" sustain="0.88" release="1.0"/>
+            <FilterEnvelope attack="2.0" decay="0.5" sustain="0.6" release="0.8"/>
+            <Filter type="0" cutoff="800.0" resonance="1.8" envAmount="0.7"/>
+            <LFO waveform="0" rate="0.08" depth="0.2" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Sweep Speed">
+                    <Target paramType="6" minValue="0.03" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Resonance">
+                    <Target paramType="1" minValue="1.2" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Range">
+                    <Target paramType="0" minValue="500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== SYNTH FX (97-104) ==================== -->
+    <Category name="Synth FX">
+        
+        <!-- 97: FX 1 (Rain) -->
+        <VoicePreset index="96" name="Rain FX">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="3" detune="0.03"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.8" decay="0.5" sustain="0.7" release="1.5"/>
+            <FilterEnvelope attack="0.6" decay="1.0" sustain="0.4" release="1.0"/>
+            <Filter type="0" cutoff="3000.0" resonance="1.2" envAmount="0.4"/>
+            <LFO waveform="4" rate="8.0" depth="0.15" targetFilter="true" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Intensity">
+                    <Target paramType="3" minValue="0.3" maxValue="0.7" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Movement">
+                    <Target paramType="6" minValue="4.0" maxValue="15.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 98: FX 2 (Soundtrack) -->
+        <VoicePreset index="97" name="Soundtrack FX">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="4" detune="0.025"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="3" detune="0.02"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="0.5" level="0.4" phase="0.0" numVoices="2" detune="0.015"/>
+                <Oscillator index="3" waveform="3" freqMultiplier="3.0" level="0.15" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="1.5" decay="0.6" sustain="0.75" release="2.0"/>
+            <FilterEnvelope attack="1.0" decay="1.5" sustain="0.5" release="1.5"/>
+            <Filter type="0" cutoff="1500.0" resonance="0.8" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.08" depth="0.15" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Evolve">
+                    <Target paramType="6" minValue="0.03" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Drama">
+                    <Target paramType="4" minValue="0.8" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Depth">
+                    <Target paramType="0" minValue="800.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 99: FX 3 (Crystal) -->
+        <VoicePreset index="98" name="Crystal FX">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="4" detune="0.02"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.4" phase="0.0" numVoices="3" detune="0.025"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="4.0" level="0.25" phase="0.0" numVoices="2" detune="0.015"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.5" sustain="0.4" release="2.0"/>
+            <FilterEnvelope attack="0.001" decay="0.8" sustain="0.3" release="1.2"/>
+            <Filter type="0" cutoff="5000.0" resonance="1.0" envAmount="0.45"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="2" minValue="0.015" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="1.0" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Sparkle">
+                    <Target paramType="0" minValue="3500.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 100: FX 4 (Atmosphere) -->
+        <VoicePreset index="99" name="Atmosphere FX">
+            <Oscillators count="4">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.5" phase="0.0" numVoices="5" detune="0.03"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="0.5" level="0.35" phase="0.0" numVoices="3" detune="0.025"/>
+                <Oscillator index="3" waveform="0" freqMultiplier="2.0" level="0.2" phase="0.0" numVoices="2" detune="0.02"/>
+            </Oscillators>
+            <AmpEnvelope attack="2.0" decay="0.8" sustain="0.7" release="3.0"/>
+            <FilterEnvelope attack="1.5" decay="2.0" sustain="0.45" release="2.0"/>
+            <Filter type="0" cutoff="1200.0" resonance="0.7" envAmount="0.3"/>
+            <LFO waveform="0" rate="0.05" depth="0.18" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Space">
+                    <Target paramType="2" minValue="0.02" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Evolve">
+                    <Target paramType="4" minValue="1.0" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Darkness">
+                    <Target paramType="0" minValue="600.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 101: FX 5 (Brightness) -->
+        <VoicePreset index="100" name="Brightness FX">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="4" detune="0.022"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="3.0" level="0.35" phase="0.0" numVoices="3" detune="0.018"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="5.0" level="0.2" phase="0.0" numVoices="2" detune="0.012"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.5" decay="0.4" sustain="0.85" release="1.2"/>
+            <FilterEnvelope attack="0.3" decay="0.6" sustain="0.7" release="0.8"/>
+            <Filter type="0" cutoff="4500.0" resonance="0.9" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.12" depth="0.12" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Glow">
+                    <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Shimmer">
+                    <Target paramType="2" minValue="0.015" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Movement">
+                    <Target paramType="7" minValue="0.06" maxValue="0.2" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 102: FX 6 (Goblins) -->
+        <VoicePreset index="101" name="Goblins FX">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="2" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="3" detune="0.025"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="1.5" level="0.4" phase="0.0" numVoices="2" detune="0.03"/>
+                <Oscillator index="2" waveform="4" freqMultiplier="1.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.3" decay="0.5" sustain="0.7" release="0.8"/>
+            <FilterEnvelope attack="0.2" decay="0.6" sustain="0.5" release="0.5"/>
+            <Filter type="0" cutoff="2000.0" resonance="2.0" envAmount="0.5"/>
+            <LFO waveform="0" rate="3.5" depth="0.25" targetFilter="true" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Chaos">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Intensity">
+                    <Target paramType="7" minValue="0.15" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Weird">
+                    <Target paramType="1" minValue="1.5" maxValue="3.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 103: FX 7 (Echoes) -->
+        <VoicePreset index="102" name="Echoes FX">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="4" detune="0.02"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="3" detune="0.025"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="0.5" level="0.3" phase="0.0" numVoices="2" detune="0.015"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.1" decay="1.5" sustain="0.5" release="2.5"/>
+            <FilterEnvelope attack="0.08" decay="1.0" sustain="0.4" release="1.8"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.0" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Decay">
+                    <Target paramType="5" minValue="1.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Depth">
+                    <Target paramType="2" minValue="0.015" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="1800.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 104: FX 8 (Sci-Fi) -->
+        <VoicePreset index="103" name="Sci-Fi FX">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.55" phase="0.0" numVoices="3" detune="0.02"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.414" level="0.4" phase="0.25" numVoices="2" detune="0.025"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="2" detune="0.015"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.4" decay="0.5" sustain="0.75" release="1.0"/>
+            <FilterEnvelope attack="0.3" decay="0.8" sustain="0.5" release="0.7"/>
+            <Filter type="0" cutoff="2500.0" resonance="2.2" envAmount="0.55"/>
+            <LFO waveform="1" rate="0.15" depth="0.25" targetFilter="true" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Sweep">
+                    <Target paramType="6" minValue="0.08" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Alien">
+                    <Target paramType="1" minValue="1.8" maxValue="4.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Space">
+                    <Target paramType="0" minValue="1500.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== ETHNIC (105-112) ==================== -->
+    <Category name="Ethnic">
+        
+        <!-- 105: Sitar -->
+        <VoicePreset index="104" name="Sitar">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.8" sustain="0.25" release="1.2"/>
+            <FilterEnvelope attack="0.001" decay="0.6" sustain="0.2" release="0.5"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.8" envAmount="0.5"/>
+            <LFO waveform="0" rate="5.5" depth="0.025" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Resonance">
+                    <Target paramType="1" minValue="1.5" maxValue="3.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 106: Banjo -->
+        <VoicePreset index="105" name="Banjo">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.8" sustain="0.2" release="0.5"/>
+            <FilterEnvelope attack="0.001" decay="0.3" sustain="0.15" release="0.2"/>
+            <Filter type="0" cutoff="4000.0" resonance="1.2" envAmount="0.45"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Twang">
+                    <Target paramType="1" minValue="1.0" maxValue="2.5" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.3" maxValue="1.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="3000.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 107: Shamisen -->
+        <VoicePreset index="106" name="Shamisen">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.0" sustain="0.2" release="0.6"/>
+            <FilterEnvelope attack="0.001" decay="0.4" sustain="0.18" release="0.3"/>
+            <Filter type="0" cutoff="3200.0" resonance="1.5" envAmount="0.48"/>
+            <LFO waveform="0" rate="5.5" depth="0.02" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.18" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.4" maxValue="1.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Bite">
+                    <Target paramType="0" minValue="2500.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 108: Koto -->
+        <VoicePreset index="107" name="Koto">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.5" sustain="0.25" release="1.0"/>
+            <FilterEnvelope attack="0.001" decay="0.5" sustain="0.2" release="0.4"/>
+            <Filter type="0" cutoff="3800.0" resonance="1.0" envAmount="0.42"/>
+            <LFO waveform="0" rate="5.2" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.6" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Clarity">
+                    <Target paramType="0" minValue="2800.0" maxValue="6500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 109: Kalimba -->
+        <VoicePreset index="108" name="Kalimba">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="3.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.2" sustain="0.15" release="0.8"/>
+            <FilterEnvelope attack="0.001" decay="0.4" sustain="0.12" release="0.3"/>
+            <Filter type="0" cutoff="4500.0" resonance="0.9" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="0" minValue="3500.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.5" maxValue="1.8" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Harmonic">
+                    <Target paramType="3" minValue="0.2" maxValue="0.45" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 110: Bagpipe -->
+        <VoicePreset index="109" name="Bagpipe">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="2" detune="0.012"/>
+                <Oscillator index="1" waveform="1" freqMultiplier="0.5" level="0.45" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="1" freqMultiplier="0.75" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.15" decay="0.2" sustain="0.9" release="0.3"/>
+            <FilterEnvelope attack="0.1" decay="0.25" sustain="0.75" release="0.2"/>
+            <Filter type="0" cutoff="2200.0" resonance="1.2" envAmount="0.22"/>
+            <LFO waveform="0" rate="4.5" depth="0.015" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Chanter">
+                    <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Drone">
+                    <Target paramType="3" minValue="0.25" maxValue="0.6" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 111: Fiddle -->
+        <VoicePreset index="110" name="Fiddle">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.08" decay="0.18" sustain="0.85" release="0.25"/>
+            <FilterEnvelope attack="0.06" decay="0.22" sustain="0.7" release="0.18"/>
+            <Filter type="0" cutoff="3200.0" resonance="1.1" envAmount="0.28"/>
+            <LFO waveform="0" rate="5.8" depth="0.035" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Bow">
+                    <Target paramType="4" minValue="0.04" maxValue="0.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="2200.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 112: Shanai -->
+        <VoicePreset index="111" name="Shanai">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="1" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.35" phase="0.3" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.05" decay="0.15" sustain="0.88" release="0.2"/>
+            <FilterEnvelope attack="0.04" decay="0.2" sustain="0.72" release="0.15"/>
+            <Filter type="0" cutoff="2800.0" resonance="1.8" envAmount="0.35"/>
+            <LFO waveform="0" rate="5.5" depth="0.03" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Nasal">
+                    <Target paramType="1" minValue="1.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Expression">
+                    <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== PERCUSSIVE (113-120) ==================== -->
+    <Category name="Percussive">
+        
+        <!-- 113: Tinkle Bell -->
+        <VoicePreset index="112" name="Tinkle Bell">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.65" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.76" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="5.4" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.5" sustain="0.1" release="1.2"/>
+            <FilterEnvelope attack="0.001" decay="0.5" sustain="0.1" release="0.4"/>
+            <Filter type="0" cutoff="5000.0" resonance="0.8" envAmount="0.35"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Shimmer">
+                    <Target paramType="0" minValue="3500.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.8" maxValue="2.5" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Sparkle">
+                    <Target paramType="3" minValue="0.15" maxValue="0.4" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 114: Agogo -->
+        <VoicePreset index="113" name="Agogo">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.4" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.6" sustain="0.1" release="0.4"/>
+            <FilterEnvelope attack="0.001" decay="0.2" sustain="0.1" release="0.15"/>
+            <Filter type="0" cutoff="4500.0" resonance="1.2" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Brightness">
+                    <Target paramType="0" minValue="3000.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.3" maxValue="0.9" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Ring">
+                    <Target paramType="1" minValue="0.8" maxValue="2.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 115: Steel Drums -->
+        <VoicePreset index="114" name="Steel Drums">
+            <Oscillators count="3">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="2.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="2" waveform="0" freqMultiplier="3.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="1.0" sustain="0.2" release="0.7"/>
+            <FilterEnvelope attack="0.001" decay="0.35" sustain="0.15" release="0.25"/>
+            <Filter type="0" cutoff="3500.0" resonance="1.0" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Tone">
+                    <Target paramType="0" minValue="2500.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Sustain">
+                    <Target paramType="5" minValue="0.4" maxValue="1.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Mallet">
+                    <Target paramType="3" minValue="0.2" maxValue="0.45" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 116: Woodblock -->
+        <VoicePreset index="115" name="Woodblock">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="3" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.15" sustain="0.05" release="0.1"/>
+            <FilterEnvelope attack="0.001" decay="0.05" sustain="0.05" release="0.04"/>
+            <Filter type="0" cutoff="3000.0" resonance="1.5" envAmount="0.55"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Pitch">
+                    <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Click">
+                    <Target paramType="3" minValue="0.15" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Resonance">
+                    <Target paramType="1" minValue="1.2" maxValue="2.5" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 117: Taiko Drum -->
+        <VoicePreset index="116" name="Taiko Drum">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.8" sustain="0.15" release="0.5"/>
+            <FilterEnvelope attack="0.001" decay="0.25" sustain="0.1" release="0.18"/>
+            <Filter type="0" cutoff="500.0" resonance="1.8" envAmount="0.5"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Head">
+                    <Target paramType="0" minValue="300.0" maxValue="800.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Boom">
+                    <Target paramType="5" minValue="0.3" maxValue="1.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Attack">
+                    <Target paramType="3" minValue="0.2" maxValue="0.45" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 118: Melodic Tom -->
+        <VoicePreset index="117" name="Melodic Tom">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="1.0" level="0.2" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.5" sustain="0.1" release="0.35"/>
+            <FilterEnvelope attack="0.001" decay="0.15" sustain="0.08" release="0.1"/>
+            <Filter type="0" cutoff="800.0" resonance="1.5" envAmount="0.45"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Pitch">
+                    <Target paramType="0" minValue="500.0" maxValue="1200.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.2" maxValue="0.7" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Body">
+                    <Target paramType="1" minValue="1.2" maxValue="2.2" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 119: Synth Drum -->
+        <VoicePreset index="118" name="Synth Drum">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.85" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.4" sustain="0.08" release="0.25"/>
+            <FilterEnvelope attack="0.001" decay="0.12" sustain="0.05" release="0.08"/>
+            <Filter type="0" cutoff="1500.0" resonance="2.0" envAmount="0.6"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Pitch">
+                    <Target paramType="0" minValue="800.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.15" maxValue="0.6" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Punch">
+                    <Target paramType="1" minValue="1.5" maxValue="3.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 120: Reverse Cymbal -->
+        <VoicePreset index="119" name="Reverse Cymbal">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.35" phase="0.0" numVoices="3" detune="0.03"/>
+            </Oscillators>
+            <AmpEnvelope attack="1.5" decay="0.1" sustain="0.9" release="0.3"/>
+            <FilterEnvelope attack="1.2" decay="0.2" sustain="0.85" release="0.2"/>
+            <Filter type="0" cutoff="1000.0" resonance="0.8" envAmount="0.6"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Rise">
+                    <Target paramType="4" minValue="0.8" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Brightness">
+                    <Target paramType="0" minValue="800.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Noise">
+                    <Target paramType="3" minValue="0.5" maxValue="0.9" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+    <!-- ==================== SOUND FX (121-128) ==================== -->
+    <Category name="Sound FX">
+        
+        <!-- 121: Guitar Fret Noise -->
+        <VoicePreset index="120" name="Fret Noise">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="4.0" level="0.35" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.12" sustain="0.05" release="0.08"/>
+            <FilterEnvelope attack="0.001" decay="0.05" sustain="0.03" release="0.04"/>
+            <Filter type="1" cutoff="3500.0" resonance="1.5" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Screech">
+                    <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Decay">
+                    <Target paramType="5" minValue="0.05" maxValue="0.2" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Resonance">
+                    <Target paramType="1" minValue="1.2" maxValue="2.8" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 122: Breath Noise -->
+        <VoicePreset index="121" name="Breath Noise">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.25" phase="0.0" numVoices="2" detune="0.02"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.15" decay="0.3" sustain="0.6" release="0.4"/>
+            <FilterEnvelope attack="0.12" decay="0.25" sustain="0.5" release="0.3"/>
+            <Filter type="0" cutoff="2000.0" resonance="0.8" envAmount="0.35"/>
+            <LFO waveform="4" rate="5.0" depth="0.08" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Intensity">
+                    <Target paramType="3" minValue="0.5" maxValue="0.9" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Speed">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="0" minValue="1200.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 123: Seashore -->
+        <VoicePreset index="122" name="Seashore">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.75" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="0.5" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="2.0" decay="1.0" sustain="0.7" release="3.0"/>
+            <FilterEnvelope attack="1.5" decay="2.0" sustain="0.5" release="2.5"/>
+            <Filter type="0" cutoff="1500.0" resonance="0.6" envAmount="0.4"/>
+            <LFO waveform="0" rate="0.08" depth="0.3" targetFilter="true" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Waves">
+                    <Target paramType="6" minValue="0.04" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Intensity">
+                    <Target paramType="7" minValue="0.2" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Brightness">
+                    <Target paramType="0" minValue="800.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 124: Bird Tweet -->
+        <VoicePreset index="123" name="Bird Tweet">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="3" freqMultiplier="2.0" level="0.3" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.01" decay="0.15" sustain="0.4" release="0.12"/>
+            <FilterEnvelope attack="0.008" decay="0.12" sustain="0.35" release="0.1"/>
+            <Filter type="0" cutoff="5000.0" resonance="1.0" envAmount="0.35"/>
+            <LFO waveform="0" rate="12.0" depth="0.15" targetFilter="false" targetPitch="true" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Flutter">
+                    <Target paramType="6" minValue="8.0" maxValue="20.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Chirp">
+                    <Target paramType="7" minValue="0.08" maxValue="0.25" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Pitch">
+                    <Target paramType="0" minValue="4000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 125: Telephone Ring -->
+        <VoicePreset index="124" name="Telephone Ring">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="0" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.2" level="0.6" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.05" sustain="0.85" release="0.08"/>
+            <FilterEnvelope attack="0.001" decay="0.04" sustain="0.8" release="0.06"/>
+            <Filter type="2" cutoff="2000.0" resonance="2.5" envAmount="0.2"/>
+            <LFO waveform="2" rate="20.0" depth="0.12" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Ring Rate">
+                    <Target paramType="6" minValue="15.0" maxValue="30.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Pitch">
+                    <Target paramType="0" minValue="1500.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+                <Macro index="2" name="Nasal">
+                    <Target paramType="1" minValue="2.0" maxValue="4.0" curve="0"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 126: Helicopter -->
+        <VoicePreset index="125" name="Helicopter">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.7" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="2" freqMultiplier="0.5" level="0.5" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.5" decay="0.3" sustain="0.8" release="0.8"/>
+            <FilterEnvelope attack="0.4" decay="0.4" sustain="0.6" release="0.6"/>
+            <Filter type="0" cutoff="1200.0" resonance="1.2" envAmount="0.25"/>
+            <LFO waveform="2" rate="6.0" depth="0.35" targetFilter="false" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Rotor Speed">
+                    <Target paramType="6" minValue="4.0" maxValue="12.0" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Chop">
+                    <Target paramType="7" minValue="0.25" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Engine">
+                    <Target paramType="0" minValue="600.0" maxValue="2000.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 127: Applause -->
+        <VoicePreset index="126" name="Applause">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.8" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="4" freqMultiplier="2.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.8" decay="0.5" sustain="0.75" release="1.5"/>
+            <FilterEnvelope attack="0.6" decay="0.8" sustain="0.6" release="1.0"/>
+            <Filter type="0" cutoff="2500.0" resonance="0.7" envAmount="0.3"/>
+            <LFO waveform="4" rate="8.0" depth="0.15" targetFilter="true" targetPitch="false" targetLevel="true"/>
+            <Macros>
+                <Macro index="0" name="Intensity">
+                    <Target paramType="3" minValue="0.6" maxValue="0.95" curve="0"/>
+                </Macro>
+                <Macro index="1" name="Speed">
+                    <Target paramType="6" minValue="5.0" maxValue="15.0" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Tone">
+                    <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+        <!-- 128: Gunshot -->
+        <VoicePreset index="127" name="Gunshot">
+            <Oscillators count="2">
+                <Oscillator index="0" waveform="4" freqMultiplier="1.0" level="0.9" phase="0.0" numVoices="1" detune="0.0"/>
+                <Oscillator index="1" waveform="0" freqMultiplier="1.0" level="0.4" phase="0.0" numVoices="1" detune="0.0"/>
+            </Oscillators>
+            <AmpEnvelope attack="0.001" decay="0.08" sustain="0.02" release="0.15"/>
+            <FilterEnvelope attack="0.001" decay="0.03" sustain="0.01" release="0.05"/>
+            <Filter type="0" cutoff="6000.0" resonance="0.8" envAmount="0.7"/>
+            <LFO waveform="0" rate="0.0" depth="0.0" targetFilter="false" targetPitch="false" targetLevel="false"/>
+            <Macros>
+                <Macro index="0" name="Crack">
+                    <Target paramType="0" minValue="4000.0" maxValue="10000.0" curve="1"/>
+                </Macro>
+                <Macro index="1" name="Punch">
+                    <Target paramType="3" minValue="0.3" maxValue="0.6" curve="0"/>
+                </Macro>
+                <Macro index="2" name="Decay">
+                    <Target paramType="5" minValue="0.08" maxValue="0.3" curve="1"/>
+                </Macro>
+            </Macros>
+        </VoicePreset>
+
+    </Category>
+
+</PresetBank>

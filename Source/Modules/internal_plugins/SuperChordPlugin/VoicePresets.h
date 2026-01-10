@@ -120,29 +120,37 @@ struct VoicePreset {
 };
 
 /**
- * VoicePresets - Static class providing 64 hard-coded voice presets
+ * VoicePresets - Class providing 128 GM-aligned voice presets loaded from XML
  */
 class VoicePresets {
   public:
     /**
-     * Get a preset by index (0-63)
+     * Get a preset by index (0-127)
      */
     static const VoicePreset &getPreset(int index);
 
     /**
      * Get the total number of presets
      */
-    static int getNumPresets() { return 64; }
+    static int getNumPresets() { return 128; }
 
     /**
      * Get preset name by index
      */
     static juce::String getPresetName(int index);
 
+    /**
+     * Get category name for a preset index
+     */
+    static juce::String getCategoryName(int index);
+
   private:
-    static VoicePreset presets[64];
+    static VoicePreset presets[128];
+    static juce::String categories[128];
     static bool initialized;
     static void initializePresets();
+    static void loadPresetsFromXML();
+    static VoicePreset parsePreset(const juce::XmlElement* presetElement);
 };
 
 } // namespace internal_plugins

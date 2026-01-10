@@ -53,6 +53,7 @@ target_link_libraries(Tests PRIVATE
         app_models
         app_view_models
         app_configuration
+        PresetData
         atomic
         yaml-cpp
 )

@@ -36,7 +36,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     };
 
     // Create automatable parameters
-    voicePresetParam = createParam("voicePreset", TRANS("Voice Preset"), {1.0f, 64.0f});
+    voicePresetParam = createParam("voicePreset", TRANS("Voice Preset"), {1.0f, 128.0f});
     voicePresetParam->attachToCurrentValue(voicePresetValue);
 
     macro1Param = createParam("macro1", TRANS("Macro 1"), {0.0f, 1.0f});

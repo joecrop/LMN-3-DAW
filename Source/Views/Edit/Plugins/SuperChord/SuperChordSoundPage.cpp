@@ -21,10 +21,10 @@ SuperChordSoundPage::SuperChordSoundPage(
     addAndMakeVisible(presetNameLabel);
 
     // Configure knobs
-    // Encoder 1: Voice Preset (1-64)
+    // Encoder 1: Voice Preset (1-128)
     pluginKnobs.getKnob(0)->getLabel().setText("Voice",
                                                juce::dontSendNotification);
-    pluginKnobs.getKnob(0)->getSlider().setRange(1, 64, 1);
+    pluginKnobs.getKnob(0)->getSlider().setRange(1, 128, 1);
     pluginKnobs.getKnob(0)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour1);
 

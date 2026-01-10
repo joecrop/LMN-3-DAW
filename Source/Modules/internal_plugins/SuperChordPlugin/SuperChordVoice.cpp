@@ -28,7 +28,7 @@ void SuperChordVoice::setCurrentPlaybackSampleRate(double newRate) {
 }
 
 void SuperChordVoice::setPreset(int presetIndex) {
-    currentPresetIndex = juce::jlimit(0, 15, presetIndex);
+    currentPresetIndex = juce::jlimit(0, 127, presetIndex);
 }
 
 void SuperChordVoice::startNote(int midiNoteNumber, float velocity,

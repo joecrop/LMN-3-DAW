@@ -151,6 +151,10 @@ juce_add_binary_data(FontData HEADER_NAME FontData.h NAMESPACE FontData SOURCES
     FontAwesome/FontAwesome6FreeRegular400.otf
 )
 
+juce_add_binary_data(PresetData HEADER_NAME PresetData.h NAMESPACE PresetData SOURCES
+    Assets/Presets/voice_presets.xml
+)
+
 # If at some point samples are ever built directly into the application, they will need to be added below
 #juce_add_binary_data(SynthSampleData HEADER_NAME SynthSampleData.h NAMESPACE SynthSampleData SOURCES
 #)
@@ -196,6 +200,7 @@ target_link_libraries(LMN-3
         app_configuration
         ImageData
         FontData
+        PresetData
     #    SynthSampleData
     #    DrumSampleData
         atomic
