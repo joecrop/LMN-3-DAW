@@ -28,10 +28,10 @@ SuperChordArpeggiatorPage::SuperChordArpeggiatorPage(
     pluginKnobs.getKnob(0)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour1);
 
-    // Encoder 2: Direction (0-3: Up/Down/Up-Down/Random)
+    // Encoder 2: Direction (0-19: Up/Down/Up-Down/Random + 16 patterns)
     pluginKnobs.getKnob(1)->getLabel().setText("Direction",
                                                juce::dontSendNotification);
-    pluginKnobs.getKnob(1)->getSlider().setRange(0, 3, 1);
+    pluginKnobs.getKnob(1)->getSlider().setRange(0, 19, 1);
     pluginKnobs.getKnob(1)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour2);
 
@@ -42,10 +42,10 @@ SuperChordArpeggiatorPage::SuperChordArpeggiatorPage(
     pluginKnobs.getKnob(2)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour3);
 
-    // Encoder 4: Rate (0-6: 1/32 to 2/1)
+    // Encoder 4: Rate (0-13: 2/1 to 1/64, slow to fast)
     pluginKnobs.getKnob(3)->getLabel().setText("Rate",
                                                juce::dontSendNotification);
-    pluginKnobs.getKnob(3)->getSlider().setRange(0, 6, 1);
+    pluginKnobs.getKnob(3)->getSlider().setRange(0, 13, 1);
     pluginKnobs.getKnob(3)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour4);
 
@@ -118,26 +118,54 @@ juce::String SuperChordArpeggiatorPage::getArpModeName(int value) {
 }
 
 juce::String SuperChordArpeggiatorPage::getArpDirectionName(int value) {
-    switch (value) {
-    case 0:
-        return "Up";
-    case 1:
-        return "Down";
-    case 2:
-        return "Up-Down";
-    case 3:
-        return "Random";
-    default:
-        return "Up";
-    }
+    static const char* names[] = {
+        "Up",         // 0
+        "Down",       // 1
+        "Up-Down",    // 2
+        "Random",     // 3
+        "Swing",      // 4: 1-2-5-4-3
+        "Jump",       // 5: 4-7-1-2
+        "Stagger",    // 6: 1-3-2-4
+        "Double",     // 7: 1-1-2-2
+        "Pedal",      // 8: 1-2-1-3-1
+        "Skip",       // 9: 1-3-5-7
+        "Skip Dn",    // 10: 8-6-4-2
+        "Thirds",     // 11: 1-4-2-5
+        "Fourths",    // 12: 1-5-2-6
+        "Out-In",     // 13: 1-8-2-7
+        "In-Out",     // 14: 4-5-3-6
+        "Wave",       // 15: 1-2-3-1-2-3-4
+        "Accent",     // 16: 1-1-1-2-2-3
+        "Pi",         // 17: 3-1-4-1-5-9
+        "Fibo",       // 18: 1-1-2-3-5-8
+        "Circle"      // 19: 1-4-7-2-5-8
+    };
+    if (value >= 0 && value < 20)
+        return names[value];
+    return "Up";
 }
 
 juce::String SuperChordArpeggiatorPage::getArpRateName(int value) {
-    static const char *rates[] = {"1/32", "1/16", "1/8", "1/4",
-                                  "1/2",  "1/1",  "2/1"};
-    if (value >= 0 && value < 7)
+    // Ordered slow to fast
+    static const char *rates[] = {
+        "2/1",    // 0: 2 whole notes
+        "1/1",    // 1: whole note
+        "1/1T",   // 2: whole triplet
+        "1/2",    // 3: half note
+        "1/2T",   // 4: half triplet
+        "1/4",    // 5: quarter note
+        "1/4T",   // 6: quarter triplet
+        "1/8",    // 7: eighth note
+        "1/8T",   // 8: eighth triplet
+        "1/16",   // 9: sixteenth note
+        "1/16T",  // 10: sixteenth triplet
+        "1/32",   // 11: thirty-second note
+        "1/32T",  // 12: thirty-second triplet
+        "1/64"    // 13: sixty-fourth note
+    };
+    if (value >= 0 && value < 14)
         return rates[value];
-    return "1/8";
+    return "1/4";
 }
 
 void SuperChordArpeggiatorPage::updateKnobValues() {
@@ -222,7 +250,7 @@ void SuperChordArpeggiatorPage::encoder1Decreased() {
 void SuperChordArpeggiatorPage::encoder2Increased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
         int currentValue = plugin->getArpDirectionValue();
-        if (currentValue < 3) {
+        if (currentValue < 19) {
             plugin->arpDirectionParam->setParameter(
                 static_cast<float>(currentValue + 1), juce::sendNotification);
             updateKnobValues();
@@ -266,7 +294,7 @@ void SuperChordArpeggiatorPage::encoder3Decreased() {
 void SuperChordArpeggiatorPage::encoder4Increased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
         int currentValue = plugin->getArpRateValue();
-        if (currentValue < 6) {
+        if (currentValue < 13) {
             plugin->arpRateParam->setParameter(
                 static_cast<float>(currentValue + 1), juce::sendNotification);
             updateKnobValues();

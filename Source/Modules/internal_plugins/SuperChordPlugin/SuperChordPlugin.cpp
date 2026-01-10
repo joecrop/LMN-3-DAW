@@ -24,7 +24,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     arpModeValue.referTo(state, juce::Identifier("arpMode"), um, 0.0f);
     arpDirectionValue.referTo(state, juce::Identifier("arpDirection"), um, 0.0f);
     arpStepsValue.referTo(state, juce::Identifier("arpSteps"), um, 8.0f);
-    arpRateValue.referTo(state, juce::Identifier("arpRate"), um, 2.0f);
+    arpRateValue.referTo(state, juce::Identifier("arpRate"), um, 7.0f);  // Default to 1/8 note
     progressionValue.referTo(state, juce::Identifier("progression"), um, 0.0f);
 
     // Helper lambda to create automatable parameters
@@ -63,13 +63,13 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     arpModeParam = createParam("arpMode", TRANS("Arp Mode"), {0.0f, 3.0f});
     arpModeParam->attachToCurrentValue(arpModeValue);
 
-    arpDirectionParam = createParam("arpDirection", TRANS("Arp Direction"), {0.0f, 3.0f});
+    arpDirectionParam = createParam("arpDirection", TRANS("Arp Direction"), {0.0f, 19.0f});
     arpDirectionParam->attachToCurrentValue(arpDirectionValue);
 
     arpStepsParam = createParam("arpSteps", TRANS("Arp Steps"), {2.0f, 16.0f});
     arpStepsParam->attachToCurrentValue(arpStepsValue);
 
-    arpRateParam = createParam("arpRate", TRANS("Arp Rate"), {0.0f, 6.0f});
+    arpRateParam = createParam("arpRate", TRANS("Arp Rate"), {0.0f, 13.0f});
     arpRateParam->attachToCurrentValue(arpRateValue);
 
     progressionParam = createParam("progression", TRANS("Progression"), {0.0f, 21.0f});
@@ -171,11 +171,28 @@ juce::String SuperChordPlugin::getCurrentPresetName() const {
     return VoicePresets::getPresetName(getCurrentVoicePresetIndex());
 }
 
-double SuperChordPlugin::calculateArpInterval(double bpm) const {
-    // Rate values: 0=1/32, 1=1/16, 2=1/8, 3=1/4, 4=1/2, 5=1/1, 6=2/1
-    static const double rateMultipliers[] = {0.125, 0.25, 0.5, 1.0, 2.0, 4.0, 8.0};
+double SuperChordPlugin::calculateArpInterval(double /*bpm*/) const {
+    // Rate values ordered slow to fast:
+    // 0=2/1, 1=1/1, 2=1/1T, 3=1/2, 4=1/2T, 5=1/4, 6=1/4T, 7=1/8, 8=1/8T, 9=1/16, 10=1/16T, 11=1/32, 12=1/32T, 13=1/64
+    // T = triplet (multiply by 2/3)
+    static const double rateMultipliers[] = {
+        8.0,                    // 0: 2/1 (2 whole notes)
+        4.0,                    // 1: 1/1 (whole note)
+        4.0 * 2.0 / 3.0,        // 2: 1/1T (whole triplet)
+        2.0,                    // 3: 1/2 (half note)
+        2.0 * 2.0 / 3.0,        // 4: 1/2T (half triplet)
+        1.0,                    // 5: 1/4 (quarter note)
+        1.0 * 2.0 / 3.0,        // 6: 1/4T (quarter triplet)
+        0.5,                    // 7: 1/8 (eighth note)
+        0.5 * 2.0 / 3.0,        // 8: 1/8T (eighth triplet)
+        0.25,                   // 9: 1/16 (sixteenth note)
+        0.25 * 2.0 / 3.0,       // 10: 1/16T (sixteenth triplet)
+        0.125,                  // 11: 1/32 (thirty-second note)
+        0.125 * 2.0 / 3.0,      // 12: 1/32T (thirty-second triplet)
+        0.0625                  // 13: 1/64 (sixty-fourth note)
+    };
     int rateIndex = getArpRateValue();
-    rateIndex = juce::jlimit(0, 6, rateIndex);
+    rateIndex = juce::jlimit(0, 13, rateIndex);
 
     // Calculate PPQ interval (4 PPQ = 1 beat = 1/4 note)
     double beatsPerNote = rateMultipliers[rateIndex];
@@ -354,62 +371,78 @@ void SuperChordPlugin::processPitchWheel(int rawValue) {
     }
 }
 
+// Arpeggiator direction patterns (1-indexed note positions)
+// If a position exceeds numChordNotes, previous note is held (no new trigger)
+static const int arpPatterns[][16] = {
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 0: Up
+    {16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1},   // 1: Down
+    {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1},          // 2: Up-Down
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},          // 3: Random (handled specially)
+    {1, 2, 5, 4, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 4: Swing 1-2-5-4-3
+    {4, 7, 1, 2, 5, 3, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 5: Jump 4-7-1-2
+    {1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 7, 9, 8, 10},         // 6: Stagger 1-3-2-4
+    {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8},          // 7: Double 1-1-2-2
+    {1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9},          // 8: Pedal 1-2-1-3-1
+    {1, 3, 5, 7, 2, 4, 6, 8, 1, 3, 5, 7, 2, 4, 6, 8},          // 9: Skip 1-3-5-7
+    {8, 6, 4, 2, 7, 5, 3, 1, 8, 6, 4, 2, 7, 5, 3, 1},          // 10: Skip Down
+    {1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11},        // 11: Thirds 1-4-2-5
+    {1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 12},       // 12: Fourths 1-5-2-6
+    {1, 8, 2, 7, 3, 6, 4, 5, 1, 8, 2, 7, 3, 6, 4, 5},          // 13: Outside-In
+    {4, 5, 3, 6, 2, 7, 1, 8, 4, 5, 3, 6, 2, 7, 1, 8},          // 14: Inside-Out
+    {1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 6, 7, 6, 7, 8, 8},          // 15: Wave
+    {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, 8, 7, 6, 5},          // 16: Accent
+    {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3},          // 17: Pi (3.14159...)
+    {1, 1, 2, 3, 5, 8, 5, 3, 2, 1, 1, 2, 3, 5, 8, 5},          // 18: Fibonacci
+    {1, 4, 7, 2, 5, 8, 3, 6, 1, 4, 7, 2, 5, 8, 3, 6}           // 19: Circle
+};
+static const int numArpPatterns = 20;
+
 void SuperChordPlugin::triggerArpStep(double /*currentPPQ*/, double /*bpm*/,
                                       int /*samplePosition*/) {
     if (activeChordNotes.isEmpty())
         return;
 
     int arpDirection = getArpDirectionValue();
+    arpDirection = juce::jlimit(0, numArpPatterns - 1, arpDirection);
     int numChordNotes = activeChordNotes.size();
     int arpSteps = getArpStepsValue();
-    
-    // The arpeggiator cycles through arpSteps positions, wrapping around the chord notes
-    // This allows longer patterns that repeat through the chord
     int numSteps = juce::jmax(1, arpSteps);
 
-    // Turn off previous note (simple implementation)
-    int prevNoteIndex = currentArpStep % numChordNotes;
-
-    // Advance step based on direction
-    switch (arpDirection) {
-    case 0: // Up
-        currentArpStep = (currentArpStep + 1) % numSteps;
-        break;
-
-    case 1: // Down
-        currentArpStep = (currentArpStep - 1 + numSteps) % numSteps;
-        break;
-
-    case 2: // Up-Down
-        if (arpDirectionUp) {
-            currentArpStep++;
-            if (currentArpStep >= numSteps - 1) {
-                currentArpStep = numSteps - 1;
-                arpDirectionUp = false;
-            }
-        } else {
-            currentArpStep--;
-            if (currentArpStep <= 0) {
-                currentArpStep = 0;
-                arpDirectionUp = true;
-            }
-        }
-        break;
-
-    case 3: // Random
-        currentArpStep = juce::Random::getSystemRandom().nextInt(numSteps);
-        break;
+    // Store previous note for note-off
+    int prevPatternPos = arpPatterns[arpDirection][currentArpStep % 16];
+    int prevNoteIndex = -1;
+    if (arpDirection == 3) {
+        // Random mode - previous step was random
+        prevNoteIndex = currentArpStep % numChordNotes;
+    } else if (prevPatternPos >= 1 && prevPatternPos <= numChordNotes) {
+        prevNoteIndex = prevPatternPos - 1;
     }
 
-    // Map step to note index (wrap around chord notes)
-    int currentNoteIndex = currentArpStep % numChordNotes;
+    // Advance step
+    currentArpStep = (currentArpStep + 1) % numSteps;
+
+    // Get current note from pattern
+    int currentNoteIndex = -1;
+    if (arpDirection == 3) {
+        // Random mode
+        currentNoteIndex = juce::Random::getSystemRandom().nextInt(numChordNotes);
+    } else {
+        // Pattern-based: get position from pattern (1-indexed)
+        int patternPos = arpPatterns[arpDirection][currentArpStep % 16];
+        
+        // If pattern position exceeds available notes, hold previous (don't trigger)
+        if (patternPos >= 1 && patternPos <= numChordNotes) {
+            currentNoteIndex = patternPos - 1;
+        }
+        // If patternPos > numChordNotes, currentNoteIndex stays -1 (no trigger, hold previous)
+    }
 
     // Turn off previous note
     if (prevNoteIndex >= 0 && prevNoteIndex < numChordNotes) {
         synthesiser.noteOff(1, activeChordNotes[prevNoteIndex], 0.0f, true);
     }
 
-    // Trigger current note
+    // Trigger current note (only if valid)
     if (currentNoteIndex >= 0 && currentNoteIndex < numChordNotes) {
         synthesiser.noteOn(1, activeChordNotes[currentNoteIndex], 0.8f);
     }
