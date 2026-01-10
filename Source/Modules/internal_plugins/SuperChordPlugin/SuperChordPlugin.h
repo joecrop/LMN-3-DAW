@@ -3,6 +3,7 @@
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_dsp/juce_dsp.h>
 #include <tracktion_engine/tracktion_engine.h>
+#include <map>
 
 namespace internal_plugins {
 
@@ -145,8 +146,9 @@ class SuperChordPlugin : public tracktion::Plugin {
     double nextArpTriggerTime = 0.0;
     double arpSampleCounter = 0.0;
     bool arpDirectionUp = true;
-    juce::Array<int> activeChordNotes;
+    juce::Array<int> activeChordNotes;  // Current chord for arpeggiator reference
     juce::Array<int> latchedNotes;
+    std::map<int, juce::Array<int>> midiNoteToChordNotes;  // Maps input MIDI note to generated chord notes
 
     // Visualizer state
     int currentChordDegree = -1;

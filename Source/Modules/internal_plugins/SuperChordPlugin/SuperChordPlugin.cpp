@@ -115,6 +115,7 @@ void SuperChordPlugin::reset() {
     synthesiser.allNotesOff(0, false);
     activeChordNotes.clear();
     latchedNotes.clear();
+    midiNoteToChordNotes.clear();
     currentArpStep = 0;
     arpSampleCounter = 0.0;
     currentChordDegree = -1;
@@ -234,9 +235,15 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
     int presetIndex = getCurrentVoicePresetIndex();
 
     // Generate chord with progression type
-    activeChordNotes =
+    juce::Array<int> chordNotes =
         chordEngine->generateChord(degree, key, voicing, extension, totalOctaveOffset, progression);
     currentChordName = chordEngine->getChordName(degree, key, extension, progression);
+
+    // Store mapping from input MIDI note to generated chord notes
+    midiNoteToChordNotes[midiNote] = chordNotes;
+    
+    // Update activeChordNotes for arpeggiator reference (uses most recent chord)
+    activeChordNotes = chordNotes;
 
     // Update all voices with current preset and macro values
     for (int i = 0; i < synthesiser.getNumVoices(); i++) {
@@ -305,14 +312,32 @@ void SuperChordPlugin::processNoteOff(int midiNote, float velocity) {
     if (arpMode == 3)
         return;
 
-    // Turn off all active chord notes
-    for (int note : activeChordNotes) {
-        synthesiser.noteOff(1, note, velocity, true);
+    // Find the chord notes associated with this specific MIDI note
+    auto it = midiNoteToChordNotes.find(midiNote);
+    if (it != midiNoteToChordNotes.end()) {
+        // Turn off only the chord notes for this MIDI note
+        for (int note : it->second) {
+            synthesiser.noteOff(1, note, velocity, true);
+        }
+        // Remove the mapping
+        midiNoteToChordNotes.erase(it);
     }
 
+    // Update activeChordNotes to reflect remaining active notes
     activeChordNotes.clear();
-    currentArpStep = 0;
-    currentChordDegree = -1;
+    for (const auto& pair : midiNoteToChordNotes) {
+        for (int note : pair.second) {
+            if (!activeChordNotes.contains(note)) {
+                activeChordNotes.add(note);
+            }
+        }
+    }
+
+    // Reset arp step and chord display if no more notes are held
+    if (midiNoteToChordNotes.empty()) {
+        currentArpStep = 0;
+        currentChordDegree = -1;
+    }
 }
 
 void SuperChordPlugin::processPitchWheel(int rawValue) {
@@ -397,6 +422,18 @@ void SuperChordPlugin::applyToBuffer(const tracktion::PluginRenderContext &fc) {
     // Get tempo info from the edit at the current edit time
     auto& tempo = edit.tempoSequence.getTempoAt(fc.editTime);
     double bpm = tempo.getBpm();
+
+    // Handle all notes off (transport stopped, etc.)
+    if (fc.bufferForMidiMessages != nullptr) {
+        if (fc.bufferForMidiMessages->isAllNotesOff) {
+            synthesiser.allNotesOff(0, false);
+            activeChordNotes.clear();
+            latchedNotes.clear();
+            midiNoteToChordNotes.clear();
+            currentArpStep = 0;
+            currentChordDegree = -1;
+        }
+    }
 
     // Process MIDI input
     if (fc.bufferForMidiMessages != nullptr) {
