@@ -206,11 +206,12 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
     auto progression = static_cast<ProgressionType>(getProgressionValue());
     int numDegrees = ChordEngine::getNumDegrees(progression);
     
-    // Map MIDI notes to chord degrees across 3 octaves around middle C
-    // C3 (48) to B5 (83) - notes outside this range are ignored
-    // Lower octave (C3-B3): chord transposed down 1 octave
-    // Middle octave (C4-B4): chord at normal pitch
-    // Upper octave (C5-B5): chord transposed up 1 octave
+    // Map MIDI notes to chord degrees across 4 octaves
+    // C2 (36) to B5 (83) - notes outside this range are ignored
+    // Octave 2 (C2-B2): chord transposed down 2 octaves
+    // Octave 3 (C3-B3): chord transposed down 1 octave
+    // Octave 4 (C4-B4): chord at normal pitch
+    // Octave 5 (C5-B5): chord transposed up 1 octave
     
     // For 7-degree progressions: C=0, D=1, E=2, F=3, G=4, A=5, B=6
     // For reduced progressions: C=0, D=1, E=2, F=3 (if 4+), etc. Other keys silent.
@@ -219,8 +220,8 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
         0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6  // C, C#, D, D#, E, F, F#, G, G#, A, A#, B
     };
     
-    // Only respond to notes in the 3-octave range (C3 to B5)
-    if (midiNote < 48 || midiNote > 83)
+    // Only respond to notes in the 4-octave range (C2 to B5)
+    if (midiNote < 36 || midiNote > 83)
         return;
     
     int noteInOctave = midiNote % 12;
@@ -239,8 +240,8 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
     currentChordDegree = degree;
     
     // Calculate octave offset based on which octave the note is in
-    // C3-B3 (48-59) = -1, C4-B4 (60-71) = 0, C5-B5 (72-83) = +1
-    int keyboardOctave = (midiNote - 48) / 12 - 1;  // -1, 0, or +1
+    // C2-B2 (36-47) = -2, C3-B3 (48-59) = -1, C4-B4 (60-71) = 0, C5-B5 (72-83) = +1
+    int keyboardOctave = (midiNote - 36) / 12 - 2;  // -2, -1, 0, or +1
 
     // Get current parameters
     int key = getKeyValue();
@@ -319,8 +320,8 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
 }
 
 void SuperChordPlugin::processNoteOff(int midiNote, float velocity) {
-    // Only respond to notes in the 3-octave range (C3 to B5)
-    if (midiNote < 48 || midiNote > 83)
+    // Only respond to notes in the 4-octave range (C2 to B5)
+    if (midiNote < 36 || midiNote > 83)
         return;
         
     int arpMode = getArpModeValue();

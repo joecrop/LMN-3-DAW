@@ -280,7 +280,7 @@ juce::Array<int> ChordEngine::generateChord(int degree, int key,
     // Validate inputs
     degree = juce::jlimit(0, config.numDegrees - 1, degree);
     key = juce::jlimit(0, 11, key);
-    octaveOffset = juce::jlimit(-1, 1, octaveOffset);
+    octaveOffset = juce::jlimit(-3, 2, octaveOffset);  // Allow wider octave range
 
     // Get root note of the chord
     int rootNote = getScaleNote(key, degree, progression);

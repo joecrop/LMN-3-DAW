@@ -128,7 +128,7 @@ void SuperChordSoundPage::encoder1Increased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
         int currentValue =
             static_cast<int>(pluginKnobs.getKnob(0)->getSlider().getValue());
-        if (currentValue < 64) {
+        if (currentValue < 128) {
             plugin->voicePresetParam->setParameter(
                 static_cast<float>(currentValue + 1), juce::sendNotification);
             updateKnobValues();
