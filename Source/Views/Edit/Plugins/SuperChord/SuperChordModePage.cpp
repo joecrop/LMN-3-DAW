@@ -27,10 +27,10 @@ SuperChordModePage::SuperChordModePage(internal_plugins::SuperChordPlugin *p,
     pluginKnobs.getKnob(0)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour1);
 
-    // Encoder 2: Octave (-1 to +1)
+    // Encoder 2: Octave (-3 to +3)
     pluginKnobs.getKnob(1)->getLabel().setText("Octave",
                                                juce::dontSendNotification);
-    pluginKnobs.getKnob(1)->getSlider().setRange(-1, 1, 1);
+    pluginKnobs.getKnob(1)->getSlider().setRange(-3, 3, 1);
     pluginKnobs.getKnob(1)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour2);
 
@@ -165,7 +165,7 @@ void SuperChordModePage::encoder1Decreased() {
 void SuperChordModePage::encoder2Increased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
         int currentValue = plugin->getOctaveValue();
-        if (currentValue < 1) {
+        if (currentValue < 3) {
             plugin->octaveParam->setParameter(
                 static_cast<float>(currentValue + 1), juce::sendNotification);
             updateKnobValues();
@@ -176,7 +176,7 @@ void SuperChordModePage::encoder2Increased() {
 void SuperChordModePage::encoder2Decreased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
         int currentValue = plugin->getOctaveValue();
-        if (currentValue > -1) {
+        if (currentValue > -3) {
             plugin->octaveParam->setParameter(
                 static_cast<float>(currentValue - 1), juce::sendNotification);
             updateKnobValues();

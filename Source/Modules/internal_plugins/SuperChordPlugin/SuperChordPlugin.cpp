@@ -51,7 +51,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     voicingParam = createParam("voicing", TRANS("Voicing"), {0.0f, 2.0f});
     voicingParam->attachToCurrentValue(voicingValue);
 
-    octaveParam = createParam("octave", TRANS("Octave"), {-1.0f, 1.0f});
+    octaveParam = createParam("octave", TRANS("Octave"), {-3.0f, 3.0f});
     octaveParam->attachToCurrentValue(octaveValue);
 
     keyParam = createParam("key", TRANS("Key"), {0.0f, 11.0f});
@@ -206,31 +206,18 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
     auto progression = static_cast<ProgressionType>(getProgressionValue());
     int numDegrees = ChordEngine::getNumDegrees(progression);
     
-    // Map MIDI notes to chord degrees across 4 octaves
-    // C2 (36) to B5 (83) - notes outside this range are ignored
-    // Octave 2 (C2-B2): chord transposed down 2 octaves
-    // Octave 3 (C3-B3): chord transposed down 1 octave
-    // Octave 4 (C4-B4): chord at normal pitch
-    // Octave 5 (C5-B5): chord transposed up 1 octave
-    
-    // For 7-degree progressions: C=0, D=1, E=2, F=3, G=4, A=5, B=6
-    // For reduced progressions: C=0, D=1, E=2, F=3 (if 4+), etc. Other keys silent.
+    // Map MIDI notes to chord degrees
+    // White keys map to degrees: C=0, D=1, E=2, F=3, G=4, A=5, B=6
     // Black keys map to the lower white key's degree
+    // The octave of the played note determines the octave of the chord
     static const int noteToWhiteKey[] = {
         0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6  // C, C#, D, D#, E, F, F#, G, G#, A, A#, B
     };
-    
-    // Only respond to notes in the 4-octave range (C2 to B5)
-    if (midiNote < 36 || midiNote > 83)
-        return;
     
     int noteInOctave = midiNote % 12;
     int whiteKeyIndex = noteToWhiteKey[noteInOctave];
     
     // For reduced degree progressions, map white keys to degrees and ignore extras
-    // C=0, D=1, E=2, F=3, G=4, A=5, B=6
-    // But for 3-degree: only C, D, E (white keys 0, 1, 2)
-    // For 4-degree: only C, D, E, F (white keys 0, 1, 2, 3)
     int degree = whiteKeyIndex;
     
     // If degree is beyond available degrees, ignore this note
@@ -239,17 +226,17 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
     
     currentChordDegree = degree;
     
-    // Calculate octave offset based on which octave the note is in
-    // C2-B2 (36-47) = -2, C3-B3 (48-59) = -1, C4-B4 (60-71) = 0, C5-B5 (72-83) = +1
-    int keyboardOctave = (midiNote - 36) / 12 - 2;  // -2, -1, 0, or +1
+    // Get the octave of the played note (MIDI note 60 = C4 = octave 4)
+    // Octave offset relative to middle C (octave 4): C0=-4, C1=-3, C2=-2, C3=-1, C4=0, C5=+1, etc.
+    int midiOctave = midiNote / 12;  // 0-10
+    int octaveOffset = midiOctave - 5;  // Middle C (60) is in MIDI octave 5, make it offset 0
 
     // Get current parameters
     int key = getKeyValue();
     auto voicing = static_cast<ChordVoicing>(getVoicingValue());
     auto extension = static_cast<ChordExtension>(getExtensionValue());
-    int octaveParam = getOctaveValue();
-    // Combine keyboard octave with the octave parameter
-    int totalOctaveOffset = octaveParam + keyboardOctave;
+    int octaveParam = getOctaveValue();  // Global octave shift from page 3
+    int totalOctaveOffset = octaveOffset + octaveParam;
     int presetIndex = getCurrentVoicePresetIndex();
 
     // Generate chord with progression type
@@ -320,10 +307,6 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
 }
 
 void SuperChordPlugin::processNoteOff(int midiNote, float velocity) {
-    // Only respond to notes in the 4-octave range (C2 to B5)
-    if (midiNote < 36 || midiNote > 83)
-        return;
-        
     int arpMode = getArpModeValue();
 
     // Latch mode ignores note-off

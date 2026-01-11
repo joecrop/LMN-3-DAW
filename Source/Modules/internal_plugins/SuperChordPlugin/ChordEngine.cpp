@@ -100,7 +100,9 @@ int ChordEngine::getScaleNote(int key, int degree, ProgressionType progression) 
     const auto& config = progressionConfigs[static_cast<int>(progression)];
     int clampedDegree = juce::jlimit(0, config.numDegrees - 1, degree);
     int interval = config.scaleIntervals[clampedDegree];
-    return (key + interval) % 12;
+    // Return the full semitone offset including octave wrap
+    // This preserves octave information when key + interval >= 12
+    return key + interval;
 }
 
 juce::Array<int> ChordEngine::getTriadIntervals(int quality) {
@@ -344,7 +346,8 @@ juce::String ChordEngine::getChordName(int degree, int key,
     int rootNote = getScaleNote(key, degree, progression);
     int quality = config.chordQualities[degree];
 
-    juce::String name = noteNames[rootNote];
+    // Use modulo 12 for note name lookup (octave doesn't affect the name)
+    juce::String name = noteNames[rootNote % 12];
 
     // Handle quartal/quintal specially
     if (config.useQuartalVoicing) {
