@@ -143,7 +143,6 @@ class SuperChordPlugin : public tracktion::Plugin {
 
     // Arpeggiator state
     int currentArpStep = 0;
-    double nextArpTriggerTime = 0.0;
     double arpSampleCounter = 0.0;
     bool arpDirectionUp = true;
     juce::Array<int> activeChordNotes;  // Current chord for arpeggiator reference
