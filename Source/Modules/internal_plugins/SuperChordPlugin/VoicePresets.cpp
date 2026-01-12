@@ -104,11 +104,11 @@ VoicePreset VoicePresets::parsePreset(const juce::XmlElement* presetElement) {
         preset.lfo.targetOscLevel = lfo->getBoolAttribute("targetLevel", false);
     }
     
-    // Parse macros
+    // Parse macros (supports 7 macros: indices 0-6)
     if (auto* macrosElement = presetElement->getChildByName("Macros")) {
         for (auto* macro : macrosElement->getChildWithTagNameIterator("Macro")) {
             int idx = macro->getIntAttribute("index", 0);
-            if (idx >= 0 && idx < 3) {
+            if (idx >= 0 && idx < 7) {
                 preset.macros[idx].name = macro->getStringAttribute("name", "Macro");
                 preset.macros[idx].targets.clear();
                 

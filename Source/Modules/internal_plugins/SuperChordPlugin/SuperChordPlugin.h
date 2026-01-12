@@ -83,6 +83,10 @@ class SuperChordPlugin : public tracktion::Plugin {
     float getMacro1Value() const;
     float getMacro2Value() const;
     float getMacro3Value() const;
+    float getMacro4Value() const;
+    float getMacro5Value() const;
+    float getMacro6Value() const;
+    float getMacro7Value() const;
     int getVoicingValue() const;
     int getOctaveValue() const;
     int getKeyValue() const;
@@ -112,6 +116,10 @@ class SuperChordPlugin : public tracktion::Plugin {
     tracktion::AutomatableParameter::Ptr macro1Param;
     tracktion::AutomatableParameter::Ptr macro2Param;
     tracktion::AutomatableParameter::Ptr macro3Param;
+    tracktion::AutomatableParameter::Ptr macro4Param;
+    tracktion::AutomatableParameter::Ptr macro5Param;
+    tracktion::AutomatableParameter::Ptr macro6Param;
+    tracktion::AutomatableParameter::Ptr macro7Param;
     tracktion::AutomatableParameter::Ptr voicingParam;
     tracktion::AutomatableParameter::Ptr octaveParam;
     tracktion::AutomatableParameter::Ptr keyParam;
@@ -128,6 +136,10 @@ class SuperChordPlugin : public tracktion::Plugin {
     juce::CachedValue<float> macro1Value;
     juce::CachedValue<float> macro2Value;
     juce::CachedValue<float> macro3Value;
+    juce::CachedValue<float> macro4Value;
+    juce::CachedValue<float> macro5Value;
+    juce::CachedValue<float> macro6Value;
+    juce::CachedValue<float> macro7Value;
     juce::CachedValue<float> voicingValue;
     juce::CachedValue<float> octaveValue;
     juce::CachedValue<float> keyValue;

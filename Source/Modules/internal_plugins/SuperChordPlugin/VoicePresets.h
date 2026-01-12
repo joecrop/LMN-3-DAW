@@ -115,8 +115,8 @@ struct VoicePreset {
     // LFO
     LFOConfig lfo;
 
-    // 3 macros per preset
-    MacroDefinition macros[3];
+    // 7 macros per preset (1-3 primary, 4-7 secondary accessed via control button)
+    MacroDefinition macros[7];
 };
 
 /**

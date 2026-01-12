@@ -35,6 +35,19 @@
                 <Macro index="2" name="Tone">
                     <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -58,6 +71,19 @@
                 </Macro>
                 <Macro index="2" name="Attack">
                     <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -84,6 +110,19 @@
                 <Macro index="2" name="Tremolo">
                     <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -107,6 +146,19 @@
                 </Macro>
                 <Macro index="2" name="Decay">
                     <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -132,6 +184,19 @@
                 </Macro>
                 <Macro index="2" name="Bell">
                     <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -159,6 +224,19 @@
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -182,6 +260,19 @@
                 <Macro index="2" name="Decay">
                     <Target paramType="5" minValue="0.1" maxValue="0.8" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -204,6 +295,19 @@
                 </Macro>
                 <Macro index="2" name="Release">
                     <Target paramType="5" minValue="0.05" maxValue="0.4" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="5" name="LFO Rate">
+                    <Target paramType="6" minValue="2.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -234,6 +338,19 @@
                 <Macro index="2" name="Harmonics">
                     <Target paramType="3" minValue="0.1" maxValue="0.5" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -257,6 +374,19 @@
                 <Macro index="2" name="Metal">
                     <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -279,6 +409,19 @@
                 </Macro>
                 <Macro index="2" name="Tinkle">
                     <Target paramType="3" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -304,6 +447,19 @@
                 <Macro index="2" name="Mellow">
                     <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -327,6 +483,19 @@
                 <Macro index="2" name="Body">
                     <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -349,6 +518,19 @@
                 </Macro>
                 <Macro index="2" name="Woody">
                     <Target paramType="1" minValue="0.8" maxValue="3.0" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -374,6 +556,19 @@
                 <Macro index="2" name="Inharmonics">
                     <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -396,6 +591,19 @@
                 </Macro>
                 <Macro index="2" name="Pluck">
                     <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Sharpness">
+                    <Target paramType="4" minValue="0.001" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Damping">
+                    <Target paramType="5" minValue="0.1" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -428,6 +636,19 @@
                 <Macro index="2" name="Percussion">
                     <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -452,6 +673,19 @@
                 </Macro>
                 <Macro index="2" name="Decay">
                     <Target paramType="5" minValue="0.05" maxValue="0.5" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -479,6 +713,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="3000.0" maxValue="10000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -504,6 +751,19 @@
                 <Macro index="2" name="Attack">
                     <Target paramType="4" minValue="0.05" maxValue="0.4" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -527,6 +787,19 @@
                 </Macro>
                 <Macro index="2" name="Breath">
                     <Target paramType="4" minValue="0.03" maxValue="0.2" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -552,6 +825,19 @@
                 <Macro index="2" name="Reeds">
                     <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -574,6 +860,19 @@
                 </Macro>
                 <Macro index="2" name="Breath">
                     <Target paramType="4" minValue="0.01" maxValue="0.1" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -598,6 +897,19 @@
                 </Macro>
                 <Macro index="2" name="Character">
                     <Target paramType="2" minValue="0.015" maxValue="0.05" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Overdrive">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Rotor">
+                    <Target paramType="6" minValue="0.5" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -627,6 +939,19 @@
                 <Macro index="2" name="Mellow">
                     <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -649,6 +974,19 @@
                 </Macro>
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.3" maxValue="1.2" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -673,6 +1011,19 @@
                 <Macro index="2" name="Tone">
                     <Target paramType="1" minValue="0.5" maxValue="1.5" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -695,6 +1046,19 @@
                 </Macro>
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.2" maxValue="1.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -719,6 +1083,19 @@
                 <Macro index="2" name="Attack">
                     <Target paramType="1" minValue="1.0" maxValue="3.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -741,6 +1118,19 @@
                 </Macro>
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.2" maxValue="0.8" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -765,6 +1155,19 @@
                 <Macro index="2" name="Thickness">
                     <Target paramType="2" minValue="0.01" maxValue="0.04" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -787,6 +1190,19 @@
                 </Macro>
                 <Macro index="2" name="Bell">
                     <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.025" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Trem Rate">
+                    <Target paramType="6" minValue="3.0" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Trem Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.3" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -816,6 +1232,19 @@
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.2" maxValue="0.8" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -839,6 +1268,19 @@
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.15" maxValue="0.6" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -861,6 +1303,19 @@
                 </Macro>
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.1" maxValue="0.5" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -886,6 +1341,19 @@
                 <Macro index="2" name="Sustain">
                     <Target paramType="5" minValue="0.2" maxValue="0.7" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -908,6 +1376,19 @@
                 </Macro>
                 <Macro index="2" name="Tightness">
                     <Target paramType="5" minValue="0.05" maxValue="0.3" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -932,6 +1413,19 @@
                 <Macro index="2" name="Snap">
                     <Target paramType="5" minValue="0.04" maxValue="0.25" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -955,6 +1449,19 @@
                 <Macro index="2" name="Decay">
                     <Target paramType="5" minValue="0.08" maxValue="0.4" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -977,6 +1484,19 @@
                 </Macro>
                 <Macro index="2" name="Sub">
                     <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Vibrato">
+                    <Target paramType="7" minValue="0.0" maxValue="0.1" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1006,6 +1526,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1028,6 +1561,19 @@
                 </Macro>
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1052,6 +1598,19 @@
                 <Macro index="2" name="Body">
                     <Target paramType="0" minValue="800.0" maxValue="2500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1074,6 +1633,19 @@
                 </Macro>
                 <Macro index="2" name="Depth">
                     <Target paramType="0" minValue="500.0" maxValue="1800.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1099,6 +1671,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1121,6 +1706,19 @@
                 </Macro>
                 <Macro index="2" name="Body">
                     <Target paramType="1" minValue="0.8" maxValue="2.5" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1145,6 +1743,19 @@
                 <Macro index="2" name="Body">
                     <Target paramType="1" minValue="0.5" maxValue="1.5" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1167,6 +1778,19 @@
                 </Macro>
                 <Macro index="2" name="Mallet">
                     <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.2" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Ensemble">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1198,6 +1822,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1223,6 +1860,19 @@
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="1000.0" maxValue="3500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1246,6 +1896,19 @@
                 </Macro>
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="1500.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1271,6 +1934,19 @@
                 <Macro index="2" name="Tone">
                     <Target paramType="0" minValue="1200.0" maxValue="4000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1294,6 +1970,19 @@
                 </Macro>
                 <Macro index="2" name="Formant">
                     <Target paramType="0" minValue="1200.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1319,6 +2008,19 @@
                 <Macro index="2" name="Formant">
                     <Target paramType="0" minValue="900.0" maxValue="2500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1342,6 +2044,19 @@
                 </Macro>
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="1000.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1367,6 +2082,19 @@
                 </Macro>
                 <Macro index="2" name="Noise">
                     <Target paramType="3" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.3" maxValue="1.5" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Movement">
+                    <Target paramType="6" minValue="0.1" maxValue="6.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1396,6 +2124,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="2000.0" maxValue="5500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1418,6 +2159,19 @@
                 </Macro>
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1200.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1442,6 +2196,19 @@
                 <Macro index="2" name="Body">
                     <Target paramType="0" minValue="600.0" maxValue="1500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1465,6 +2232,19 @@
                 <Macro index="2" name="Nasal">
                     <Target paramType="1" minValue="1.5" maxValue="3.5" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1487,6 +2267,19 @@
                 </Macro>
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="1000.0" maxValue="2800.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1513,6 +2306,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1537,6 +2343,19 @@
                 <Macro index="2" name="Resonance">
                     <Target paramType="1" minValue="1.0" maxValue="3.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1560,6 +2379,19 @@
                 </Macro>
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="1800.0" maxValue="4500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.15" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Width">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1589,6 +2421,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1611,6 +2456,19 @@
                 </Macro>
                 <Macro index="2" name="Tone">
                     <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1635,6 +2493,19 @@
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1657,6 +2528,19 @@
                 </Macro>
                 <Macro index="2" name="Body">
                     <Target paramType="0" minValue="900.0" maxValue="2500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1681,6 +2565,19 @@
                 <Macro index="2" name="Nasal">
                     <Target paramType="0" minValue="1800.0" maxValue="4500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1703,6 +2600,19 @@
                 </Macro>
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="1400.0" maxValue="3500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1727,6 +2637,19 @@
                 <Macro index="2" name="Body">
                     <Target paramType="0" minValue="800.0" maxValue="2200.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1749,6 +2672,19 @@
                 </Macro>
                 <Macro index="2" name="Hollow">
                     <Target paramType="1" minValue="1.0" maxValue="2.2" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.5" maxValue="6.5" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1778,6 +2714,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="3500.0" maxValue="8000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1800,6 +2749,19 @@
                 </Macro>
                 <Macro index="2" name="Air">
                     <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1824,6 +2786,19 @@
                 <Macro index="2" name="Tone">
                     <Target paramType="0" minValue="3000.0" maxValue="6500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1846,6 +2821,19 @@
                 </Macro>
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1870,6 +2858,19 @@
                 <Macro index="2" name="Resonance">
                     <Target paramType="1" minValue="1.0" maxValue="2.5" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1893,6 +2894,19 @@
                 <Macro index="2" name="Expression">
                     <Target paramType="0" minValue="1500.0" maxValue="4000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1914,6 +2928,19 @@
                 </Macro>
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="4000.0" maxValue="10000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1937,6 +2964,19 @@
                 </Macro>
                 <Macro index="2" name="Tone">
                     <Target paramType="0" minValue="2500.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.4" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.0" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -1966,6 +3006,19 @@
                 <Macro index="2" name="Resonance">
                     <Target paramType="1" minValue="1.0" maxValue="3.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -1988,6 +3041,19 @@
                 </Macro>
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="2500.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2012,6 +3078,19 @@
                 <Macro index="2" name="Harmonic">
                     <Target paramType="3" minValue="0.15" maxValue="0.4" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2034,6 +3113,19 @@
                 </Macro>
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="3000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2058,6 +3150,19 @@
                 <Macro index="2" name="Bite">
                     <Target paramType="0" minValue="2000.0" maxValue="5500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2080,6 +3185,19 @@
                 </Macro>
                 <Macro index="2" name="Expression">
                     <Target paramType="4" minValue="0.04" maxValue="0.2" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2104,6 +3222,19 @@
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2127,6 +3258,19 @@
                 </Macro>
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="1800.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.1" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Release">
+                    <Target paramType="5" minValue="0.1" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="8.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Fatness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.03" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2157,6 +3301,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2180,6 +3337,19 @@
                 </Macro>
                 <Macro index="2" name="Warmth">
                     <Target paramType="0" minValue="1000.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2206,6 +3376,19 @@
                 <Macro index="2" name="Filter">
                     <Target paramType="0" minValue="1800.0" maxValue="5000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2229,6 +3412,19 @@
                 </Macro>
                 <Macro index="2" name="Formant">
                     <Target paramType="0" minValue="1000.0" maxValue="3000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2254,6 +3450,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1400.0" maxValue="4000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2277,6 +3486,19 @@
                 </Macro>
                 <Macro index="2" name="Shimmer">
                     <Target paramType="0" minValue="2000.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2303,6 +3525,19 @@
                 <Macro index="2" name="Heaven">
                     <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2326,6 +3561,19 @@
                 </Macro>
                 <Macro index="2" name="Range">
                     <Target paramType="0" minValue="500.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Movement">
+                    <Target paramType="6" minValue="0.05" maxValue="0.5" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Blend">
+                    <Target paramType="3" minValue="0.3" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Resonance">
+                    <Target paramType="1" minValue="0.5" maxValue="2.5" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2355,6 +3603,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="2000.0" maxValue="6000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2380,6 +3641,19 @@
                 <Macro index="2" name="Depth">
                     <Target paramType="0" minValue="800.0" maxValue="3500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2403,6 +3677,19 @@
                 </Macro>
                 <Macro index="2" name="Sparkle">
                     <Target paramType="0" minValue="3500.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2429,6 +3716,19 @@
                 <Macro index="2" name="Darkness">
                     <Target paramType="0" minValue="600.0" maxValue="2500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2452,6 +3752,19 @@
                 </Macro>
                 <Macro index="2" name="Movement">
                     <Target paramType="7" minValue="0.06" maxValue="0.2" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2477,6 +3790,19 @@
                 <Macro index="2" name="Weird">
                     <Target paramType="1" minValue="1.5" maxValue="3.5" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2501,6 +3827,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="1800.0" maxValue="5000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2524,6 +3863,19 @@
                 </Macro>
                 <Macro index="2" name="Space">
                     <Target paramType="0" minValue="1500.0" maxValue="5500.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Release">
+                    <Target paramType="5" minValue="0.5" maxValue="4.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Texture">
+                    <Target paramType="3" minValue="0.2" maxValue="0.8" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Speed">
+                    <Target paramType="6" minValue="0.05" maxValue="10.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Edge">
+                    <Target paramType="1" minValue="0.8" maxValue="4.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2553,6 +3905,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="2500.0" maxValue="6000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2575,6 +3940,19 @@
                 </Macro>
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="3000.0" maxValue="7000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2599,6 +3977,19 @@
                 <Macro index="2" name="Bite">
                     <Target paramType="0" minValue="2500.0" maxValue="5500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2622,6 +4013,19 @@
                 <Macro index="2" name="Clarity">
                     <Target paramType="0" minValue="2800.0" maxValue="6500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2644,6 +4048,19 @@
                 </Macro>
                 <Macro index="2" name="Harmonic">
                     <Target paramType="3" minValue="0.2" maxValue="0.45" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2669,6 +4086,19 @@
                 <Macro index="2" name="Vibrato">
                     <Target paramType="7" minValue="0.0" maxValue="0.12" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2692,6 +4122,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="2200.0" maxValue="5500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2714,6 +4157,19 @@
                 </Macro>
                 <Macro index="2" name="Expression">
                     <Target paramType="0" minValue="2000.0" maxValue="5000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.15" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Chorus">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Vibrato Rate">
+                    <Target paramType="6" minValue="4.0" maxValue="7.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Blend">
+                    <Target paramType="3" minValue="0.2" maxValue="0.6" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2744,6 +4200,19 @@
                 <Macro index="2" name="Sparkle">
                     <Target paramType="3" minValue="0.15" maxValue="0.4" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2766,6 +4235,19 @@
                 </Macro>
                 <Macro index="2" name="Ring">
                     <Target paramType="1" minValue="0.8" maxValue="2.0" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2791,6 +4273,19 @@
                 <Macro index="2" name="Mallet">
                     <Target paramType="3" minValue="0.2" maxValue="0.45" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2813,6 +4308,19 @@
                 </Macro>
                 <Macro index="2" name="Resonance">
                     <Target paramType="1" minValue="1.2" maxValue="2.5" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2837,6 +4345,19 @@
                 <Macro index="2" name="Attack">
                     <Target paramType="3" minValue="0.2" maxValue="0.45" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2859,6 +4380,19 @@
                 </Macro>
                 <Macro index="2" name="Body">
                     <Target paramType="1" minValue="1.2" maxValue="2.2" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2883,6 +4417,19 @@
                 <Macro index="2" name="Punch">
                     <Target paramType="1" minValue="1.5" maxValue="3.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2905,6 +4452,19 @@
                 </Macro>
                 <Macro index="2" name="Noise">
                     <Target paramType="3" minValue="0.5" maxValue="0.9" curve="0"/>
+                </Macro>
+            
+                <Macro index="3" name="Attack">
+                    <Target paramType="4" minValue="0.001" maxValue="0.05" curve="0"/>
+                </Macro>
+                <Macro index="4" name="Thickness">
+                    <Target paramType="2" minValue="0.0" maxValue="0.02" curve="0"/>
+                </Macro>
+                <Macro index="5" name="Mod Rate">
+                    <Target paramType="6" minValue="0.0" maxValue="5.0" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Mod Depth">
+                    <Target paramType="7" minValue="0.0" maxValue="0.2" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2934,6 +4494,19 @@
                 <Macro index="2" name="Resonance">
                     <Target paramType="1" minValue="1.2" maxValue="2.8" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -2956,6 +4529,19 @@
                 </Macro>
                 <Macro index="2" name="Tone">
                     <Target paramType="0" minValue="1200.0" maxValue="4000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -2980,6 +4566,19 @@
                 <Macro index="2" name="Brightness">
                     <Target paramType="0" minValue="800.0" maxValue="3000.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -3002,6 +4601,19 @@
                 </Macro>
                 <Macro index="2" name="Pitch">
                     <Target paramType="0" minValue="4000.0" maxValue="8000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -3026,6 +4638,19 @@
                 <Macro index="2" name="Nasal">
                     <Target paramType="1" minValue="2.0" maxValue="4.0" curve="0"/>
                 </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -3048,6 +4673,19 @@
                 </Macro>
                 <Macro index="2" name="Engine">
                     <Target paramType="0" minValue="600.0" maxValue="2000.0" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>
@@ -3072,6 +4710,19 @@
                 <Macro index="2" name="Tone">
                     <Target paramType="0" minValue="1500.0" maxValue="4500.0" curve="1"/>
                 </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
+                </Macro>
             </Macros>
         </VoicePreset>
 
@@ -3094,6 +4745,19 @@
                 </Macro>
                 <Macro index="2" name="Decay">
                     <Target paramType="5" minValue="0.08" maxValue="0.3" curve="1"/>
+                </Macro>
+            
+                <Macro index="3" name="Rise">
+                    <Target paramType="4" minValue="0.001" maxValue="2.0" curve="1"/>
+                </Macro>
+                <Macro index="4" name="Tail">
+                    <Target paramType="5" minValue="0.05" maxValue="3.0" curve="1"/>
+                </Macro>
+                <Macro index="5" name="Texture">
+                    <Target paramType="2" minValue="0.0" maxValue="0.04" curve="0"/>
+                </Macro>
+                <Macro index="6" name="Character">
+                    <Target paramType="1" minValue="0.5" maxValue="3.0" curve="0"/>
                 </Macro>
             </Macros>
         </VoicePreset>

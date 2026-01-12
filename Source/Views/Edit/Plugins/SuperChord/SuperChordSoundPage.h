@@ -25,6 +25,8 @@ class SuperChordSoundPage
     void encoder3Decreased() override;
     void encoder4Increased() override;
     void encoder4Decreased() override;
+    void controlButtonPressed() override;
+    void controlButtonReleased() override;
 
   private:
     internal_plugins::SuperChordPlugin *plugin;
@@ -36,6 +38,7 @@ class SuperChordSoundPage
     AppLookAndFeel appLookAndFeel;
 
     int lastPresetIndex = -1;
+    bool showSecondaryMacros = false;
 
     void updateKnobValues();
     void updateMacroLabels();

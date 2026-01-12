@@ -117,6 +117,8 @@ void Knobs::showPrimaryKnobs() {
                 knobs[i]->setVisible(false);
             }
         }
+        resized();
+        repaint();
     }
 }
 
@@ -128,5 +130,7 @@ void Knobs::showSecondaryKnobs() {
             else
                 knobs[i]->setVisible(true);
         }
+        resized();
+        repaint();
     }
 }

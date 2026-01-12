@@ -17,6 +17,10 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     macro1Value.referTo(state, juce::Identifier("macro1"), um, 0.5f);
     macro2Value.referTo(state, juce::Identifier("macro2"), um, 0.5f);
     macro3Value.referTo(state, juce::Identifier("macro3"), um, 0.5f);
+    macro4Value.referTo(state, juce::Identifier("macro4"), um, 0.5f);
+    macro5Value.referTo(state, juce::Identifier("macro5"), um, 0.5f);
+    macro6Value.referTo(state, juce::Identifier("macro6"), um, 0.5f);
+    macro7Value.referTo(state, juce::Identifier("macro7"), um, 0.5f);
     voicingValue.referTo(state, juce::Identifier("voicing"), um, 0.0f);
     octaveValue.referTo(state, juce::Identifier("octave"), um, 0.0f);
     keyValue.referTo(state, juce::Identifier("key"), um, 0.0f);
@@ -47,6 +51,18 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
 
     macro3Param = createParam("macro3", TRANS("Macro 3"), {0.0f, 1.0f});
     macro3Param->attachToCurrentValue(macro3Value);
+
+    macro4Param = createParam("macro4", TRANS("Macro 4"), {0.0f, 1.0f});
+    macro4Param->attachToCurrentValue(macro4Value);
+
+    macro5Param = createParam("macro5", TRANS("Macro 5"), {0.0f, 1.0f});
+    macro5Param->attachToCurrentValue(macro5Value);
+
+    macro6Param = createParam("macro6", TRANS("Macro 6"), {0.0f, 1.0f});
+    macro6Param->attachToCurrentValue(macro6Value);
+
+    macro7Param = createParam("macro7", TRANS("Macro 7"), {0.0f, 1.0f});
+    macro7Param->attachToCurrentValue(macro7Value);
 
     voicingParam = createParam("voicing", TRANS("Voicing"), {0.0f, 2.0f});
     voicingParam->attachToCurrentValue(voicingValue);
@@ -93,6 +109,10 @@ SuperChordPlugin::~SuperChordPlugin() {
     macro1Param->detachFromCurrentValue();
     macro2Param->detachFromCurrentValue();
     macro3Param->detachFromCurrentValue();
+    macro4Param->detachFromCurrentValue();
+    macro5Param->detachFromCurrentValue();
+    macro6Param->detachFromCurrentValue();
+    macro7Param->detachFromCurrentValue();
     voicingParam->detachFromCurrentValue();
     octaveParam->detachFromCurrentValue();
     keyParam->detachFromCurrentValue();
@@ -130,6 +150,10 @@ int SuperChordPlugin::getCurrentVoicePresetIndex() const {
 float SuperChordPlugin::getMacro1Value() const { return macro1Value.get(); }
 float SuperChordPlugin::getMacro2Value() const { return macro2Value.get(); }
 float SuperChordPlugin::getMacro3Value() const { return macro3Value.get(); }
+float SuperChordPlugin::getMacro4Value() const { return macro4Value.get(); }
+float SuperChordPlugin::getMacro5Value() const { return macro5Value.get(); }
+float SuperChordPlugin::getMacro6Value() const { return macro6Value.get(); }
+float SuperChordPlugin::getMacro7Value() const { return macro7Value.get(); }
 
 int SuperChordPlugin::getVoicingValue() const {
     return static_cast<int>(voicingValue.get());
@@ -258,6 +282,10 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
             voice->setMacro1(getMacro1Value());
             voice->setMacro2(getMacro2Value());
             voice->setMacro3(getMacro3Value());
+            voice->setMacro4(getMacro4Value());
+            voice->setMacro5(getMacro5Value());
+            voice->setMacro6(getMacro6Value());
+            voice->setMacro7(getMacro7Value());
         }
     }
 
@@ -492,6 +520,10 @@ void SuperChordPlugin::applyToBuffer(const tracktion::PluginRenderContext &fc) {
             voice->setMacro1(getMacro1Value());
             voice->setMacro2(getMacro2Value());
             voice->setMacro3(getMacro3Value());
+            voice->setMacro4(getMacro4Value());
+            voice->setMacro5(getMacro5Value());
+            voice->setMacro6(getMacro6Value());
+            voice->setMacro7(getMacro7Value());
         }
     }
 
@@ -505,10 +537,11 @@ void SuperChordPlugin::restorePluginStateFromValueTree(
     const juce::ValueTree &v) {
     juce::CachedValue<float> *cvsFloat[] = {
         &voicePresetValue, &macro1Value,       &macro2Value,
-        &macro3Value,      &voicingValue,      &octaveValue,
-        &keyValue,         &extensionValue,    &arpModeValue,
-        &arpDirectionValue, &arpStepsValue,    &arpRateValue,
-        nullptr};
+        &macro3Value,      &macro4Value,       &macro5Value,
+        &macro6Value,      &macro7Value,       &voicingValue,
+        &octaveValue,      &keyValue,          &extensionValue,
+        &arpModeValue,     &arpDirectionValue, &arpStepsValue,
+        &arpRateValue,     nullptr};
     tracktion::copyPropertiesToNullTerminatedCachedValues(v, cvsFloat);
 
     for (auto p : getAutomatableParameters())

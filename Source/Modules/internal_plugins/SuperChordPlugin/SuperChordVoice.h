@@ -43,6 +43,10 @@ class SuperChordVoice : public juce::SynthesiserVoice {
     void setMacro1(float value) { macro1Value = value; }
     void setMacro2(float value) { macro2Value = value; }
     void setMacro3(float value) { macro3Value = value; }
+    void setMacro4(float value) { macro4Value = value; }
+    void setMacro5(float value) { macro5Value = value; }
+    void setMacro6(float value) { macro6Value = value; }
+    void setMacro7(float value) { macro7Value = value; }
 
     /**
      * Set pitch bend value (-1.0 to +1.0, maps to ±2 semitones)
@@ -67,6 +71,10 @@ class SuperChordVoice : public juce::SynthesiserVoice {
     float macro1Value = 0.5f;
     float macro2Value = 0.5f;
     float macro3Value = 0.5f;
+    float macro4Value = 0.5f;
+    float macro5Value = 0.5f;
+    float macro6Value = 0.5f;
+    float macro7Value = 0.5f;
 
     // Pitch bend
     float pitchBendSemitones = 0.0f;

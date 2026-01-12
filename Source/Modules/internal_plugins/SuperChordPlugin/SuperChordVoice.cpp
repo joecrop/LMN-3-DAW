@@ -43,22 +43,26 @@ void SuperChordVoice::startNote(int midiNoteNumber, float velocity,
     // Get preset
     const VoicePreset &preset = VoicePresets::getPreset(currentPresetIndex);
 
-    // Configure amplitude envelope
+    // Configure amplitude envelope with macro modulation
     juce::ADSR::Parameters ampParams;
-    ampParams.attack = preset.ampEnvelope.attack;
+    ampParams.attack = applyMacroModulation(preset.ampEnvelope.attack,
+                                            MacroParamType::EnvAttack, preset);
     ampParams.decay = preset.ampEnvelope.decay;
     ampParams.sustain = preset.ampEnvelope.sustain;
-    ampParams.release = preset.ampEnvelope.release;
+    ampParams.release = applyMacroModulation(preset.ampEnvelope.release,
+                                             MacroParamType::EnvRelease, preset);
     ampEnvelope.setSampleRate(getSampleRate());
     ampEnvelope.setParameters(ampParams);
     ampEnvelope.noteOn();
 
-    // Configure filter envelope
+    // Configure filter envelope with macro modulation
     juce::ADSR::Parameters filterParams;
-    filterParams.attack = preset.filterEnvelope.attack;
+    filterParams.attack = applyMacroModulation(preset.filterEnvelope.attack,
+                                               MacroParamType::EnvAttack, preset);
     filterParams.decay = preset.filterEnvelope.decay;
     filterParams.sustain = preset.filterEnvelope.sustain;
-    filterParams.release = preset.filterEnvelope.release;
+    filterParams.release = applyMacroModulation(preset.filterEnvelope.release,
+                                                MacroParamType::EnvRelease, preset);
     filterEnvelope.setSampleRate(getSampleRate());
     filterEnvelope.setParameters(filterParams);
     filterEnvelope.noteOn();
@@ -184,11 +188,12 @@ float SuperChordVoice::generateOscillatorSample(const OscillatorConfig &config,
 float SuperChordVoice::applyMacroModulation(float baseValue,
                                             MacroParamType paramType,
                                             const VoicePreset &preset) {
-    float macroValues[3] = {macro1Value, macro2Value, macro3Value};
+    float macroValues[7] = {macro1Value, macro2Value, macro3Value,
+                            macro4Value, macro5Value, macro6Value, macro7Value};
     float result = baseValue;
 
     // Check each macro for targets matching this parameter
-    for (int m = 0; m < 3; m++) {
+    for (int m = 0; m < 7; m++) {
         const MacroDefinition &macro = preset.macros[m];
         float macroVal = macroValues[m];
 
