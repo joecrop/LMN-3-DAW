@@ -332,6 +332,14 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
         }
         break;
     }
+
+    // Apply current pitch wheel value to newly triggered voices
+    for (int i = 0; i < synthesiser.getNumVoices(); i++) {
+        if (auto *voice =
+                dynamic_cast<SuperChordVoice *>(synthesiser.getVoice(i))) {
+            voice->setPitchBend(pitchWheelValue * 2.0f); // ±2 semitones
+        }
+    }
 }
 
 void SuperChordPlugin::processNoteOff(int midiNote, float velocity) {
@@ -457,6 +465,14 @@ void SuperChordPlugin::triggerArpStep(double /*currentPPQ*/, double /*bpm*/,
     // Trigger current note (only if valid)
     if (currentNoteIndex >= 0 && currentNoteIndex < numChordNotes) {
         synthesiser.noteOn(1, activeChordNotes[currentNoteIndex], 0.8f);
+        
+        // Apply current pitch wheel value to newly triggered voice
+        for (int i = 0; i < synthesiser.getNumVoices(); i++) {
+            if (auto *voice =
+                    dynamic_cast<SuperChordVoice *>(synthesiser.getVoice(i))) {
+                voice->setPitchBend(pitchWheelValue * 2.0f); // ±2 semitones
+            }
+        }
     }
 }
 
