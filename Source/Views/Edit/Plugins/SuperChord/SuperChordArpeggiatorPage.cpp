@@ -42,7 +42,8 @@ SuperChordArpeggiatorPage::SuperChordArpeggiatorPage(
     pluginKnobs.getKnob(2)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour3);
 
-    // Encoder 4: Rate (0-13: 2/1 to 1/64, slow to fast)
+    // Encoder 4: Rate (depends on mode - arp rate or strum rate)
+    // Initial setup for arp rate (will be updated based on mode)
     pluginKnobs.getKnob(3)->getLabel().setText("Rate",
                                                juce::dontSendNotification);
     pluginKnobs.getKnob(3)->getSlider().setRange(0, 13, 1);
@@ -53,6 +54,9 @@ SuperChordArpeggiatorPage::SuperChordArpeggiatorPage(
 
     midiCommandManager.addListener(this);
 
+    // Initialize mode tracking and update knobs
+    lastArpMode = plugin->getArpModeValue();
+    updateKnob4ForMode(lastArpMode);
     updateKnobValues();
 
     // Start timer for step indicator animation (20 FPS)
@@ -65,6 +69,12 @@ SuperChordArpeggiatorPage::~SuperChordArpeggiatorPage() {
 }
 
 void SuperChordArpeggiatorPage::timerCallback() {
+    // Check if mode changed and update knob 4 accordingly
+    int currentMode = plugin->getArpModeValue();
+    if (currentMode != lastArpMode) {
+        lastArpMode = currentMode;
+        updateKnob4ForMode(currentMode);
+    }
     updateKnobValues();
     repaint();
 }
@@ -168,21 +178,54 @@ juce::String SuperChordArpeggiatorPage::getArpRateName(int value) {
     return "1/4";
 }
 
+juce::String SuperChordArpeggiatorPage::getStrumRateName(float value) {
+    return juce::String(static_cast<int>(value)) + "ms";
+}
+
+void SuperChordArpeggiatorPage::updateKnob4ForMode(int arpMode) {
+    if (arpMode == 2) {
+        // Strum mode - show strum rate in ms
+        pluginKnobs.getKnob(3)->getLabel().setText("Strum ms",
+                                                   juce::dontSendNotification);
+        pluginKnobs.getKnob(3)->getSlider().setRange(10, 200, 1);
+    } else {
+        // Other modes - show arp rate
+        pluginKnobs.getKnob(3)->getLabel().setText("Rate",
+                                                   juce::dontSendNotification);
+        pluginKnobs.getKnob(3)->getSlider().setRange(0, 13, 1);
+    }
+}
+
 void SuperChordArpeggiatorPage::updateKnobValues() {
-    pluginKnobs.getKnob(0)->getSlider().setValue(plugin->getArpModeValue(),
+    int arpMode = plugin->getArpModeValue();
+    
+    pluginKnobs.getKnob(0)->getSlider().setValue(arpMode,
                                                  juce::dontSendNotification);
     pluginKnobs.getKnob(1)->getSlider().setValue(plugin->getArpDirectionValue(),
                                                  juce::dontSendNotification);
     pluginKnobs.getKnob(2)->getSlider().setValue(plugin->getArpStepsValue(),
                                                  juce::dontSendNotification);
-    pluginKnobs.getKnob(3)->getSlider().setValue(plugin->getArpRateValue(),
-                                                 juce::dontSendNotification);
+    
+    // Knob 4 depends on mode
+    if (arpMode == 2) {
+        // Strum mode - show strum rate
+        pluginKnobs.getKnob(3)->getSlider().setValue(plugin->getStrumRateValue(),
+                                                     juce::dontSendNotification);
+    } else {
+        // Other modes - show arp rate
+        pluginKnobs.getKnob(3)->getSlider().setValue(plugin->getArpRateValue(),
+                                                     juce::dontSendNotification);
+    }
 
     // Update status
-    juce::String info = "Mode:" + getArpModeName(plugin->getArpModeValue());
+    juce::String info = "Mode:" + getArpModeName(arpMode);
     info += " Dir:" + getArpDirectionName(plugin->getArpDirectionValue());
     info += " Steps:" + juce::String(plugin->getArpStepsValue());
-    info += " Rate:" + getArpRateName(plugin->getArpRateValue());
+    if (arpMode == 2) {
+        info += " Strum:" + getStrumRateName(plugin->getStrumRateValue());
+    } else {
+        info += " Rate:" + getArpRateName(plugin->getArpRateValue());
+    }
     arpStatusLabel.setText(info, juce::dontSendNotification);
 }
 
@@ -293,22 +336,46 @@ void SuperChordArpeggiatorPage::encoder3Decreased() {
 
 void SuperChordArpeggiatorPage::encoder4Increased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
-        int currentValue = plugin->getArpRateValue();
-        if (currentValue < 13) {
-            plugin->arpRateParam->setParameter(
-                static_cast<float>(currentValue + 1), juce::sendNotification);
-            updateKnobValues();
+        int arpMode = plugin->getArpModeValue();
+        if (arpMode == 2) {
+            // Strum mode - adjust strum rate (10-200ms)
+            float currentValue = plugin->getStrumRateValue();
+            if (currentValue < 200.0f) {
+                plugin->strumRateParam->setParameter(
+                    currentValue + 5.0f, juce::sendNotification);
+                updateKnobValues();
+            }
+        } else {
+            // Other modes - adjust arp rate
+            int currentValue = plugin->getArpRateValue();
+            if (currentValue < 13) {
+                plugin->arpRateParam->setParameter(
+                    static_cast<float>(currentValue + 1), juce::sendNotification);
+                updateKnobValues();
+            }
         }
     }
 }
 
 void SuperChordArpeggiatorPage::encoder4Decreased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
-        int currentValue = plugin->getArpRateValue();
-        if (currentValue > 0) {
-            plugin->arpRateParam->setParameter(
-                static_cast<float>(currentValue - 1), juce::sendNotification);
-            updateKnobValues();
+        int arpMode = plugin->getArpModeValue();
+        if (arpMode == 2) {
+            // Strum mode - adjust strum rate (10-200ms)
+            float currentValue = plugin->getStrumRateValue();
+            if (currentValue > 10.0f) {
+                plugin->strumRateParam->setParameter(
+                    currentValue - 5.0f, juce::sendNotification);
+                updateKnobValues();
+            }
+        } else {
+            // Other modes - adjust arp rate
+            int currentValue = plugin->getArpRateValue();
+            if (currentValue > 0) {
+                plugin->arpRateParam->setParameter(
+                    static_cast<float>(currentValue - 1), juce::sendNotification);
+                updateKnobValues();
+            }
         }
     }
 }

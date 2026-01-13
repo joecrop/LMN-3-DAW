@@ -29,6 +29,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     arpDirectionValue.referTo(state, juce::Identifier("arpDirection"), um, 0.0f);
     arpStepsValue.referTo(state, juce::Identifier("arpSteps"), um, 8.0f);
     arpRateValue.referTo(state, juce::Identifier("arpRate"), um, 7.0f);  // Default to 1/8 note
+    strumRateValue.referTo(state, juce::Identifier("strumRate"), um, 50.0f);  // Default to 50ms per note
     progressionValue.referTo(state, juce::Identifier("progression"), um, 0.0f);
 
     // Helper lambda to create automatable parameters
@@ -88,6 +89,9 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     arpRateParam = createParam("arpRate", TRANS("Arp Rate"), {0.0f, 13.0f});
     arpRateParam->attachToCurrentValue(arpRateValue);
 
+    strumRateParam = createParam("strumRate", TRANS("Strum Rate"), {10.0f, 200.0f});
+    strumRateParam->attachToCurrentValue(strumRateValue);
+
     progressionParam = createParam("progression", TRANS("Progression"), {0.0f, 21.0f});
     progressionParam->attachToCurrentValue(progressionValue);
 
@@ -121,6 +125,7 @@ SuperChordPlugin::~SuperChordPlugin() {
     arpDirectionParam->detachFromCurrentValue();
     arpStepsParam->detachFromCurrentValue();
     arpRateParam->detachFromCurrentValue();
+    strumRateParam->detachFromCurrentValue();
 }
 
 void SuperChordPlugin::initialise(
@@ -187,6 +192,10 @@ int SuperChordPlugin::getArpRateValue() const {
     return static_cast<int>(arpRateValue.get());
 }
 
+float SuperChordPlugin::getStrumRateValue() const {
+    return strumRateValue.get();
+}
+
 int SuperChordPlugin::getProgressionValue() const {
     return static_cast<int>(progressionValue.get());
 }
@@ -194,6 +203,32 @@ int SuperChordPlugin::getProgressionValue() const {
 juce::String SuperChordPlugin::getCurrentPresetName() const {
     return VoicePresets::getPresetName(getCurrentVoicePresetIndex());
 }
+
+// Arpeggiator direction patterns (1-indexed note positions)
+// If a position exceeds numChordNotes, previous note is held (no new trigger)
+static const int arpPatterns[][16] = {
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 0: Up
+    {16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1},   // 1: Down
+    {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1},          // 2: Up-Down
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},          // 3: Random (handled specially)
+    {1, 2, 5, 4, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 4: Swing 1-2-5-4-3
+    {4, 7, 1, 2, 5, 3, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 5: Jump 4-7-1-2
+    {1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 7, 9, 8, 10},         // 6: Stagger 1-3-2-4
+    {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8},          // 7: Double 1-1-2-2
+    {1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9},          // 8: Pedal 1-2-1-3-1
+    {1, 3, 5, 7, 2, 4, 6, 8, 1, 3, 5, 7, 2, 4, 6, 8},          // 9: Skip 1-3-5-7
+    {8, 6, 4, 2, 7, 5, 3, 1, 8, 6, 4, 2, 7, 5, 3, 1},          // 10: Skip Down
+    {1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11},        // 11: Thirds 1-4-2-5
+    {1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 12},       // 12: Fourths 1-5-2-6
+    {1, 8, 2, 7, 3, 6, 4, 5, 1, 8, 2, 7, 3, 6, 4, 5},          // 13: Outside-In
+    {4, 5, 3, 6, 2, 7, 1, 8, 4, 5, 3, 6, 2, 7, 1, 8},          // 14: Inside-Out
+    {1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 6, 7, 6, 7, 8, 8},          // 15: Wave
+    {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, 8, 7, 6, 5},          // 16: Accent
+    {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3},          // 17: Pi (3.14159...)
+    {1, 1, 2, 3, 5, 8, 5, 3, 2, 1, 1, 2, 3, 5, 8, 5},          // 18: Fibonacci
+    {1, 4, 7, 2, 5, 8, 3, 6, 1, 4, 7, 2, 5, 8, 3, 6}           // 19: Circle
+};
+static const int numArpPatterns = 20;
 
 double SuperChordPlugin::calculateArpInterval(double /*bpm*/) const {
     // Rate values ordered slow to fast:
@@ -308,12 +343,42 @@ void SuperChordPlugin::processNoteOn(int midiNote, float velocity,
         }
         break;
 
-    case 2: // Strum - trigger with slight delays
+    case 2: // Strum - trigger notes sequentially using pattern, sustain all
         {
-            // Note: In a real implementation, we'd need sample-accurate timing
-            // For simplicity, trigger all with synthesiser's internal handling
-            for (int i = 0; i < activeChordNotes.size(); i++) {
-                synthesiser.noteOn(1, activeChordNotes[i], velocity);
+            // Copy chord notes using current direction pattern
+            strumChordNotes.clear();
+            int arpDirection = getArpDirectionValue();
+            arpDirection = juce::jlimit(0, numArpPatterns - 1, arpDirection);
+            int numChordNotes = activeChordNotes.size();
+            
+            // Build ordered list based on pattern
+            for (int i = 0; i < numChordNotes; i++) {
+                int noteIndex = -1;
+                if (arpDirection == 1) {
+                    // Down mode - play from highest to lowest
+                    noteIndex = numChordNotes - 1 - i;
+                } else if (arpDirection == 3) {
+                    // Random mode - just use sequential for strum
+                    noteIndex = i;
+                } else {
+                    int patternPos = arpPatterns[arpDirection][i % 16];
+                    if (patternPos >= 1 && patternPos <= numChordNotes) {
+                        noteIndex = patternPos - 1;
+                    }
+                }
+                if (noteIndex >= 0 && noteIndex < numChordNotes) {
+                    strumChordNotes.add(activeChordNotes[noteIndex]);
+                }
+            }
+            
+            // Initialize strum state
+            currentStrumStep = 0;
+            strumSampleCounter = 0.0;
+            strumActive = true;
+            
+            // First note triggers immediately
+            if (!strumChordNotes.isEmpty()) {
+                synthesiser.noteOn(1, strumChordNotes[0], velocity);
             }
         }
         break;
@@ -352,6 +417,17 @@ void SuperChordPlugin::processNoteOff(int midiNote, float velocity) {
     // Find the chord notes associated with this specific MIDI note
     auto it = midiNoteToChordNotes.find(midiNote);
     if (it != midiNoteToChordNotes.end()) {
+        // For strum mode, also turn off any strummed notes that haven't been turned off
+        if (arpMode == 2) {
+            // Turn off all notes in the strum chord
+            for (int note : strumChordNotes) {
+                synthesiser.noteOff(1, note, velocity, true);
+            }
+            strumChordNotes.clear();
+            strumActive = false;
+            currentStrumStep = 0;
+        }
+        
         // Turn off only the chord notes for this MIDI note
         for (int note : it->second) {
             synthesiser.noteOff(1, note, velocity, true);
@@ -373,6 +449,8 @@ void SuperChordPlugin::processNoteOff(int midiNote, float velocity) {
     // Reset arp step and chord display if no more notes are held
     if (midiNoteToChordNotes.empty()) {
         currentArpStep = 0;
+        currentStrumStep = 0;
+        strumActive = false;
         currentChordDegree = -1;
     }
 }
@@ -391,32 +469,6 @@ void SuperChordPlugin::processPitchWheel(int rawValue) {
     }
 }
 
-// Arpeggiator direction patterns (1-indexed note positions)
-// If a position exceeds numChordNotes, previous note is held (no new trigger)
-static const int arpPatterns[][16] = {
-    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 0: Up
-    {16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1},   // 1: Down
-    {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1},          // 2: Up-Down
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},          // 3: Random (handled specially)
-    {1, 2, 5, 4, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 4: Swing 1-2-5-4-3
-    {4, 7, 1, 2, 5, 3, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16},   // 5: Jump 4-7-1-2
-    {1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 7, 9, 8, 10},         // 6: Stagger 1-3-2-4
-    {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8},          // 7: Double 1-1-2-2
-    {1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9},          // 8: Pedal 1-2-1-3-1
-    {1, 3, 5, 7, 2, 4, 6, 8, 1, 3, 5, 7, 2, 4, 6, 8},          // 9: Skip 1-3-5-7
-    {8, 6, 4, 2, 7, 5, 3, 1, 8, 6, 4, 2, 7, 5, 3, 1},          // 10: Skip Down
-    {1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11},        // 11: Thirds 1-4-2-5
-    {1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 12},       // 12: Fourths 1-5-2-6
-    {1, 8, 2, 7, 3, 6, 4, 5, 1, 8, 2, 7, 3, 6, 4, 5},          // 13: Outside-In
-    {4, 5, 3, 6, 2, 7, 1, 8, 4, 5, 3, 6, 2, 7, 1, 8},          // 14: Inside-Out
-    {1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 6, 7, 6, 7, 8, 8},          // 15: Wave
-    {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, 8, 7, 6, 5},          // 16: Accent
-    {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3},          // 17: Pi (3.14159...)
-    {1, 1, 2, 3, 5, 8, 5, 3, 2, 1, 1, 2, 3, 5, 8, 5},          // 18: Fibonacci
-    {1, 4, 7, 2, 5, 8, 3, 6, 1, 4, 7, 2, 5, 8, 3, 6}           // 19: Circle
-};
-static const int numArpPatterns = 20;
-
 void SuperChordPlugin::triggerArpStep(double /*currentPPQ*/, double /*bpm*/,
                                       int /*samplePosition*/) {
     if (activeChordNotes.isEmpty())
@@ -431,7 +483,10 @@ void SuperChordPlugin::triggerArpStep(double /*currentPPQ*/, double /*bpm*/,
     // Store previous note for note-off
     int prevPatternPos = arpPatterns[arpDirection][currentArpStep % 16];
     int prevNoteIndex = -1;
-    if (arpDirection == 3) {
+    if (arpDirection == 1) {
+        // Down mode - compute index based on step and chord size
+        prevNoteIndex = numChordNotes - 1 - (currentArpStep % numChordNotes);
+    } else if (arpDirection == 3) {
         // Random mode - previous step was random
         prevNoteIndex = currentArpStep % numChordNotes;
     } else if (prevPatternPos >= 1 && prevPatternPos <= numChordNotes) {
@@ -443,7 +498,10 @@ void SuperChordPlugin::triggerArpStep(double /*currentPPQ*/, double /*bpm*/,
 
     // Get current note from pattern
     int currentNoteIndex = -1;
-    if (arpDirection == 3) {
+    if (arpDirection == 1) {
+        // Down mode - compute index based on step and chord size
+        currentNoteIndex = numChordNotes - 1 - (currentArpStep % numChordNotes);
+    } else if (arpDirection == 3) {
         // Random mode
         currentNoteIndex = juce::Random::getSystemRandom().nextInt(numChordNotes);
     } else {
@@ -490,8 +548,11 @@ void SuperChordPlugin::applyToBuffer(const tracktion::PluginRenderContext &fc) {
             synthesiser.allNotesOff(0, false);
             activeChordNotes.clear();
             latchedNotes.clear();
+            strumChordNotes.clear();
             midiNoteToChordNotes.clear();
             currentArpStep = 0;
+            currentStrumStep = 0;
+            strumActive = false;
             currentChordDegree = -1;
         }
     }
@@ -528,6 +589,41 @@ void SuperChordPlugin::applyToBuffer(const tracktion::PluginRenderContext &fc) {
         }
     }
 
+    // Handle strum timing (Mode 2 = Strum)
+    // Uses fixed milliseconds per note, independent of tempo
+    if (getArpModeValue() == 2 && strumActive && !strumChordNotes.isEmpty()) {
+        // Calculate samples per strum step based on strum rate in ms
+        double strumRateMs = static_cast<double>(getStrumRateValue());
+        double secondsPerStrumStep = strumRateMs / 1000.0;
+        double samplesPerStrumStep = secondsPerStrumStep * sampleRate;
+        
+        // Process strum for this buffer
+        strumSampleCounter += fc.bufferNumSamples;
+        
+        while (strumSampleCounter >= samplesPerStrumStep && strumActive) {
+            strumSampleCounter -= samplesPerStrumStep;
+            
+            // Advance to next note (no loop, no note-off - all notes sustain)
+            currentStrumStep++;
+            
+            if (currentStrumStep < strumChordNotes.size()) {
+                // Trigger next note
+                synthesiser.noteOn(1, strumChordNotes[currentStrumStep], 0.8f);
+                
+                // Apply current pitch wheel value to newly triggered voice
+                for (int i = 0; i < synthesiser.getNumVoices(); i++) {
+                    if (auto *voice =
+                            dynamic_cast<SuperChordVoice *>(synthesiser.getVoice(i))) {
+                        voice->setPitchBend(pitchWheelValue * 2.0f); // ±2 semitones
+                    }
+                }
+            } else {
+                // Strum complete - all notes triggered
+                strumActive = false;
+            }
+        }
+    }
+
     // Update voice parameters
     for (int i = 0; i < synthesiser.getNumVoices(); i++) {
         if (auto *voice =
@@ -557,7 +653,7 @@ void SuperChordPlugin::restorePluginStateFromValueTree(
         &macro6Value,      &macro7Value,       &voicingValue,
         &octaveValue,      &keyValue,          &extensionValue,
         &arpModeValue,     &arpDirectionValue, &arpStepsValue,
-        &arpRateValue,     nullptr};
+        &arpRateValue,     &strumRateValue,    nullptr};
     tracktion::copyPropertiesToNullTerminatedCachedValues(v, cvsFloat);
 
     for (auto p : getAutomatableParameters())

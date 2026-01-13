@@ -39,11 +39,15 @@ class SuperChordArpeggiatorPage
     AppLookAndFeel appLookAndFeel;
 
     void updateKnobValues();
+    void updateKnob4ForMode(int arpMode);
     void drawStepIndicator(juce::Graphics &g, int x, int y, int width,
                            int height);
     juce::String getArpModeName(int value);
     juce::String getArpDirectionName(int value);
     juce::String getArpRateName(int value);
+    juce::String getStrumRateName(float value);
+    
+    int lastArpMode = -1;  // Track mode changes for UI updates
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SuperChordArpeggiatorPage)
 };

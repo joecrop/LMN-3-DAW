@@ -95,6 +95,7 @@ class SuperChordPlugin : public tracktion::Plugin {
     int getArpDirectionValue() const;
     int getArpStepsValue() const;
     int getArpRateValue() const;
+    float getStrumRateValue() const;
     int getProgressionValue() const;
 
     // State accessors for visualizer
@@ -128,6 +129,7 @@ class SuperChordPlugin : public tracktion::Plugin {
     tracktion::AutomatableParameter::Ptr arpDirectionParam;
     tracktion::AutomatableParameter::Ptr arpStepsParam;
     tracktion::AutomatableParameter::Ptr arpRateParam;
+    tracktion::AutomatableParameter::Ptr strumRateParam;
     tracktion::AutomatableParameter::Ptr progressionParam;
 
   private:
@@ -148,6 +150,7 @@ class SuperChordPlugin : public tracktion::Plugin {
     juce::CachedValue<float> arpDirectionValue;
     juce::CachedValue<float> arpStepsValue;
     juce::CachedValue<float> arpRateValue;
+    juce::CachedValue<float> strumRateValue;
     juce::CachedValue<float> progressionValue;
 
     // Synthesizer for polyphony
@@ -160,6 +163,12 @@ class SuperChordPlugin : public tracktion::Plugin {
     juce::Array<int> activeChordNotes;  // Current chord for arpeggiator reference
     juce::Array<int> latchedNotes;
     std::map<int, juce::Array<int>> midiNoteToChordNotes;  // Maps input MIDI note to generated chord notes
+
+    // Strum state
+    int currentStrumStep = 0;
+    double strumSampleCounter = 0.0;
+    bool strumActive = false;
+    juce::Array<int> strumChordNotes;  // Chord notes being strummed
 
     // Visualizer state
     int currentChordDegree = -1;
