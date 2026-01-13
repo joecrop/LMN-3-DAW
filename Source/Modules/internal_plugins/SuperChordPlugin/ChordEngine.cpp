@@ -231,41 +231,272 @@ juce::Array<int> ChordEngine::getQuintalIntervals() {
 
 juce::Array<int> ChordEngine::applyVoicing(const juce::Array<int> &notes,
                                            ChordVoicing voicing) {
-    if (notes.size() < 3) {
+    if (notes.isEmpty()) {
         return notes;
     }
 
     juce::Array<int> voiced;
+    int numNotes = notes.size();
 
     switch (voicing) {
-    case ChordVoicing::Close:
+    case ChordVoicing::Block:
+        // All notes at base position
         voiced = notes;
         break;
 
-    case ChordVoicing::Open:
-        voiced.add(notes[0]);
-        voiced.add(notes[1] + 12);
-        if (notes.size() > 2)
-            voiced.add(notes[2]);
-        for (int i = 3; i < notes.size(); i++) {
-            voiced.add(notes[i]);
-        }
-        break;
-
     case ChordVoicing::Drop2:
-        if (notes.size() >= 3) {
-            voiced.add(notes[0]);
-            voiced.add(notes.getLast());
-            voiced.add(notes[1]);
-            if (notes.size() > 3) {
-                voiced.add(notes[notes.size() - 2] - 12);
-            }
-            if (notes.size() > 2 && notes.size() <= 3) {
-                voiced.add(notes[2]);
+        // 2nd from top dropped an octave
+        if (numNotes >= 2) {
+            for (int i = 0; i < numNotes; i++) {
+                if (i == numNotes - 2) {
+                    voiced.add(notes[i] - 12);
+                } else {
+                    voiced.add(notes[i]);
+                }
             }
         } else {
             voiced = notes;
         }
+        break;
+
+    case ChordVoicing::Drop3:
+        // 3rd from top dropped an octave
+        if (numNotes >= 3) {
+            for (int i = 0; i < numNotes; i++) {
+                if (i == numNotes - 3) {
+                    voiced.add(notes[i] - 12);
+                } else {
+                    voiced.add(notes[i]);
+                }
+            }
+        } else {
+            voiced = notes;
+        }
+        break;
+
+    case ChordVoicing::Spread:
+        // Alternating octave displacement
+        for (int i = 0; i < numNotes; i++) {
+            if (i % 2 == 1) {
+                voiced.add(notes[i] + 12);
+            } else {
+                voiced.add(notes[i]);
+            }
+        }
+        break;
+
+    case ChordVoicing::Inv1:
+        // 1st inversion - bass note up an octave
+        if (numNotes >= 2) {
+            for (int i = 1; i < numNotes; i++) {
+                voiced.add(notes[i]);
+            }
+            voiced.add(notes[0] + 12);
+        } else {
+            voiced = notes;
+        }
+        break;
+
+    case ChordVoicing::Inv2:
+        // 2nd inversion - two lowest notes up an octave
+        if (numNotes >= 3) {
+            for (int i = 2; i < numNotes; i++) {
+                voiced.add(notes[i]);
+            }
+            voiced.add(notes[0] + 12);
+            voiced.add(notes[1] + 12);
+        } else {
+            voiced = notes;
+        }
+        break;
+
+    case ChordVoicing::Inv3:
+        // 3rd inversion - three lowest notes up an octave
+        if (numNotes >= 4) {
+            for (int i = 3; i < numNotes; i++) {
+                voiced.add(notes[i]);
+            }
+            voiced.add(notes[0] + 12);
+            voiced.add(notes[1] + 12);
+            voiced.add(notes[2] + 12);
+        } else {
+            voiced = notes;
+        }
+        break;
+
+    case ChordVoicing::Drop24:
+        // Drop 2nd and 4th from top an octave
+        for (int i = 0; i < numNotes; i++) {
+            int fromTop = numNotes - 1 - i;
+            if (fromTop == 1 || fromTop == 3) {
+                voiced.add(notes[i] - 12);
+            } else {
+                voiced.add(notes[i]);
+            }
+        }
+        break;
+
+    case ChordVoicing::Drop23:
+        // Drop 2nd and 3rd from top an octave
+        for (int i = 0; i < numNotes; i++) {
+            int fromTop = numNotes - 1 - i;
+            if (fromTop == 1 || fromTop == 2) {
+                voiced.add(notes[i] - 12);
+            } else {
+                voiced.add(notes[i]);
+            }
+        }
+        break;
+
+    case ChordVoicing::Close:
+        // Notes within one octave - bring all notes into tightest voicing
+        if (numNotes > 0) {
+            int baseNote = notes[0];
+            voiced.add(baseNote);
+            for (int i = 1; i < numNotes; i++) {
+                int note = notes[i];
+                // Bring note within one octave of previous
+                while (note - voiced.getLast() >= 12) {
+                    note -= 12;
+                }
+                while (note <= voiced.getLast()) {
+                    note += 12;
+                }
+                // Keep within octave of root
+                while (note - baseNote >= 12) {
+                    note -= 12;
+                }
+                if (note <= baseNote) note += 12;
+                voiced.add(note);
+            }
+        }
+        break;
+
+    case ChordVoicing::Open:
+        // Every other note raised an octave
+        for (int i = 0; i < numNotes; i++) {
+            if (i % 2 == 1) {
+                voiced.add(notes[i] + 12);
+            } else {
+                voiced.add(notes[i]);
+            }
+        }
+        break;
+
+    case ChordVoicing::Wide:
+        // Root down octave, highest note up octave
+        for (int i = 0; i < numNotes; i++) {
+            if (i == 0) {
+                voiced.add(notes[i] - 12);
+            } else if (i == numNotes - 1) {
+                voiced.add(notes[i] + 12);
+            } else {
+                voiced.add(notes[i]);
+            }
+        }
+        break;
+
+    case ChordVoicing::Cluster:
+        // Tight semitone clustering (modern/dissonant)
+        if (numNotes > 0) {
+            voiced.add(notes[0]);
+            for (int i = 1; i < numNotes; i++) {
+                // Stack notes tightly with semitone adjustments
+                int prevNote = voiced.getLast();
+                int note = notes[i];
+                // Bring into cluster range (within 4 semitones of prev)
+                while (note - prevNote > 4) {
+                    note -= 12;
+                }
+                while (note <= prevNote) {
+                    note += 1; // Force at least semitone above
+                }
+                voiced.add(note);
+            }
+        }
+        break;
+
+    case ChordVoicing::DblRoot:
+        // Root doubled an octave below
+        if (numNotes > 0) {
+            voiced.add(notes[0] - 12);
+            for (int i = 0; i < numNotes; i++) {
+                voiced.add(notes[i]);
+            }
+        }
+        break;
+
+    case ChordVoicing::Dbl5th:
+        // 5th doubled an octave above (5th is typically notes[2] in a triad)
+        for (int i = 0; i < numNotes; i++) {
+            voiced.add(notes[i]);
+        }
+        if (numNotes >= 3) {
+            voiced.add(notes[2] + 12); // Add 5th doubled
+        }
+        break;
+
+    case ChordVoicing::Octaves:
+        // All notes doubled an octave above
+        for (int i = 0; i < numNotes; i++) {
+            voiced.add(notes[i]);
+        }
+        for (int i = 0; i < numNotes; i++) {
+            voiced.add(notes[i] + 12);
+        }
+        break;
+
+    case ChordVoicing::Power:
+        // Root + 5th only (power chord)
+        if (numNotes >= 1) {
+            voiced.add(notes[0]); // Root
+            if (numNotes >= 3) {
+                voiced.add(notes[2]); // 5th
+            } else if (numNotes >= 2) {
+                voiced.add(notes[1]); // Use 3rd if no 5th
+            }
+        }
+        break;
+
+    case ChordVoicing::Shell:
+        // Root + 3rd + 7th only (jazz shell voicing)
+        if (numNotes >= 1) {
+            voiced.add(notes[0]); // Root
+            if (numNotes >= 2) {
+                voiced.add(notes[1]); // 3rd
+            }
+            if (numNotes >= 4) {
+                voiced.add(notes[3]); // 7th
+            } else if (numNotes >= 3) {
+                voiced.add(notes[2]); // Use 5th if no 7th
+            }
+        }
+        break;
+
+    case ChordVoicing::Quartal:
+        // Restack notes in 4th intervals from root
+        if (numNotes > 0) {
+            int root = notes[0];
+            voiced.add(root);
+            for (int i = 1; i < numNotes; i++) {
+                voiced.add(root + (i * 5)); // Stack perfect 4ths
+            }
+        }
+        break;
+
+    case ChordVoicing::Random:
+        // Random octave displacement per note
+        {
+            juce::Random rand;
+            for (int i = 0; i < numNotes; i++) {
+                int octaveShift = rand.nextInt(3) - 1; // -1, 0, or +1 octave
+                voiced.add(notes[i] + (octaveShift * 12));
+            }
+        }
+        break;
+
+    default:
+        voiced = notes;
         break;
     }
 

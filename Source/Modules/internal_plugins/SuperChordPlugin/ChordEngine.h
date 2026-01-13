@@ -6,9 +6,41 @@
 namespace internal_plugins {
 
 /**
- * Chord voicing types
+ * Chord voicing types - 20 total voicing options
  */
-enum class ChordVoicing { Close = 0, Open = 1, Drop2 = 2 };
+enum class ChordVoicing {
+    // Basic Voicings (0-3)
+    Block = 0,      // All notes at base position
+    Drop2 = 1,      // 2nd from top dropped an octave
+    Drop3 = 2,      // 3rd from top dropped an octave
+    Spread = 3,     // Alternating octave displacement
+    
+    // Inversions (4-6)
+    Inv1 = 4,       // 1st inversion - bass up octave
+    Inv2 = 5,       // 2nd inversion - two lowest up octave
+    Inv3 = 6,       // 3rd inversion - three lowest up octave
+    
+    // Double Drops (7-8)
+    Drop24 = 7,     // Drop 2nd and 4th from top
+    Drop23 = 8,     // Drop 2nd and 3rd from top
+    
+    // Range & Spacing (9-12)
+    Close = 9,      // Notes within one octave (compact)
+    Open = 10,      // Every other note up octave
+    Wide = 11,      // Root down, 5th up octave
+    Cluster = 12,   // Tight semitone clustering
+    
+    // Doubling (13-16)
+    DblRoot = 13,   // Root doubled octave below
+    Dbl5th = 14,    // 5th doubled octave above
+    Octaves = 15,   // All notes doubled octave above
+    Power = 16,     // Root + 5th only
+    
+    // Style-Specific (17-19)
+    Shell = 17,     // Root + 3rd + 7th only
+    Quartal = 18,   // Restack in 4ths
+    Random = 19     // Random octave displacement
+};
 
 /**
  * Chord extension types

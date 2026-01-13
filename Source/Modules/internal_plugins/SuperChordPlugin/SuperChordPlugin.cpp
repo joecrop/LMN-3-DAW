@@ -65,7 +65,7 @@ SuperChordPlugin::SuperChordPlugin(tracktion::PluginCreationInfo info)
     macro7Param = createParam("macro7", TRANS("Macro 7"), {0.0f, 1.0f});
     macro7Param->attachToCurrentValue(macro7Value);
 
-    voicingParam = createParam("voicing", TRANS("Voicing"), {0.0f, 2.0f});
+    voicingParam = createParam("voicing", TRANS("Voicing"), {0.0f, 19.0f});
     voicingParam->attachToCurrentValue(voicingValue);
 
     octaveParam = createParam("octave", TRANS("Octave"), {-3.0f, 3.0f});

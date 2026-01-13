@@ -20,10 +20,10 @@ SuperChordModePage::SuperChordModePage(internal_plugins::SuperChordPlugin *p,
     addAndMakeVisible(modeSummaryLabel);
 
     // Configure knobs
-    // Encoder 1: Voicing (0-2: Close/Open/Drop-2)
+    // Encoder 1: Voicing (0-19: Block through Random)
     pluginKnobs.getKnob(0)->getLabel().setText("Voicing",
                                                juce::dontSendNotification);
-    pluginKnobs.getKnob(0)->getSlider().setRange(0, 2, 1);
+    pluginKnobs.getKnob(0)->getSlider().setRange(0, 19, 1);
     pluginKnobs.getKnob(0)->getSlider().setColour(
         juce::Slider::thumbColourId, appLookAndFeel.colour1);
 
@@ -90,13 +90,47 @@ void SuperChordModePage::resized() {
 juce::String SuperChordModePage::getVoicingName(int value) {
     switch (value) {
     case 0:
-        return "Close";
+        return "Block";
     case 1:
-        return "Open";
-    case 2:
         return "Drop-2";
-    default:
+    case 2:
+        return "Drop-3";
+    case 3:
+        return "Spread";
+    case 4:
+        return "Inv-1";
+    case 5:
+        return "Inv-2";
+    case 6:
+        return "Inv-3";
+    case 7:
+        return "Drop-24";
+    case 8:
+        return "Drop-23";
+    case 9:
         return "Close";
+    case 10:
+        return "Open";
+    case 11:
+        return "Wide";
+    case 12:
+        return "Cluster";
+    case 13:
+        return "Dbl Root";
+    case 14:
+        return "Dbl 5th";
+    case 15:
+        return "Octaves";
+    case 16:
+        return "Power";
+    case 17:
+        return "Shell";
+    case 18:
+        return "Quartal";
+    case 19:
+        return "Random";
+    default:
+        return "Block";
     }
 }
 
@@ -143,7 +177,7 @@ void SuperChordModePage::updateKnobValues() {
 void SuperChordModePage::encoder1Increased() {
     if (isShowing() && midiCommandManager.getFocusedComponent() == this) {
         int currentValue = plugin->getVoicingValue();
-        if (currentValue < 2) {
+        if (currentValue < 19) {
             plugin->voicingParam->setParameter(
                 static_cast<float>(currentValue + 1), juce::sendNotification);
             updateKnobValues();
