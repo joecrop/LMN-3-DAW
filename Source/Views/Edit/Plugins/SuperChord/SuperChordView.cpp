@@ -77,7 +77,11 @@ void SuperChordView::minusButtonReleased() {
 }
 
 void SuperChordView::visibilityChanged() {
-    if (isVisible()) {
+    if (isShowing()) {
         midiCommandManager.setFocusedComponent(getCurrentContentComponent());
     }
+}
+
+void SuperChordView::parentHierarchyChanged() {
+    visibilityChanged();
 }

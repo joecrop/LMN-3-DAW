@@ -15,6 +15,7 @@ class SuperChordView : public juce::TabbedComponent,
     void paint(juce::Graphics &g) override;
     void resized() override;
     void visibilityChanged() override;
+    void parentHierarchyChanged() override;
 
     void plusButtonReleased() override;
     void minusButtonReleased() override;

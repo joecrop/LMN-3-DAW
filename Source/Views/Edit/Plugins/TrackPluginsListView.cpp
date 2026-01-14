@@ -3,6 +3,7 @@
 #include "EditTabBarView.h"
 #include "FourOscView.h"
 #include "PluginView.h"
+#include "SuperChordView.h"
 #include <app_navigation/app_navigation.h>
 TrackPluginsListView::TrackPluginsListView(
     tracktion::AudioTrack::Ptr t, app_services::MidiCommandManager &mcm)
@@ -88,6 +89,12 @@ void TrackPluginsListView::encoder1ButtonReleased() {
                                 plugin->windowState->pluginWindow.get()))
                             midiCommandManager.setFocusedComponent(
                                 fourOscView->getCurrentContentComponent());
+
+                    } else if (auto superChordView = dynamic_cast<SuperChordView *>(
+                                   plugin->windowState->pluginWindow.get())) {
+                        // super chord view has a tab component
+                        midiCommandManager.setFocusedComponent(
+                            superChordView->getCurrentContentComponent());
 
                     } else {
                         midiCommandManager.setFocusedComponent(
