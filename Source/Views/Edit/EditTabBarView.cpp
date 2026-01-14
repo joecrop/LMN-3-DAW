@@ -3,6 +3,7 @@
 #include "FourOscView.h"
 #include "MixerView.h"
 #include "PluginView.h"
+#include "SuperChordView.h"
 #include "SettingsListView.h"
 #include "TempoSettingsView.h"
 #include "TrackModifiersListView.h"
@@ -207,13 +208,18 @@ void EditTabBarView::pluginsButtonReleased() {
                         getCurrentContentComponent())) {
                 if (auto pluginView = dynamic_cast<PluginView *>(
                         navigationController->getTopComponent())) {
-                    // Four osc has a tab bar component, have to treat it
+                    // Four osc and SuperChord have tab bar components, have to treat them
                     // special
                     if (auto fourOscView = dynamic_cast<FourOscView *>(
                             pluginView->getPlugin()
                                 ->windowState->pluginWindow.get()))
                         midiCommandManager.setFocusedComponent(
                             fourOscView->getCurrentContentComponent());
+                    else if (auto superChordView = dynamic_cast<SuperChordView *>(
+                                 pluginView->getPlugin()
+                                     ->windowState->pluginWindow.get()))
+                        midiCommandManager.setFocusedComponent(
+                            superChordView->getCurrentContentComponent());
                     else
                         midiCommandManager.setFocusedComponent(
                             pluginView->getPlugin()
