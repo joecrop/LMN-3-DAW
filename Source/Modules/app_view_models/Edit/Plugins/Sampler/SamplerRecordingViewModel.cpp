@@ -253,7 +253,8 @@ juce::File SamplerRecordingViewModel::generateRecordingFilename() {
         year.toRawUTF8(), hour12, minute, second, ampm);
     auto filename = "rec_" + timestamp + ".wav";
 
-    return ConfigurationHelpers::getSamplesDirectory().getChildFile(filename);
+    return ConfigurationHelpers::getTempRecordedSamplesDirectory(engine)
+        .getChildFile(filename);
 }
 
 } // namespace app_view_models

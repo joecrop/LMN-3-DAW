@@ -175,9 +175,19 @@ juce::File ConfigurationHelpers::getDrumKitsDirectory() {
         .getChildFile(DRUM_KITS_DIRECTORY_NAME);
 }
 
+juce::File ConfigurationHelpers::getRecordedSamplesDirectory() {
+    return getSamplesDirectory().getChildFile(RECORDED_SAMPLES_DIRECTORY_NAME);
+}
+
 juce::File
 ConfigurationHelpers::getTempSamplesDirectory(tracktion::Engine &engine) {
     return engine.getTemporaryFileManager().getTempFile(SAMPLES_DIRECTORY_NAME);
+}
+
+juce::File ConfigurationHelpers::getTempRecordedSamplesDirectory(
+    tracktion::Engine &engine) {
+    return getTempSamplesDirectory(engine).getChildFile(
+        RECORDED_SAMPLES_DIRECTORY_NAME);
 }
 
 juce::File

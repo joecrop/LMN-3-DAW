@@ -7,9 +7,14 @@ class ConfigurationHelpers {
     static inline const juce::String ROOT_DIRECTORY_NAME = "LMN-3";
     static inline const juce::String SAMPLES_DIRECTORY_NAME = "samples";
     static inline const juce::String DRUM_KITS_DIRECTORY_NAME = "drum_kits";
+    static inline const juce::String RECORDED_SAMPLES_DIRECTORY_NAME =
+        "recorded_samples";
     static juce::File getSamplesDirectory();
     static juce::File getDrumKitsDirectory();
+    static juce::File getRecordedSamplesDirectory();
     static juce::File getTempSamplesDirectory(tracktion::Engine &engine);
+    static juce::File
+    getTempRecordedSamplesDirectory(tracktion::Engine &engine);
     static juce::File getTempDrumKitsDirectory(tracktion::Engine &engine);
     static void initSamples(tracktion::Engine &engine);
     static bool getShowTitleBar(juce::File &configFile);

@@ -34,7 +34,7 @@ void SynthSamplerViewModel::updateFiles() {
     auto sampleDir = ConfigurationHelpers::getTempSamplesDirectory(
         samplerPlugin->edit.engine);
     if (curDir.isAChildOf(sampleDir)) {
-        auto parent = curDir.getChildFile("..");
+        auto parent = curDir.getParentDirectory();
         files.add(parent);
     }
     files.addArray(curDir.findChildFiles(
@@ -47,7 +47,7 @@ juce::StringArray SynthSamplerViewModel::getItemNames() {
     juce::StringArray itemNames;
     for (const juce::File &file : files) {
         if (file.isDirectory()) {
-            if (curDir.isAChildOf(file)) {
+            if (file == curDir.getParentDirectory()) {
                 itemNames.add("..");
             } else {
                 itemNames.add(file.getFileNameWithoutExtension() + "/");

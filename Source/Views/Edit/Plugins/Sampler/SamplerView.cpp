@@ -396,9 +396,9 @@ void SamplerView::stopButtonReleased() {
 
 void SamplerView::readyToRecordStateChanged(bool isReady) {
     if (samplerType != SamplerType::SYNTH) {
-        return;  // Recording only for synth sampler
+        return; // Recording only for synth sampler
     }
-    
+
     readyToRecord = isReady;
 
     if (isReady && !currentlyRecording) {
@@ -468,6 +468,13 @@ void SamplerView::recordingComplete(const juce::File &recordedFile) {
     // Refresh the sample list and load the new recording
     viewModel->refreshSampleList();
     viewModel->loadSampleFile(recordedFile);
+
+    // Update the file browser UI to reflect the new directory and selection
+    titledList.setListItems(viewModel->getItemNames());
+    titledList.setTitleString(viewModel->getTitle());
+    titledList.getListView().getListBox().scrollToEnsureRowIsOnscreen(
+        viewModel->itemListState.getSelectedItemIndex());
+
     updateInitialPromptVisibility();
     updateSampleLengthLabel();
     repaint();
